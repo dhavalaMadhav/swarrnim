@@ -1,0 +1,40 @@
+.campus-section {
+  background: linear-gradient(180deg, var(--dark-light) 0%, var(--dark) 100%);
+}
+
+.campus-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.campus-feature {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.campus-feature:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.campus-feature h4 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-white);
+}
+
+.campus-feature p {
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .campus-features {
+    grid-template-columns: 1fr;
+  }
+}
