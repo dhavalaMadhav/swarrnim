@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function Startups() {
   const styles = {
     section: {
@@ -23,7 +24,7 @@ function Startups() {
       letterSpacing: '-1px',
       textTransform: 'uppercase',
       lineHeight: '1.2',
-      marginBottom: '1rem',
+      marginBottom: '0.5rem',
       position: 'relative',
       display: 'inline-block',
       textShadow: '2px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.08), 6px 6px 0px rgba(0, 0, 0, 0.06), 8px 8px 0px rgba(0, 0, 0, 0.04), 10px 10px 20px rgba(0, 0, 0, 0.15)'
@@ -31,7 +32,7 @@ function Startups() {
     titleUnderline: {
       position: 'relative',
       display: 'inline-block',
-      paddingBottom: '1rem'
+      paddingBottom: '0.5rem'
     },
     titleUnderlineAfter: {
       position: 'absolute',
@@ -39,8 +40,8 @@ function Startups() {
       left: '0',
       width: '100%',
       height: '4px',
-      background: '#FF8C00',
-      boxShadow: '0 2px 10px rgba(255, 140, 0, 0.3)'
+      background: '#ff6b35',
+      boxShadow: '0 2px 10px rgba(255, 107, 53, 0.3)'
     },
     sectionIntro: {
       fontSize: '16px',
@@ -138,10 +139,12 @@ function Startups() {
     }
   };
 
+
   const mediaQueryStyles = `
     .scroll-row::-webkit-scrollbar {
       display: none;
     }
+
 
     /* Force black color for section title with maximum specificity */
     #startups .section-title,
@@ -153,18 +156,22 @@ function Startups() {
       -webkit-text-fill-color: #000000 !important;
     }
 
+
     .bento-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(255, 140, 0, 0.2);
+      box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
     }
+
 
     .bento-item:hover .bento-item-before {
       transform: scale(1.1);
     }
 
+
     .bento-item:hover .bento-item-after {
       background: rgba(0, 0, 0, 0.75);
     }
+
 
     /* Mobile bento grid layout - 6 columns x 2 rows */
     .mobile-item-1 {
@@ -172,30 +179,36 @@ function Startups() {
       grid-row: span 2;
     }
 
+
     .mobile-item-2 {
       grid-column: span 2;
       grid-row: span 1;
     }
+
 
     .mobile-item-3 {
       grid-column: span 2;
       grid-row: span 1;
     }
 
+
     .mobile-item-4 {
       grid-column: span 1;
       grid-row: span 1;
     }
+
 
     .mobile-item-5 {
       grid-column: span 1;
       grid-row: span 1;
     }
 
+
     .mobile-item-6 {
       grid-column: span 2;
       grid-row: span 1;
     }
+
 
     @media (max-width: 1200px) {
       #startups .section-title {
@@ -217,6 +230,7 @@ function Startups() {
       }
     }
 
+
     @media (max-width: 768px) {
       .section {
         padding: 60px 0 !important;
@@ -225,6 +239,10 @@ function Startups() {
         font-size: 32px !important;
         color: #000000 !important;
         -webkit-text-fill-color: #000000 !important;
+        margin-bottom: 0.4rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.4rem !important;
       }
       .container {
         padding: 0 0 !important;
@@ -253,6 +271,7 @@ function Startups() {
         min-height: auto !important;
       }
 
+
       /* Large item (2x2 span) - Incubation Center */
       .mobile-item-1 .bento-content {
         padding: 20px !important;
@@ -266,6 +285,7 @@ function Startups() {
         line-height: 1.5 !important;
       }
 
+
       /* Wide items (2x1 span) - Patent, Prototype, Innovation Labs */
       .mobile-item-2 .bento-title,
       .mobile-item-3 .bento-title,
@@ -277,6 +297,7 @@ function Startups() {
       .mobile-item-6 .bento-description {
         font-size: 12px !important;
       }
+
 
       /* Small items (1x1 span) - Mentorship, Funding */
       .mobile-item-4 .bento-content,
@@ -295,14 +316,20 @@ function Startups() {
       }
     }
 
+
     @media (max-width: 576px) {
       #startups .section-title {
         font-size: 24px !important;
         color: #000000 !important;
         -webkit-text-fill-color: #000000 !important;
+        margin-bottom: 0.3rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.3rem !important;
       }
     }
   `;
+
 
   const bentoItems = [
     {
@@ -355,13 +382,14 @@ function Startups() {
     }
   ];
 
+
   return (
     <>
       <style>{mediaQueryStyles}</style>
       <section id="startups" style={styles.section} className="section">
         <div style={styles.container} className="container">
           <div style={styles.textCenter}>
-            <div style={styles.titleUnderline}>
+            <div style={styles.titleUnderline} className="title-underline">
               <h2 style={styles.sectionTitle} className="section-title">
                 STARTUPS & INNOVATION
               </h2>
@@ -371,6 +399,7 @@ function Startups() {
               Empowering the next generation of entrepreneurs with comprehensive startup support
             </p>
           </div>
+
 
           {/* Desktop Bento Grid */}
           <div style={styles.bentoGrid} className="bento-grid">
@@ -396,6 +425,7 @@ function Startups() {
               </div>
             ))}
           </div>
+
 
           {/* Mobile Horizontal Scroll - Bento Grid Layout (6 columns x 2 rows) */}
           <div style={styles.scrollRow} className="scroll-row">
@@ -428,5 +458,6 @@ function Startups() {
     </>
   );
 }
+
 
 export default Startups;

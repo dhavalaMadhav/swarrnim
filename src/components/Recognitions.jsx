@@ -1,6 +1,8 @@
 import React from 'react';
 
 
+
+
 function Recognitions() {
   const styles = {
     section: {
@@ -23,7 +25,7 @@ function Recognitions() {
     titleUnderline: {
       position: 'relative',
       display: 'inline-block',
-      paddingBottom: '0.8rem'
+      paddingBottom: '0.5rem'
     },
     sectionTitle: {
       fontSize: '42px',
@@ -31,7 +33,7 @@ function Recognitions() {
       letterSpacing: '-1px',
       textTransform: 'uppercase',
       lineHeight: '1.2',
-      marginBottom: '0.8rem',
+      marginBottom: '0.5rem',
       position: 'relative',
       display: 'inline-block',
       color: '#000000',
@@ -58,11 +60,12 @@ function Recognitions() {
       marginTop: '30px'
     },
     recognitionGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
+      display: 'flex',
+      flexWrap: 'wrap',
       gap: '18px',
-      maxWidth: '950px',
-      margin: '0 auto'
+      maxWidth: '100%',
+      margin: '0 auto',
+      justifyContent: 'center'
     },
     recognitionCard: {
       background: '#ffffff',
@@ -73,9 +76,9 @@ function Recognitions() {
       flexDirection: 'column',
       alignItems: 'flex-start',
       textAlign: 'left',
-      minHeight: '140px',
       position: 'relative',
-      aspectRatio: '3 / 4'
+      flex: '1 1 calc(33.333% - 12px)',
+      maxWidth: 'calc(33.333% - 12px)'
     },
     badge: {
       position: 'absolute',
@@ -84,7 +87,7 @@ function Recognitions() {
       padding: '4px 10px',
       background: '#ff6b35',
       color: '#ffffff',
-      fontWeight: '900',
+      fontWeight: '700',
       textTransform: 'uppercase',
       letterSpacing: '0.5px',
       borderRadius: '0',
@@ -95,7 +98,7 @@ function Recognitions() {
       width: '100%'
     },
     cardTitle: {
-      fontWeight: '800',
+      fontWeight: '600',
       color: '#000',
       marginBottom: '6px',
       lineHeight: '1.35',
@@ -110,6 +113,8 @@ function Recognitions() {
   };
 
 
+
+
   const mediaQueryStyles = `
     /* Force black color for section title and remove gradient */
     #recognitions .section-title,
@@ -122,6 +127,8 @@ function Recognitions() {
     }
 
 
+
+
     /* Prevent GSAP interference */
     #recognitions,
     #recognitions *,
@@ -131,29 +138,34 @@ function Recognitions() {
     }
 
 
+
+
     .recognition-card:hover {
       transform: translateY(-6px) !important;
       border-color: #ff6b35;
     }
 
 
+
+
     @media (max-width: 1024px) {
       .recognition-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
         gap: 16px !important;
-        max-width: 600px !important;
+      }
+      .recognition-card {
+        flex: 1 1 calc(50% - 8px) !important;
+        max-width: calc(50% - 8px) !important;
+        padding: 16px 12px !important;
       }
       #recognitions .section-title {
         font-size: 36px !important;
-      }
-      .recognition-card {
-        padding: 16px 12px !important;
-        min-height: 130px !important;
       }
       .card-content {
         margin-top: 30px !important;
       }
     }
+
+
 
 
     @media (max-width: 768px) {
@@ -165,6 +177,10 @@ function Recognitions() {
       }
       #recognitions .section-title {
         font-size: 28px !important;
+        margin-bottom: 0.4rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.4rem !important;
       }
       .section-intro {
         font-size: 12px !important;
@@ -173,13 +189,14 @@ function Recognitions() {
         margin-top: 25px !important;
       }
       .recognition-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
-        max-width: 100% !important;
       }
       .recognition-card {
+        flex: 1 1 calc(50% - 6px) !important;
+        max-width: calc(50% - 6px) !important;
         padding: 14px 10px !important;
-        min-height: 120px !important;
+        aspect-ratio: auto !important;
+        min-height: auto !important;
       }
       .badge {
         padding: 3px 8px !important;
@@ -193,25 +210,33 @@ function Recognitions() {
     }
 
 
+
+
     @media (max-width: 576px) {
       #recognitions .container {
         padding: 0 0.75rem !important;
       }
       #recognitions .section-title {
         font-size: 24px !important;
+        margin-bottom: 0.3rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.3rem !important;
       }
       .section-intro {
         font-size: 11px !important;
         margin-bottom: 1rem !important;
       }
       .recognition-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
       }
       .recognition-card {
-        padding: 12px 8px !important;
-        min-height: 110px !important;
+        flex: 1 1 calc(50% - 5px) !important;
+        max-width: calc(50% - 5px) !important;
+        padding: 12px 10px 14px 10px !important;
         border-width: 1.5px !important;
+        aspect-ratio: auto !important;
+        min-height: auto !important;
       }
       .badge {
         padding: 3px 7px !important;
@@ -224,6 +249,8 @@ function Recognitions() {
       }
     }
 
+
+
     @media (max-width: 400px) {
       #recognitions .container {
         padding: 0 0.5rem !important;
@@ -232,8 +259,11 @@ function Recognitions() {
         gap: 8px !important;
       }
       .recognition-card {
-        padding: 10px 7px !important;
-        min-height: 100px !important;
+        flex: 1 1 calc(50% - 4px) !important;
+        max-width: calc(50% - 4px) !important;
+        padding: 10px 8px 12px 8px !important;
+        aspect-ratio: auto !important;
+        min-height: auto !important;
       }
       .badge {
         padding: 2px 6px !important;
@@ -243,6 +273,8 @@ function Recognitions() {
       }
     }
   `;
+
+
 
 
   const recognitions = [
@@ -274,13 +306,15 @@ function Recognitions() {
   ];
 
 
+
+
   return (
     <>
       <style>{mediaQueryStyles}</style>
       <section id="recognitions" style={styles.section} className="section">
         <div style={styles.container} className="container">
           <div style={styles.textCenter}>
-            <div style={styles.titleUnderline}>
+            <div style={styles.titleUnderline} className="title-underline">
               <h2 style={styles.sectionTitle} className="section-title">
                 Recognitions & Rankings
               </h2>
@@ -290,6 +324,8 @@ function Recognitions() {
               Celebrating excellence and achievement in innovation, education, and research
             </p>
           </div>
+
+
 
 
           {/* Recognition Cards Grid */}
@@ -324,6 +360,8 @@ function Recognitions() {
     </>
   );
 }
+
+
 
 
 export default Recognitions;

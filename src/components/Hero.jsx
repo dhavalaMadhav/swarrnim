@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, User, GraduationCap, TrendingUp, Award, Building2 } from 'lucide-react';
 
+
 function Hero() {
   const [formData, setFormData] = useState({
     name: '',
@@ -9,12 +10,6 @@ function Hero() {
     course: ''
   });
 
-  const [focusedField, setFocusedField] = useState({
-    name: false,
-    email: false,
-    number: false,
-    course: false
-  });
 
   const handleInputChange = (e) => {
     setFormData({
@@ -23,29 +18,14 @@ function Hero() {
     });
   };
 
-  const handleFocus = (field) => {
-    setFocusedField({
-      ...focusedField,
-      [field]: true
-    });
-  };
-
-  const handleBlur = (field) => {
-    if (!formData[field]) {
-      setFocusedField({
-        ...focusedField,
-        [field]: false
-      });
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     alert('Thank you for your interest! We will contact you soon.');
     setFormData({ name: '', email: '', number: '', course: '' });
-    setFocusedField({ name: false, email: false, number: false, course: false });
   };
+
 
   const styles = {
     hero: {
@@ -256,8 +236,7 @@ function Hero() {
       left: '0.9rem',
       color: 'rgba(255, 255, 255, 0.7)',
       pointerEvents: 'none',
-      zIndex: 2,
-      transition: 'all 0.3s ease'
+      zIndex: 2
     },
     input: {
       width: '100%',
@@ -271,29 +250,6 @@ function Hero() {
       transition: 'all 0.3s ease',
       fontWeight: '500',
       fontFamily: 'inherit'
-    },
-    floatingLabel: {
-      position: 'absolute',
-      left: '2.6rem',
-      top: '50%',
-      transform: 'translateY(-50%)',
-      color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '0.9rem',
-      fontWeight: '500',
-      pointerEvents: 'none',
-      transition: 'all 0.3s ease',
-      background: 'transparent',
-      padding: '0 0.3rem'
-    },
-    floatingLabelActive: {
-      top: '0',
-      left: '0.9rem',
-      transform: 'translateY(-50%)',
-      fontSize: '0.7rem',
-      color: '#ff6b35',
-      background: 'transparent',
-      padding: '0 0.4rem',
-      fontWeight: '600'
     },
     select: {
       width: '100%',
@@ -349,6 +305,7 @@ function Hero() {
     }
   };
 
+
   const mediaQueryStyles = `
     @keyframes fadeInLeft {
       from {
@@ -361,6 +318,7 @@ function Hero() {
       }
     }
 
+
     @keyframes fadeInRight {
       from {
         opacity: 0;
@@ -372,6 +330,7 @@ function Hero() {
       }
     }
 
+
     @keyframes glassShine {
       0% {
         left: -100%;
@@ -381,23 +340,42 @@ function Hero() {
       }
     }
 
+
+    input::placeholder,
+    select::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+
     input:focus,
     select:focus {
       outline: none;
       border-color: #ff6b35 !important;
-      background: transparent !important;
+      background: rgba(255, 255, 255, 0.08) !important;
     }
+
 
     select option {
       background: #1a1a1a;
       color: #ffffff;
     }
 
+    /* Fix select appearance on different browsers */
+    select:invalid {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    select option:first-child {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+
     @media (max-width: 1200px) {
       .hero-title {
         font-size: 3.2rem !important;
       }
     }
+
 
     @media (max-width: 1024px) {
       .hero-content-wrapper {
@@ -408,6 +386,7 @@ function Hero() {
         padding: 2rem 1.5rem !important;
       }
     }
+
 
     @media (max-width: 768px) {
       .hero {
@@ -422,6 +401,7 @@ function Hero() {
         height: 75% !important;
       }
 
+
       .hero-mobile-content {
         position: relative !important;
         background: #fafafa !important;
@@ -430,18 +410,22 @@ function Hero() {
         z-index: 10 !important;
       }
 
+
       .hero-container {
         padding: 2rem 1rem !important;
         margin-top: 0 !important;
       }
 
+
       .hero-content-wrapper {
         display: block !important;
       }
 
+
       .hero-left-section {
         padding: 0 !important;
       }
+
 
       .hero-title {
         font-size: 2rem !important;
@@ -449,25 +433,30 @@ function Hero() {
         margin-bottom: 0.8rem !important;
       }
 
+
       .hero-badge {
         font-size: 0.7rem !important;
         padding: 0.4rem 0.9rem !important;
         margin-bottom: 1rem !important;
       }
 
+
       .hero-subtitle {
         font-size: 1rem !important;
         margin-bottom: 0.8rem !important;
       }
+
 
       .hero-description {
         font-size: 0.9rem !important;
         margin-bottom: 1.5rem !important;
       }
 
+
       .hero-stats-container {
         display: none !important;
       }
+
 
       .hero-right-section {
         width: 100% !important;
@@ -476,48 +465,58 @@ function Hero() {
         padding: 0 !important;
       }
 
+
       .hero-contact-box {
         padding: 1.3rem !important;
       }
 
+
       .contact-box-title {
         font-size: 1.2rem !important;
       }
+
 
       .contact-box-subtitle {
         font-size: 0.75rem !important;
       }
     }
 
+
     @media (max-width: 480px) {
       .hero {
         padding-top: 60px !important;
       }
+
 
       .hero-mobile-content {
         margin-top: -6rem !important;
         padding: 1.5rem 0.75rem 2rem !important;
       }
 
+
       .hero-title {
         font-size: 1.7rem !important;
         letter-spacing: -1px !important;
       }
 
+
       .hero-subtitle {
         font-size: 0.9rem !important;
       }
+
 
       .hero-description {
         font-size: 0.85rem !important;
         line-height: 1.5 !important;
       }
 
+
       .hero-contact-box {
         padding: 1.2rem !important;
       }
     }
   `;
+
 
   return (
     <>
@@ -547,6 +546,7 @@ function Hero() {
                 Gujarat's first Quantum Computing program preparing students for tomorrow's challenges.
               </p>
 
+
               {/* Statistics Container - Desktop Only */}
               <div style={styles.statsContainer} className="hero-stats-container">
                 <div style={styles.statsGlassShine}></div>
@@ -556,7 +556,9 @@ function Hero() {
                   <div style={styles.statLabel} className="stat-label">Startups Incubated</div>
                 </div>
 
+
                 <div style={styles.statDivider} className="stat-divider"></div>
+
 
                 <div style={styles.statItem} className="hero-stat-item">
                   <GraduationCap size={28} style={styles.statIcon} />
@@ -564,7 +566,9 @@ function Hero() {
                   <div style={styles.statLabel} className="stat-label">Highest Package</div>
                 </div>
 
+
                 <div style={styles.statDivider} className="stat-divider"></div>
+
 
                 <div style={styles.statItem} className="hero-stat-item">
                   <Award size={28} style={styles.statIcon} />
@@ -573,6 +577,7 @@ function Hero() {
                 </div>
               </div>
             </div>
+
 
             {/* Right Side - Contact Form (Desktop) */}
             <div style={styles.rightSection} className="hero-right-section">
@@ -586,113 +591,60 @@ function Hero() {
                 <form style={styles.form} onSubmit={handleSubmit}>
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
-                      <User 
-                        size={18} 
-                        style={{
-                          ...styles.inputIcon,
-                          ...(focusedField.name || formData.name ? { top: '0' } : {})
-                        }} 
-                      />
+                      <User size={18} style={styles.inputIcon} />
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        onFocus={() => handleFocus('name')}
-                        onBlur={() => handleBlur('name')}
+                        placeholder="Full Name"
                         style={styles.input}
                         required
                       />
-                      <label 
-                        style={{
-                          ...styles.floatingLabel,
-                          ...(focusedField.name || formData.name ? styles.floatingLabelActive : {})
-                        }}
-                      >
-                        Full Name
-                      </label>
                     </div>
                   </div>
                   
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
-                      <Mail 
-                        size={18} 
-                        style={{
-                          ...styles.inputIcon,
-                          ...(focusedField.email || formData.email ? { top: '0' } : {})
-                        }} 
-                      />
+                      <Mail size={18} style={styles.inputIcon} />
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        onFocus={() => handleFocus('email')}
-                        onBlur={() => handleBlur('email')}
+                        placeholder="Email Address"
                         style={styles.input}
                         required
                       />
-                      <label 
-                        style={{
-                          ...styles.floatingLabel,
-                          ...(focusedField.email || formData.email ? styles.floatingLabelActive : {})
-                        }}
-                      >
-                        Email Address
-                      </label>
                     </div>
                   </div>
                   
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
-                      <Phone 
-                        size={18} 
-                        style={{
-                          ...styles.inputIcon,
-                          ...(focusedField.number || formData.number ? { top: '0' } : {})
-                        }} 
-                      />
+                      <Phone size={18} style={styles.inputIcon} />
                       <input
                         type="tel"
                         name="number"
                         value={formData.number}
                         onChange={handleInputChange}
-                        onFocus={() => handleFocus('number')}
-                        onBlur={() => handleBlur('number')}
+                        placeholder="Phone Number"
                         style={styles.input}
                         required
                       />
-                      <label 
-                        style={{
-                          ...styles.floatingLabel,
-                          ...(focusedField.number || formData.number ? styles.floatingLabelActive : {})
-                        }}
-                      >
-                        Phone Number
-                      </label>
                     </div>
                   </div>
                   
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
-                      <GraduationCap 
-                        size={18} 
-                        style={{
-                          ...styles.inputIcon,
-                          ...(focusedField.course || formData.course ? { top: '0' } : {})
-                        }} 
-                      />
+                      <GraduationCap size={18} style={styles.inputIcon} />
                       <select
                         name="course"
                         value={formData.course}
                         onChange={handleInputChange}
-                        onFocus={() => handleFocus('course')}
-                        onBlur={() => handleBlur('course')}
                         style={styles.select}
                         required
                       >
-                        <option value=""></option>
+                        <option value="">Select Course</option>
                         <option value="btech">B.Tech</option>
                         <option value="btech-quantum">B.Tech - Quantum Computing</option>
                         <option value="btech-ai">B.Tech - AI & Data Science</option>
@@ -702,16 +654,9 @@ function Hero() {
                         <option value="mtech">M.Tech</option>
                         <option value="other">Other Courses</option>
                       </select>
-                      <label 
-                        style={{
-                          ...styles.floatingLabel,
-                          ...(focusedField.course || formData.course ? styles.floatingLabelActive : {})
-                        }}
-                      >
-                        Select Course
-                      </label>
                     </div>
                   </div>
+
 
                   <button 
                     type="submit" 
@@ -722,6 +667,7 @@ function Hero() {
                     Submit Inquiry
                   </button>
                 </form>
+
 
                 <div style={styles.contactBoxFooter}>
                   <div style={styles.contactItem}>
@@ -738,11 +684,13 @@ function Hero() {
           </div>
         </div>
 
+
         {/* Mobile View - Background wrapper (75% height) */}
         <div className="hero-background-wrapper" style={{display: 'none'}}>
           <div style={styles.backgroundImage}></div>
           <div style={styles.overlay}></div>
         </div>
+
 
         {/* Mobile View - Content section */}
         <div className="hero-mobile-content" style={{display: 'none'}}>
@@ -752,5 +700,6 @@ function Hero() {
     </>
   );
 }
+
 
 export default Hero;

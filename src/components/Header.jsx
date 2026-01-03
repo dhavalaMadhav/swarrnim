@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
+import logo from '/swarrnim-logo.png';
+
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   const styles = {
     header: {
@@ -43,27 +48,14 @@ function Header() {
     },
     logo: {
       display: 'flex',
-      flexDirection: 'column',
-      gap: '0.15rem',
+      alignItems: 'center',
       cursor: 'pointer'
     },
-    logoTitle: {
-      fontSize: '1.5rem',
-      fontWeight: '900',
-      color: '#1a1a1a',
-      margin: 0,
-      letterSpacing: '-1px',
-      lineHeight: 1,
-      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    },
-    logoSubtitle: {
-      fontSize: '0.65rem',
-      color: '#ff6b35',
-      margin: 0,
-      fontWeight: '700',
-      letterSpacing: '0.5px',
-      textTransform: 'uppercase',
-      lineHeight: 1
+    logoImage: {
+      height: isScrolled ? '50px' : '60px',
+      width: 'auto',
+      transition: 'height 0.3s ease',
+      objectFit: 'contain'
     },
     nav: {
       display: 'flex',
@@ -80,16 +72,25 @@ function Header() {
       letterSpacing: '0.3px',
       cursor: 'pointer'
     },
-    navLinkHover: {
-      color: '#ff6b35'
-    },
     mobileMenuButton: {
       display: 'none',
       background: 'transparent',
       border: 'none',
       cursor: 'pointer',
       padding: '0.5rem',
-      color: '#1a1a1a'
+      position: 'relative',
+      width: '32px',
+      height: '24px',
+      zIndex: 1002
+    },
+    hamburgerLine: {
+      position: 'absolute',
+      left: 0,
+      width: '100%',
+      height: '3px',
+      background: '#1a1a1a',
+      borderRadius: '2px',
+      transition: 'all 0.3s ease-in-out'
     },
     mobileMenu: {
       position: 'fixed',
@@ -114,6 +115,22 @@ function Header() {
       paddingBottom: '1rem',
       borderBottom: '2px solid #e0e0e0'
     },
+    mobileLogoImage: {
+      height: '50px',
+      width: 'auto',
+      objectFit: 'contain'
+    },
+    closeButton: {
+      background: 'transparent',
+      border: 'none',
+      cursor: 'pointer',
+      padding: '0.5rem',
+      color: '#1a1a1a',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: 'transform 0.3s ease'
+    },
     mobileNavLink: {
       color: '#333333',
       textDecoration: 'none',
@@ -123,13 +140,6 @@ function Header() {
       borderBottom: '1px solid #f0f0f0',
       transition: 'color 0.3s ease',
       cursor: 'pointer'
-    },
-    closeButton: {
-      background: 'transparent',
-      border: 'none',
-      cursor: 'pointer',
-      padding: '0.5rem',
-      color: '#1a1a1a'
     },
     overlay: {
       position: 'fixed',
@@ -145,6 +155,7 @@ function Header() {
     }
   };
 
+
   const mediaQueryStyles = `
     @media (max-width: 1024px) {
       .header-nav {
@@ -155,29 +166,32 @@ function Header() {
       }
     }
 
+
     @media (max-width: 768px) {
       .header-container {
         padding: 0 1.5rem !important;
       }
-      .logo-title {
-        font-size: 1.3rem !important;
+      .logo-image {
+        height: 45px !important;
       }
-      .logo-subtitle {
-        font-size: 0.6rem !important;
+      .logo-image-scrolled {
+        height: 40px !important;
       }
     }
+
 
     @media (max-width: 480px) {
       .header-container {
         padding: 0 1rem !important;
       }
-      .logo-title {
-        font-size: 1.1rem !important;
+      .logo-image {
+        height: 40px !important;
       }
-      .logo-subtitle {
-        font-size: 0.55rem !important;
+      .logo-image-scrolled {
+        height: 35px !important;
       }
     }
+
 
     .nav-link::after {
       content: '';
@@ -190,10 +204,50 @@ function Header() {
       transition: width 0.3s ease;
     }
 
+
     .nav-link:hover::after {
       width: 100%;
     }
+
+
+    .hamburger-line-1 {
+      top: 0;
+    }
+
+
+    .hamburger-line-2 {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+
+    .hamburger-line-3 {
+      bottom: 0;
+    }
+
+
+    .hamburger-open .hamburger-line-1 {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+
+    .hamburger-open .hamburger-line-2 {
+      opacity: 0;
+      width: 0;
+    }
+
+
+    .hamburger-open .hamburger-line-3 {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+    }
+
+    .close-button:hover {
+      transform: rotate(90deg);
+    }
   `;
+
 
   const navLinks = [
     { href: '#startups', label: 'Startups' },
@@ -204,9 +258,11 @@ function Header() {
     { href: '#campus', label: 'Campus Life' }
   ];
 
+
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
   };
+
 
   return (
     <>
@@ -214,11 +270,15 @@ function Header() {
       <header style={styles.header}>
         <div style={styles.container} className="header-container">
           <div style={styles.logo}>
-            <h1 style={styles.logoTitle} className="logo-title">SWARRNIM</h1>
-            <p style={styles.logoSubtitle} className="logo-subtitle">Startup & Innovation University</p>
+            <img 
+              src={logo}
+              alt="Swarrnim University Logo" 
+              style={styles.logoImage}
+              className={isScrolled ? 'logo-image logo-image-scrolled' : 'logo-image'}
+            />
           </div>
 
-          {/* Desktop Navigation */}
+
           <nav style={styles.nav} className="header-nav">
             {navLinks.map((link, index) => (
               <a
@@ -238,39 +298,45 @@ function Header() {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
+
           <button 
             style={styles.mobileMenuButton} 
-            className="mobile-menu-button"
-            onClick={() => setIsMobileMenuOpen(true)}
-            aria-label="Open menu"
+            className={`mobile-menu-button ${isMobileMenuOpen ? 'hamburger-open' : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            <Menu size={28} />
+            <span style={styles.hamburgerLine} className="hamburger-line-1"></span>
+            <span style={styles.hamburgerLine} className="hamburger-line-2"></span>
+            <span style={styles.hamburgerLine} className="hamburger-line-3"></span>
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+
       <div 
         style={styles.overlay} 
         onClick={() => setIsMobileMenuOpen(false)}
       />
 
-      {/* Mobile Menu */}
+
       <div style={styles.mobileMenu}>
         <div style={styles.mobileMenuHeader}>
-          <div style={styles.logo}>
-            <h1 style={{...styles.logoTitle, fontSize: '1.3rem'}}>SWARRNIM</h1>
-            <p style={styles.logoSubtitle}>Startup & Innovation University</p>
-          </div>
+          <img 
+            src={logo}
+            alt="Swarrnim University Logo" 
+            style={styles.mobileLogoImage}
+            className="mobile-logo-image"
+          />
           <button 
             style={styles.closeButton}
+            className="close-button"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-label="Close menu"
           >
-            <X size={24} />
+            <X size={28} />
           </button>
         </div>
+
 
         {navLinks.map((link, index) => (
           <a
@@ -292,5 +358,6 @@ function Header() {
     </>
   );
 }
+
 
 export default Header;

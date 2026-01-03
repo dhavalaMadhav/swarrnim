@@ -1,77 +1,83 @@
 import React from 'react';
 
+
+
 function Placements() {
   const styles = {
     section: {
-      padding: '100px 0',
+      padding: '80px 0',
       position: 'relative',
-      background: '#ffffff'
+      background: '#ffffff',
+      zIndex: 10,
+      isolation: 'isolate'
     },
     container: {
-      maxWidth: '1400px',
+      maxWidth: '1100px',
       margin: '0 auto',
-      padding: '0 2rem',
+      padding: '0 1.5rem',
       width: '100%'
     },
     textCenter: {
       textAlign: 'center',
-      marginBottom: '4rem'
-    },
-    sectionTitle: {
-      fontSize: '52px',
-      fontWeight: '900',
-      letterSpacing: '-1px',
-      textTransform: 'uppercase',
-      lineHeight: '1.2',
-      marginBottom: '1rem',
-      position: 'relative',
-      display: 'inline-block',
-      textShadow: '2px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.08), 6px 6px 0px rgba(0, 0, 0, 0.06), 8px 8px 0px rgba(0, 0, 0, 0.04), 10px 10px 20px rgba(0, 0, 0, 0.15)'
+      marginBottom: '2.5rem'
     },
     titleUnderline: {
       position: 'relative',
       display: 'inline-block',
-      paddingBottom: '1rem'
+      paddingBottom: '0.5rem'
+    },
+    sectionTitle: {
+      fontSize: '42px',
+      fontWeight: '900',
+      letterSpacing: '-1px',
+      textTransform: 'uppercase',
+      lineHeight: '1.2',
+      marginBottom: '0.5rem',
+      position: 'relative',
+      display: 'inline-block',
+      color: '#000000',
+      textShadow: '2px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.08), 6px 6px 0px rgba(0, 0, 0, 0.06), 8px 8px 0px rgba(0, 0, 0, 0.04), 10px 10px 20px rgba(0, 0, 0, 0.15)'
     },
     titleUnderlineAfter: {
       position: 'absolute',
       bottom: '0',
       left: '0',
       width: '100%',
-      height: '4px',
+      height: '3px',
       background: '#ff6b35'
     },
     sectionIntro: {
-      fontSize: '16px',
+      fontSize: '14px',
       color: '#666',
-      lineHeight: '1.8',
+      lineHeight: '1.6',
       fontWeight: '300',
-      maxWidth: '800px',
-      margin: '0 auto 3rem'
+      maxWidth: '650px',
+      margin: '0 auto 1.5rem'
     },
     placementHighlights: {
       display: 'grid',
       gridTemplateColumns: 'repeat(4, 1fr)',
-      gap: '30px',
-      marginBottom: '60px'
+      gap: '18px',
+      marginBottom: '50px',
+      marginTop: '30px'
     },
     placementStat: {
       background: '#fafafa',
-      padding: '40px 30px',
+      padding: '35px 25px',
       textAlign: 'center',
-      border: '1px solid rgba(0, 0, 0, 0.08)',
+      border: '2px solid rgba(0, 0, 0, 0.08)',
       transition: 'all 0.3s ease'
     },
     statNumber: {
-      fontSize: '48px',
+      fontSize: '38px',
       fontWeight: '900',
       color: '#ff6b35',
       marginBottom: '10px',
       lineHeight: '1',
-      letterSpacing: '-2px'
+      letterSpacing: '-1px'
     },
     statLabel: {
-      fontSize: '16px',
+      fontSize: '14px',
       fontWeight: '600',
       color: '#000',
       marginBottom: '5px',
@@ -79,20 +85,20 @@ function Placements() {
       letterSpacing: '0.5px'
     },
     statSubtext: {
-      fontSize: '13px',
+      fontSize: '12px',
       color: '#666',
       fontWeight: '400'
     },
     companiesSection: {
-      marginTop: '60px',
-      padding: '0 3rem'
+      marginTop: '50px',
+      padding: '0'
     },
     companiesHeader: {
-      fontSize: '28px',
+      fontSize: '24px',
       fontWeight: '800',
       color: '#000',
       textAlign: 'center',
-      marginBottom: '40px',
+      marginBottom: '30px',
       textTransform: 'uppercase',
       letterSpacing: '-0.5px'
     },
@@ -106,7 +112,7 @@ function Placements() {
       overflowX: 'auto',
       scrollSnapType: 'x mandatory',
       scrollBehavior: 'smooth',
-      gap: '20px',
+      gap: '18px',
       WebkitOverflowScrolling: 'touch',
       scrollbarWidth: 'none',
       msOverflowStyle: 'none',
@@ -117,132 +123,131 @@ function Placements() {
       scrollSnapAlign: 'start',
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      gap: '20px',
+      gap: '18px',
       flexShrink: 0
     },
     companyCard: {
       background: '#fafafa',
-      padding: '35px 25px',
+      padding: '30px 20px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       border: '2px solid rgba(0, 0, 0, 0.08)',
       transition: 'all 0.3s ease',
-      minHeight: '100px',
-      maxHeight: '100px'
+      minHeight: '90px',
+      maxHeight: '90px'
     },
     companyName: {
-      fontSize: '22px',
-      fontWeight: '800',
+      fontSize: '18px',
+      fontWeight: '700',
       color: '#000',
       textAlign: 'center',
-      letterSpacing: '-0.5px',
+      letterSpacing: '-0.3px',
       textTransform: 'uppercase'
     },
     scrollIndicator: {
       display: 'flex',
       justifyContent: 'center',
       gap: '8px',
-      marginTop: '30px'
+      marginTop: '25px'
     },
     dot: {
       width: '10px',
       height: '10px',
+      borderRadius: '50%',
       background: '#ddd',
       transition: 'all 0.3s ease'
     },
     dotActive: {
       width: '30px',
+      borderRadius: '5px',
       background: '#ff6b35'
     }
   };
+
+
 
   const mediaQueryStyles = `
     /* Force black color for section title */
     #placements .section-title,
     section#placements .section-title {
       color: #000000 !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
       -webkit-text-fill-color: #000000 !important;
+      background-clip: unset !important;
     }
+
+
+    /* Prevent GSAP interference */
+    #placements,
+    #placements * {
+      transform: none !important;
+      will-change: auto !important;
+    }
+
 
     .carousel-track::-webkit-scrollbar {
       display: none;
     }
 
+
     .placement-stat:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px) !important;
       border-color: #ff6b35;
+      background: #ffffff;
     }
+
 
     .company-card:hover {
       border-color: #ff6b35;
       background: #fff;
     }
 
+
     .company-card:hover .company-name {
       color: #ff6b35;
     }
 
+
     @media (max-width: 1024px) {
       .placement-highlights {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
+        gap: 16px !important;
       }
-      .section-title {
-        font-size: 44px !important;
+      #placements .section-title {
+        font-size: 36px !important;
       }
-      .companies-section {
-        padding: 0 2rem !important;
+      .stat-number {
+        font-size: 34px !important;
       }
     }
 
+
     @media (max-width: 768px) {
-      .section {
-        padding: 60px 0 !important;
+      #placements.section {
+        padding: 50px 0 !important;
       }
-      .section-title {
-        font-size: 32px !important;
+      #placements .container {
+        padding: 0 1rem !important;
+      }
+      #placements .section-title {
+        font-size: 28px !important;
+        margin-bottom: 0.4rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.4rem !important;
+      }
+      .section-intro {
+        font-size: 12px !important;
       }
       .placement-highlights {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
-        margin-bottom: 40px !important;
-      }
-      .placement-stat {
-        padding: 30px 20px !important;
-      }
-      .stat-number {
-        font-size: 36px !important;
-      }
-      .stat-label {
-        font-size: 14px !important;
-      }
-      .companies-section {
-        padding: 0 1rem !important;
-      }
-      .companies-header {
-        font-size: 24px !important;
-        margin-bottom: 30px !important;
-      }
-      .carousel-slide {
         gap: 12px !important;
-      }
-      .company-card {
-        padding: 25px 15px !important;
-        min-height: 80px !important;
-        max-height: 80px !important;
-      }
-      .company-name {
-        font-size: 18px !important;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .section-title {
-        font-size: 24px !important;
+        margin-bottom: 35px !important;
       }
       .placement-stat {
-        padding: 25px 15px !important;
+        padding: 28px 18px !important;
       }
       .stat-number {
         font-size: 30px !important;
@@ -254,24 +259,100 @@ function Placements() {
         font-size: 11px !important;
       }
       .companies-section {
-        padding: 0 0.5rem !important;
+        margin-top: 35px !important;
       }
       .companies-header {
         font-size: 20px !important;
+        margin-bottom: 25px !important;
       }
       .carousel-slide {
-        gap: 10px !important;
+        gap: 12px !important;
       }
       .company-card {
-        padding: 20px 12px !important;
-        min-height: 70px !important;
-        max-height: 70px !important;
+        padding: 22px 15px !important;
+        min-height: 75px !important;
+        max-height: 75px !important;
       }
       .company-name {
         font-size: 16px !important;
       }
     }
+
+
+    @media (max-width: 576px) {
+      #placements .container {
+        padding: 0 0.75rem !important;
+      }
+      #placements .section-title {
+        font-size: 24px !important;
+        margin-bottom: 0.3rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.3rem !important;
+      }
+      .section-intro {
+        font-size: 11px !important;
+        margin-bottom: 1rem !important;
+      }
+      .placement-highlights {
+        gap: 10px !important;
+      }
+      .placement-stat {
+        padding: 24px 15px !important;
+        border-width: 1.5px !important;
+      }
+      .stat-number {
+        font-size: 26px !important;
+      }
+      .stat-label {
+        font-size: 12px !important;
+      }
+      .stat-subtext {
+        font-size: 10px !important;
+      }
+      .companies-header {
+        font-size: 18px !important;
+      }
+      .carousel-slide {
+        gap: 10px !important;
+      }
+      .company-card {
+        padding: 18px 12px !important;
+        min-height: 65px !important;
+        max-height: 65px !important;
+        border-width: 1.5px !important;
+      }
+      .company-name {
+        font-size: 14px !important;
+      }
+    }
+
+
+    @media (max-width: 400px) {
+      #placements .container {
+        padding: 0 0.5rem !important;
+      }
+      .placement-highlights {
+        gap: 8px !important;
+      }
+      .placement-stat {
+        padding: 20px 12px !important;
+      }
+      .carousel-slide {
+        gap: 8px !important;
+      }
+      .company-card {
+        padding: 16px 10px !important;
+        min-height: 60px !important;
+        max-height: 60px !important;
+      }
+      .company-name {
+        font-size: 13px !important;
+      }
+    }
   `;
+
+
 
   // Company data organized in pairs for carousel
   const companies = [
@@ -282,8 +363,12 @@ function Placements() {
     ['L&T Infotech', 'Tech Mahindra']
   ];
 
+
+
   const [activeSlide, setActiveSlide] = React.useState(0);
   const carouselRef = React.useRef(null);
+
+
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -295,6 +380,8 @@ function Placements() {
       }
     };
 
+
+
     const carousel = carouselRef.current;
     if (carousel) {
       carousel.addEventListener('scroll', handleScroll);
@@ -302,13 +389,15 @@ function Placements() {
     }
   }, []);
 
+
+
   return (
     <>
       <style>{mediaQueryStyles}</style>
       <section id="placements" style={styles.section} className="section">
         <div style={styles.container} className="container">
           <div style={styles.textCenter}>
-            <div style={styles.titleUnderline}>
+            <div style={styles.titleUnderline} className="title-underline">
               <h2 style={styles.sectionTitle} className="section-title">
                 Placements
               </h2>
@@ -319,6 +408,8 @@ function Placements() {
             </p>
           </div>
 
+
+
           {/* Placement Statistics */}
           <div style={styles.placementHighlights} className="placement-highlights">
             <div style={styles.placementStat} className="placement-stat">
@@ -327,15 +418,21 @@ function Placements() {
               <div style={styles.statSubtext} className="stat-subtext">In Last 6 Years</div>
             </div>
 
+
+
             <div style={styles.placementStat} className="placement-stat">
               <div style={styles.statNumber} className="stat-number">84 LPA</div>
               <div style={styles.statLabel} className="stat-label">Highest National Package</div>
             </div>
 
+
+
             <div style={styles.placementStat} className="placement-stat">
               <div style={styles.statNumber} className="stat-number">48 LPA</div>
               <div style={styles.statLabel} className="stat-label">Highest International Package</div>
             </div>
+
+
 
             <div style={styles.placementStat} className="placement-stat">
               <div style={styles.statNumber} className="stat-number">400+</div>
@@ -343,11 +440,15 @@ function Placements() {
             </div>
           </div>
 
+
+
           {/* Companies Carousel Section */}
           <div style={styles.companiesSection} className="companies-section">
             <h3 style={styles.companiesHeader} className="companies-header">
               Our Recruiting Partners
             </h3>
+
+
 
             <div style={styles.carouselContainer} className="carousel-container">
               <div 
@@ -376,6 +477,8 @@ function Placements() {
               </div>
             </div>
 
+
+
             {/* Scroll Indicator Dots */}
             <div style={styles.scrollIndicator} className="scroll-indicator">
               {companies.map((_, index) => (
@@ -395,5 +498,7 @@ function Placements() {
     </>
   );
 }
+
+
 
 export default Placements;

@@ -2,16 +2,19 @@ import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
+
 // 3D Quantum Particle System Component
 function QuantumParticles() {
   const particlesRef = useRef();
   const count = 3000;
+
 
   // Generate particle positions, colors, and sizes
   const [positions, colors, sizes] = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const sizes = new Float32Array(count);
+
 
     for (let i = 0; i < count; i++) {
       // Spread particles in a sphere
@@ -20,9 +23,11 @@ function QuantumParticles() {
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(Math.random() * 2 - 1);
 
+
       positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
       positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       positions[i3 + 2] = radius * Math.cos(phi);
+
 
       // Quantum-inspired colors (blue, cyan, purple)
       const colorChoice = Math.random();
@@ -34,11 +39,14 @@ function QuantumParticles() {
         colors[i3] = 0.6; colors[i3 + 1] = 0.2; colors[i3 + 2] = 1.0; // Purple
       }
 
+
       sizes[i] = Math.random() * 3 + 1;
     }
 
+
     return [positions, colors, sizes];
   }, [count]);
+
 
   // Animate particles
   useFrame((state) => {
@@ -46,6 +54,7 @@ function QuantumParticles() {
       const time = state.clock.getElapsedTime();
       particlesRef.current.rotation.y = time * 0.05;
       particlesRef.current.rotation.x = Math.sin(time * 0.1) * 0.1;
+
 
       // Pulse effect
       const positions = particlesRef.current.geometry.attributes.position.array;
@@ -65,6 +74,7 @@ function QuantumParticles() {
       particlesRef.current.geometry.attributes.position.needsUpdate = true;
     }
   });
+
 
   return (
     <points ref={particlesRef}>
@@ -100,6 +110,7 @@ function QuantumParticles() {
     </points>
   );
 }
+
 
 function QuantumComputing() {
   const styles = {
@@ -160,7 +171,7 @@ function QuantumComputing() {
       letterSpacing: '-1px',
       textTransform: 'uppercase',
       lineHeight: '1.2',
-      marginBottom: '1rem',
+      marginBottom: '0.5rem',
       position: 'relative',
       display: 'inline-block',
       textShadow: '2px 2px 0px rgba(0, 0, 0, 0.3), 4px 4px 0px rgba(0, 0, 0, 0.25), 6px 6px 0px rgba(0, 0, 0, 0.2), 8px 8px 0px rgba(0, 0, 0, 0.15), 10px 10px 20px rgba(0, 0, 0, 0.4)'
@@ -168,7 +179,7 @@ function QuantumComputing() {
     titleUnderline: {
       position: 'relative',
       display: 'inline-block',
-      paddingBottom: '1rem'
+      paddingBottom: '0.5rem'
     },
     titleUnderlineAfter: {
       position: 'absolute',
@@ -288,6 +299,7 @@ function QuantumComputing() {
     }
   };
 
+
   const mediaQueryStyles = `
     /* Force white color for section title */
     #quantum .section-title,
@@ -295,6 +307,7 @@ function QuantumComputing() {
       color: #ffffff !important;
       -webkit-text-fill-color: #ffffff !important;
     }
+
 
     @keyframes float {
       0%, 100% {
@@ -315,6 +328,7 @@ function QuantumComputing() {
       }
     }
 
+
     @media (max-width: 1024px) {
       .quantum-content {
         grid-template-columns: 1fr !important;
@@ -328,6 +342,7 @@ function QuantumComputing() {
       }
     }
 
+
     @media (max-width: 768px) {
       .section {
         padding: 60px 0 !important;
@@ -339,6 +354,10 @@ function QuantumComputing() {
         font-size: 32px !important;
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
+        margin-bottom: 0.4rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.4rem !important;
       }
       .quantum-text {
         padding: 30px !important;
@@ -358,11 +377,16 @@ function QuantumComputing() {
       }
     }
 
+
     @media (max-width: 576px) {
       #quantum .section-title {
         font-size: 24px !important;
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
+        margin-bottom: 0.3rem !important;
+      }
+      .title-underline {
+        padding-bottom: 0.3rem !important;
       }
       .quantum-text {
         padding: 20px !important;
@@ -383,6 +407,7 @@ function QuantumComputing() {
     }
   `;
 
+
   // Generate 2D particles for additional effect
   const particles = Array.from({ length: 30 }, (_, i) => ({
     id: i,
@@ -394,6 +419,7 @@ function QuantumComputing() {
     animationDuration: `${6 + Math.random() * 6}s`
   }));
 
+
   return (
     <>
       <style>{mediaQueryStyles}</style>
@@ -404,6 +430,7 @@ function QuantumComputing() {
             <QuantumParticles />
           </Canvas>
         </div>
+
 
         {/* Additional 2D animated particles */}
         <div style={styles.particlesContainer}>
@@ -423,12 +450,14 @@ function QuantumComputing() {
           ))}
         </div>
 
+
         {/* Overlay with black gradient - NO BOX SHADOW */}
         <div style={styles.overlay} className="overlay"></div>
 
+
         <div style={styles.container} className="container">
           <div style={styles.textCenter}>
-            <div style={styles.titleUnderline}>
+            <div style={styles.titleUnderline} className="title-underline">
               <h2 style={styles.sectionTitle} className="section-title">
                 Quantum Computing
               </h2>
@@ -438,6 +467,7 @@ function QuantumComputing() {
               Breaking barriers in technology education - A historic first for Gujarat
             </p>
           </div>
+
 
           <div style={styles.quantumContent} className="quantum-content">
             <div style={styles.quantumText} className="quantum-text">
@@ -458,6 +488,7 @@ function QuantumComputing() {
                 Our groundbreaking curriculum merges advanced theoretical foundations with hands-on quantum applications, positioning students at the cutting edge of quantum mechanics, cryptography, and next-generation AI technologies.
               </p>
 
+
               <ul style={styles.featureList} className="feature-list">
                 <li style={styles.featureItem} className="feature-item">
                   <span style={styles.featureIcon}></span>
@@ -473,6 +504,7 @@ function QuantumComputing() {
                 </li>
               </ul>
 
+
               <div style={styles.highlightBox} className="highlight-box">
                 <span style={styles.highlightLabel}>PIONEERING OPPORTUNITY</span>
                 <p style={styles.highlightText} className="highlight-text">
@@ -480,6 +512,7 @@ function QuantumComputing() {
                 </p>
               </div>
             </div>
+
 
             {/* Empty div to maintain grid structure - right side shows 3D particles */}
             <div></div>
@@ -489,5 +522,6 @@ function QuantumComputing() {
     </>
   );
 }
+
 
 export default QuantumComputing;
