@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Mail, User, GraduationCap, TrendingUp, Award, Building2 } from 'lucide-react';
 
-
 function Hero() {
   const [formData, setFormData] = useState({
     name: '',
@@ -10,7 +9,6 @@ function Hero() {
     course: ''
   });
 
-
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -18,14 +16,12 @@ function Hero() {
     });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     alert('Thank you for your interest! We will contact you soon.');
     setFormData({ name: '', email: '', number: '', course: '' });
   };
-
 
   const styles = {
     hero: {
@@ -245,13 +241,13 @@ function Hero() {
       borderRadius: '0',
       fontSize: '0.9rem',
       color: '#ffffff',
-      
+
       background: 'transparent',
       backgroundColor: 'transparent',
-      
+
       WebkitAppearance: 'none',
       appearance: 'none',
-      
+
       transition: 'all 0.3s ease',
       fontWeight: '500',
       fontFamily: 'inherit',
@@ -264,13 +260,13 @@ function Hero() {
       borderRadius: '0',
       fontSize: '0.9rem',
       color: '#ffffff',
-      
+
       background: 'transparent',
       backgroundColor: 'transparent',
-      
+
       WebkitAppearance: 'none',
       appearance: 'none',
-      
+
       transition: 'all 0.3s ease',
       fontWeight: '500',
       cursor: 'pointer',
@@ -316,7 +312,6 @@ function Hero() {
     }
   };
 
-
   const mediaQueryStyles = `
     @keyframes fadeInLeft {
       from {
@@ -329,7 +324,6 @@ function Hero() {
       }
     }
 
-
     @keyframes fadeInRight {
       from {
         opacity: 0;
@@ -341,7 +335,6 @@ function Hero() {
       }
     }
 
-
     @keyframes glassShine {
       0% {
         left: -100%;
@@ -351,12 +344,10 @@ function Hero() {
       }
     }
 
-
     input::placeholder,
     select::placeholder {
       color: rgba(255, 255, 255, 0.6);
     }
-
 
     input:focus,
     select:focus {
@@ -364,7 +355,6 @@ function Hero() {
       border-color: #ff6b35 !important;
       background: rgba(255, 255, 255, 0.05) !important;
     }
-
 
     select option {
       background: #1a1a1a;
@@ -400,13 +390,11 @@ function Hero() {
       box-shadow: inset 0 0 20px 20px transparent;
     }
 
-
     @media (max-width: 1200px) {
       .hero-title {
         font-size: 3.2rem !important;
       }
     }
-
 
     @media (max-width: 1024px) {
       .hero-content-wrapper {
@@ -418,7 +406,6 @@ function Hero() {
       }
     }
 
-
     @media (max-width: 768px) {
       .hero {
         min-height: auto !important;
@@ -426,12 +413,11 @@ function Hero() {
         padding-top: 70px !important;
         background: #fafafa !important;
       }
-      
+
       .hero-background-wrapper {
         position: relative !important;
         height: 75% !important;
       }
-
 
       .hero-mobile-content {
         position: relative !important;
@@ -441,22 +427,18 @@ function Hero() {
         z-index: 10 !important;
       }
 
-
       .hero-container {
         padding: 2rem 1rem !important;
         margin-top: 0 !important;
       }
 
-
       .hero-content-wrapper {
         display: block !important;
       }
 
-
       .hero-left-section {
         padding: 0 !important;
       }
-
 
       .hero-title {
         font-size: 2rem !important;
@@ -464,30 +446,25 @@ function Hero() {
         margin-bottom: 0.8rem !important;
       }
 
-
       .hero-badge {
         font-size: 0.7rem !important;
         padding: 0.4rem 0.9rem !important;
         margin-bottom: 1rem !important;
       }
 
-
       .hero-subtitle {
         font-size: 1rem !important;
         margin-bottom: 0.8rem !important;
       }
-
 
       .hero-description {
         font-size: 0.9rem !important;
         margin-bottom: 1.5rem !important;
       }
 
-
       .hero-stats-container {
         display: none !important;
       }
-
 
       .hero-right-section {
         width: 100% !important;
@@ -496,58 +473,48 @@ function Hero() {
         padding: 0 !important;
       }
 
-
       .hero-contact-box {
         padding: 1.3rem !important;
       }
 
-
       .contact-box-title {
         font-size: 1.2rem !important;
       }
-
 
       .contact-box-subtitle {
         font-size: 0.75rem !important;
       }
     }
 
-
     @media (max-width: 480px) {
       .hero {
         padding-top: 60px !important;
       }
-
 
       .hero-mobile-content {
         margin-top: -6rem !important;
         padding: 1.5rem 0.75rem 2rem !important;
       }
 
-
       .hero-title {
         font-size: 1.7rem !important;
         letter-spacing: -1px !important;
       }
 
-
       .hero-subtitle {
         font-size: 0.9rem !important;
       }
-
 
       .hero-description {
         font-size: 0.85rem !important;
         line-height: 1.5 !important;
       }
 
-
       .hero-contact-box {
         padding: 1.2rem !important;
       }
     }
   `;
-
 
   return (
     <>
@@ -556,7 +523,7 @@ function Hero() {
         {/* Desktop View */}
         <div style={styles.backgroundImage} className="hero-desktop-bg"></div>
         <div style={styles.overlay} className="hero-desktop-overlay"></div>
-        
+
         <div style={styles.container} className="hero-container">
           <div style={styles.contentWrapper} className="hero-content-wrapper">
             {/* Left Side - Content */}
@@ -565,18 +532,17 @@ function Hero() {
                 <Building2 size={16} />
                 <span>India's First University for Startup</span>
               </div>
-              
+
               <h1 style={styles.title} className="hero-title">
                 WHERE IDEAS<br />COME ALIVE
               </h1>
-              
-              <h2 style={styles.subtitle} className="hero-subtitle">Swarrnim Startup & Innovation University</h2>
-              
+
+              <h2 style={styles.subtitle} className="hero-subtitle">Swaranim Startup & Innovation University</h2>
+
               <p style={styles.description} className="hero-description">
                 Pioneering innovation with cutting-edge technology and entrepreneurial excellence. 
-                Gujarat's first Quantum Computing program preparing students for tomorrow's challenges.
+                Ranked among Top 4 Private Universities in Gujarat with 100% placement assistance across 400+ companies.
               </p>
-
 
               {/* Statistics Container - Desktop Only */}
               <div style={styles.statsContainer} className="hero-stats-container">
@@ -587,9 +553,7 @@ function Hero() {
                   <div style={styles.statLabel} className="stat-label">Startups Incubated</div>
                 </div>
 
-
                 <div style={styles.statDivider} className="stat-divider"></div>
-
 
                 <div style={styles.statItem} className="hero-stat-item">
                   <GraduationCap size={28} style={styles.statIcon} />
@@ -597,9 +561,7 @@ function Hero() {
                   <div style={styles.statLabel} className="stat-label">Highest Package</div>
                 </div>
 
-
                 <div style={styles.statDivider} className="stat-divider"></div>
-
 
                 <div style={styles.statItem} className="hero-stat-item">
                   <Award size={28} style={styles.statIcon} />
@@ -609,16 +571,15 @@ function Hero() {
               </div>
             </div>
 
-
             {/* Right Side - Contact Form (Desktop) */}
             <div style={styles.rightSection} className="hero-right-section">
               <div style={styles.contactBox} className="hero-contact-box">
                 <div style={styles.contactBoxGlassShine}></div>
                 <div style={styles.contactBoxHeader}>
-                  <h3 style={styles.contactBoxTitle} className="contact-box-title">Admissions Open 2025</h3>
+                  <h3 style={styles.contactBoxTitle} className="contact-box-title">Admissions Are Open</h3>
                   <p style={styles.contactBoxSubtitle} className="contact-box-subtitle">Start Your Journey with Us</p>
                 </div>
-                
+
                 <form style={styles.form} onSubmit={handleSubmit}>
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
@@ -634,7 +595,7 @@ function Hero() {
                       />
                     </div>
                   </div>
-                  
+
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
                       <Mail size={18} style={styles.inputIcon} />
@@ -649,7 +610,7 @@ function Hero() {
                       />
                     </div>
                   </div>
-                  
+
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
                       <Phone size={18} style={styles.inputIcon} />
@@ -664,7 +625,7 @@ function Hero() {
                       />
                     </div>
                   </div>
-                  
+
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
                       <GraduationCap size={18} style={styles.inputIcon} />
@@ -676,18 +637,46 @@ function Hero() {
                         required
                       >
                         <option value="">Select Course</option>
-                        <option value="btech">B.Tech</option>
-                        <option value="btech-quantum">B.Tech - Quantum Computing</option>
                         <option value="btech-ai">B.Tech - AI & Data Science</option>
-                        <option value="bba">BBA</option>
-                        <option value="bca">BCA</option>
+                        <option value="btech-it">B.Tech - Information Technology</option>
+                        <option value="btech-cs">B.Tech - Computer Engineering</option>
+                        <option value="btech-cyber">B.Tech - Cyber Security</option>
+                        <option value="btech-quantum">B.Tech - CSE Quantum Computing</option>
+                        <option value="btech-civil">B.Tech - Civil Engineering</option>
+                        <option value="btech-chemical">B.Tech - Chemical Engineering</option>
+                        <option value="btech-mechanical">B.Tech - Mechanical Engineering</option>
+                        <option value="btech-env">B.Tech - Environmental Engineering</option>
+                        <option value="bca">BCA (Hons.)</option>
+                        <option value="bsc-it">B.Sc-IT (Hons.)</option>
+                        <option value="mca">MCA</option>
+                        <option value="msc-it">M.Sc-IT</option>
+                        <option value="bba">BBA (Hons.)</option>
+                        <option value="bcom">B.Com (Hons.)</option>
+                        <option value="ba">BA (Hons.)</option>
                         <option value="mba">MBA</option>
-                        <option value="mtech">M.Tech</option>
+                        <option value="mcom">M.Com</option>
+                        <option value="ma">MA</option>
+                        <option value="bajmc">BAJMC (Hons.)</option>
+                        <option value="majmc">MAJMC</option>
+                        <option value="bpharm">B.Pharm</option>
+                        <option value="mpharm">M.Pharm</option>
+                        <option value="pharmd">Pharm.D</option>
+                        <option value="dpharm">D.Pharm</option>
+                        <option value="ballb">B.A. LL.B</option>
+                        <option value="llb">LL.B</option>
+                        <option value="llm">LL.M</option>
+                        <option value="barch">B.Arch</option>
+                        <option value="bdes">B.Des</option>
+                        <option value="mdes">M.Des</option>
+                        <option value="bsc-nursing">B.Sc Nursing</option>
+                        <option value="bpt">BPT</option>
+                        <option value="mpt">MPT</option>
+                        <option value="bhms">BHMS</option>
+                        <option value="bams">BAMS</option>
                         <option value="other">Other Courses</option>
                       </select>
                     </div>
                   </div>
-
 
                   <button 
                     type="submit" 
@@ -699,7 +688,6 @@ function Hero() {
                   </button>
                 </form>
 
-
                 <div style={styles.contactBoxFooter}>
                   <div style={styles.contactItem}>
                     <Phone size={16} style={styles.contactItemIcon} />
@@ -707,7 +695,7 @@ function Hero() {
                   </div>
                   <div style={styles.contactItem}>
                     <Mail size={16} style={styles.contactItemIcon} />
-                    <span>admissions@swarrnim.edu</span>
+                    <span>admissions@swaranim.edu</span>
                   </div>
                 </div>
               </div>
@@ -715,13 +703,11 @@ function Hero() {
           </div>
         </div>
 
-
         {/* Mobile View - Background wrapper (75% height) */}
         <div className="hero-background-wrapper" style={{display: 'none'}}>
           <div style={styles.backgroundImage}></div>
           <div style={styles.overlay}></div>
         </div>
-
 
         {/* Mobile View - Content section */}
         <div className="hero-mobile-content" style={{display: 'none'}}>
@@ -731,6 +717,5 @@ function Hero() {
     </>
   );
 }
-
 
 export default Hero;

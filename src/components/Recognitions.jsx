@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-
-
 function Recognitions() {
   const styles = {
     section: {
@@ -91,29 +88,35 @@ function Recognitions() {
       textTransform: 'uppercase',
       letterSpacing: '0.5px',
       borderRadius: '0',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      fontSize: '13px'
     },
     cardContent: {
       marginTop: '32px',
       width: '100%'
     },
     cardTitle: {
-      fontWeight: '600',
+      fontWeight: '700',
       color: '#000',
       marginBottom: '6px',
       lineHeight: '1.35',
       textTransform: 'uppercase',
-      letterSpacing: '-0.3px'
+      letterSpacing: '-0.3px',
+      fontSize: '15px'
     },
     cardDescription: {
       color: '#666',
       lineHeight: '1.5',
-      fontWeight: '400'
+      fontWeight: '400',
+      fontSize: '13px'
+    },
+    cardYear: {
+      color: '#ff6b35',
+      fontWeight: '700',
+      fontSize: '14px',
+      marginTop: '4px'
     }
   };
-
-
-
 
   const mediaQueryStyles = `
     /* Force black color for section title and remove gradient */
@@ -126,9 +129,6 @@ function Recognitions() {
       background-clip: unset !important;
     }
 
-
-
-
     /* Prevent GSAP interference */
     #recognitions,
     #recognitions *,
@@ -137,16 +137,10 @@ function Recognitions() {
       will-change: auto !important;
     }
 
-
-
-
     .recognition-card:hover {
       transform: translateY(-6px) !important;
       border-color: #ff6b35;
     }
-
-
-
 
     @media (max-width: 1024px) {
       .recognition-grid {
@@ -164,9 +158,6 @@ function Recognitions() {
         margin-top: 30px !important;
       }
     }
-
-
-
 
     @media (max-width: 768px) {
       #recognitions.section {
@@ -200,17 +191,22 @@ function Recognitions() {
       }
       .badge {
         padding: 3px 8px !important;
+        font-size: 11px !important;
       }
       .card-content {
         margin-top: 28px !important;
       }
       .card-title {
         margin-bottom: 5px !important;
+        font-size: 13px !important;
+      }
+      .card-description {
+        font-size: 11px !important;
+      }
+      .card-year {
+        font-size: 12px !important;
       }
     }
-
-
-
 
     @media (max-width: 576px) {
       #recognitions .container {
@@ -240,16 +236,22 @@ function Recognitions() {
       }
       .badge {
         padding: 3px 7px !important;
+        font-size: 10px !important;
       }
       .card-content {
         margin-top: 26px !important;
       }
       .card-title {
         margin-bottom: 4px !important;
+        font-size: 12px !important;
+      }
+      .card-description {
+        font-size: 10px !important;
+      }
+      .card-year {
+        font-size: 11px !important;
       }
     }
-
-
 
     @media (max-width: 400px) {
       #recognitions .container {
@@ -267,6 +269,7 @@ function Recognitions() {
       }
       .badge {
         padding: 2px 6px !important;
+        font-size: 9px !important;
       }
       .card-content {
         margin-top: 24px !important;
@@ -274,39 +277,36 @@ function Recognitions() {
     }
   `;
 
-
-
-
   const recognitions = [
     {
-      badge: 'TOP 4',
-      title: 'Private Universities in Gujarat',
-      description: 'Ranked among top 4 private universities in Gujarat'
-    },
-    {
       badge: 'TOP 50',
-      title: 'ARIIA Ranking 2020',
-      description: 'Institutions on Innovation Achievement by Ministry of Education'
+      title: 'Institutions on Innovation Achievement',
+      description: '& Top 4 Private Universities Selected from Gujarat',
+      year: '2020',
+      subtitle: 'Announced by Shri. M. Venkaiah Naidu, Honble Vice President of India'
     },
     {
-      badge: 'PROMISING',
-      title: 'ARIIA 2021',
-      description: 'Band-Promising Category by Ministry of Education'
+      badge: 'BAND-PROMISING',
+      title: 'One of the Top Universities in India',
+      description: 'Category in the Atal Ranking of Institutions on Innovation Achievements',
+      year: '2021',
+      subtitle: 'An initiative of the Ministry of Education, Government of India'
     },
     {
-      badge: '3.5/4 ★',
-      title: 'Innovation Council 3.0',
-      description: 'Annual Performance Rating 2020-21'
+      badge: '3.5/4 STARS',
+      title: 'Institutions Innovation Council 3.0',
+      description: 'Annual Performance in University Category',
+      year: '2021',
+      subtitle: 'Category awarded by Ministry of Education, Govt. Of India'
     },
     {
-      badge: '5/5 ★',
-      title: 'GSIRF 2024',
-      description: 'Arihant School of Pharmacy & Bio-Research Institute'
+      badge: '5/5 STARS',
+      title: 'Arihant School of Pharmacy & Bio-Research Institute',
+      description: 'Gujarat State Institutional Rating Framework',
+      year: '2024',
+      subtitle: 'GSIRF-2024'
     }
   ];
-
-
-
 
   return (
     <>
@@ -325,9 +325,6 @@ function Recognitions() {
             </p>
           </div>
 
-
-
-
           {/* Recognition Cards Grid */}
           <div style={styles.recognitionGridWrapper} className="recognition-grid-wrapper">
             <div style={styles.recognitionGrid} className="recognition-grid">
@@ -341,7 +338,7 @@ function Recognitions() {
                   <div style={styles.badge} className="badge">
                     {recognition.badge}
                   </div>
-                  
+
                   {/* Content below badge */}
                   <div style={styles.cardContent} className="card-content">
                     <h4 style={styles.cardTitle} className="card-title">
@@ -350,6 +347,14 @@ function Recognitions() {
                     <p style={styles.cardDescription} className="card-description">
                       {recognition.description}
                     </p>
+                    {recognition.subtitle && (
+                      <p style={styles.cardDescription} className="card-description">
+                        {recognition.subtitle}
+                      </p>
+                    )}
+                    <div style={styles.cardYear} className="card-year">
+                      {recognition.year}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -360,8 +365,5 @@ function Recognitions() {
     </>
   );
 }
-
-
-
 
 export default Recognitions;
