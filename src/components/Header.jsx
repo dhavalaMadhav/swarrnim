@@ -258,7 +258,7 @@ function Header() {
         <div style={styles.container} className="header-container">
           <div style={styles.logo}>
             <img 
-              src="/logo.png" 
+              src="/swarrnim-logo.png" 
               alt="Swarrnim University Logo" 
               style={styles.logoImage}
               className={isScrolled ? 'logo-image logo-image-scrolled' : 'logo-image'}
@@ -313,7 +313,7 @@ function Header() {
       <div style={styles.mobileMenu}>
         <div style={styles.mobileMenuHeader}>
           <img 
-            src="/logo.png" 
+            src="/swarrnim-logo.png" 
             alt="Swarrnim University Logo" 
             style={styles.mobileLogoImage}
             className="mobile-logo-image"
