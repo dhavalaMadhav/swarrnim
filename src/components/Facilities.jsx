@@ -29,6 +29,14 @@ function Facilities() {
 
       // Store viewport height
       const vh = window.innerHeight;
+
+      // Mobile Optimization
+      const isMobile = window.innerWidth <= 768;
+      const scrubValue = isMobile ? 0.5 : 1; 
+      // Use pixels on mobile to avoid VH recalc issues
+      const offScreenY = isMobile ? window.innerHeight : '100vh'; 
+
+      console.log(`📱 Mobile: ${isMobile}, Scrub: ${scrubValue}, Y: ${offScreenY}`);
       
       // Pin duration: (cards.length - 1) * vh + 0.5vh buffer
       // The buffer allows the last card to "settle" before unpinning.
@@ -44,7 +52,9 @@ function Facilities() {
           start: 'top top',
           end: `+=${totalScrollDistance}`,
           pin: true,
-          scrub: 1, // Reduced slightly to 1s for responsiveness with smoothness
+          pin: true,
+          scrub: scrubValue, // Adaptive scrub
+          id: 'facilities-master-timeline',
           id: 'facilities-master-timeline',
           onLeave: () => console.log('🎉 ALL CARDS SHOWN'),
           onEnterBack: () => console.log('⬆️ Re-entering')
@@ -67,7 +77,7 @@ function Facilities() {
         } else {
           // Other cards below viewport
           gsap.set(card, {
-            y: '100vh', // Use VH units for safety
+            y: offScreenY, // Adaptive Y
             opacity: 1,
             scale: 1,
             zIndex: zIndex,
@@ -89,7 +99,7 @@ function Facilities() {
         
         // 1. Animate Current Card UP
         tl.to(card, {
-          y: '0vh',
+          y: 0, // Animate to 0 (pixels or vh handled by GSAP)
           opacity: 1,
           scale: 1,
           ease: 'none' // Important for scrub
