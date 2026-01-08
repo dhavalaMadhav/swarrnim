@@ -32,7 +32,7 @@ function Facilities() {
 
       // Mobile Optimization
       const isMobile = window.innerWidth <= 768;
-      const scrubValue = isMobile ? 0.5 : 1; 
+      const scrubValue = isMobile ? 0.2 : 1; 
       // Use pixels on mobile to avoid VH recalc issues
       const offScreenY = isMobile ? window.innerHeight : '100vh'; 
 
@@ -52,9 +52,7 @@ function Facilities() {
           start: 'top top',
           end: `+=${totalScrollDistance}`,
           pin: true,
-          pin: true,
           scrub: scrubValue, // Adaptive scrub
-          id: 'facilities-master-timeline',
           id: 'facilities-master-timeline',
           onLeave: () => console.log('🎉 ALL CARDS SHOWN'),
           onEnterBack: () => console.log('⬆️ Re-entering')
