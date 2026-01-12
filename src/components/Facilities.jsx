@@ -49,7 +49,6 @@ function Facilities() {
         }
       });
 
-<<<<<<< HEAD
 
 
       const vh = window.innerHeight;
@@ -60,42 +59,14 @@ function Facilities() {
 
 
       // Master Timeline
-=======
-      // Store viewport height
-      const vh = window.innerHeight;
-
-      // Mobile Optimization
-      const isMobile = window.innerWidth <= 768;
-      const scrubValue = isMobile ? 0.2 : 1; 
-      // Use pixels on mobile to avoid VH recalc issues
-      const offScreenY = isMobile ? window.innerHeight : '100vh'; 
-
-      console.log(`📱 Mobile: ${isMobile}, Scrub: ${scrubValue}, Y: ${offScreenY}`);
-      
-      // Pin duration: (cards.length - 1) * vh + 0.5vh buffer
-      // The buffer allows the last card to "settle" before unpinning.
-      const totalScrollDistance = (cards.length - 1 + 0.5) * vh;
-      
-      console.log(`📏 Pin duration: ${totalScrollDistance}px`);
-
-      // Master Timeline that handles BOTH Pinning and Animation
-      // This ensures they are perfectly synced.
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: cardsContainerRef.current,
           start: 'top top',
           end: `+=${totalScrollDistance}`,
           pin: true,
-<<<<<<< HEAD
           scrub: scrubValue,
           id: 'facilities-master-timeline'
-=======
-          scrub: scrubValue, // Adaptive scrub
-          id: 'facilities-master-timeline',
-          onLeave: () => console.log('🎉 ALL CARDS SHOWN'),
-          onEnterBack: () => console.log('⬆️ Re-entering')
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
         }
       });
 
@@ -115,11 +86,7 @@ function Facilities() {
           });
         } else {
           gsap.set(card, {
-<<<<<<< HEAD
             y: offScreenY,
-=======
-            y: offScreenY, // Adaptive Y
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
             opacity: 1,
             scale: 1,
             zIndex: zIndex,
@@ -128,14 +95,9 @@ function Facilities() {
         }
       });
 
-<<<<<<< HEAD
 
 
       // Add animations
-=======
-      // Step 3: Add animations to the single timeline
-      // We map the scroll distance nicely: 0 to 1, 1 to 2, etc.
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
       cards.forEach((card, index) => {
         if (index === 0) return;
 
@@ -143,35 +105,19 @@ function Facilities() {
 
         const prevCard = cards[index - 1];
         
-<<<<<<< HEAD
-=======
-        // The "slot" for this animation is [index-1, index]
-        // e.g. Card 1 animates from 0 to 1
-        // Card 2 animates from 1 to 2
-        
-        // 1. Animate Current Card UP
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
         tl.to(card, {
-          y: 0, // Animate to 0 (pixels or vh handled by GSAP)
+          y: 0,
           opacity: 1,
           scale: 1,
-<<<<<<< HEAD
           ease: 'none'
         }, index - 1);
 
 
 
-=======
-          ease: 'none' // Important for scrub
-        }, index - 1); // Start at (index-1)
-
-        // 2. Animate Previous Card DOWN/BACK
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
         tl.to(prevCard, {
           scale: 0.95,
           opacity: 0.7,
           ease: 'none'
-<<<<<<< HEAD
         }, index - 1);
       });
 
@@ -181,16 +127,6 @@ function Facilities() {
 
 
 
-=======
-        }, index - 1); // Exact same start time
-      });
-
-      // Add a small buffer at the end of the timeline to match the scroll distance
-      // This ensures the last card sits for a moment (0.5s / 0.5vh) before unpinning
-      tl.to({}, { duration: 0.5 });
-
-      // Force refresh for safety
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
       setTimeout(() => {
         ScrollTrigger.refresh();
       }, 100);
@@ -574,7 +510,6 @@ function Facilities() {
   `;
   
   const facilities = [
-<<<<<<< HEAD
     {
       icon: '🚀',
       title: 'Innovation Labs',
@@ -615,49 +550,6 @@ function Facilities() {
 
 
 
-=======
-  {
-    icon: '🚀',
-    title: 'Innovation Labs',
-    description:
-      'State-of-the-art laboratories equipped with cutting-edge technology for prototyping, research, and experimental development.',
-    image:
-      'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=800&fit=crop'
-  },
-  {
-    icon: '💻',
-    title: 'Tech Infrastructure',
-    description:
-      'Advanced computing facilities featuring high-performance servers, quantum computing access, and cloud infrastructure.',
-    image:
-      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=800&fit=crop'
-  },
-  {
-    icon: '📚',
-    title: 'Digital Library',
-    description:
-      'Extensive digital and physical libraries providing access to global research papers, journals, and learning resources.',
-    image:
-      'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&h=800&fit=crop'
-  },
-  {
-    icon: '🤝',
-    title: 'Collaboration Spaces',
-    description:
-      'Modern collaborative workspaces designed for teamwork, brainstorming, and interdisciplinary innovation.',
-    image:
-      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&h=800&fit=crop'
-  },
-  {
-    icon: '🏆',
-    title: 'Startup Incubation',
-    description:
-      'Dedicated incubation centers providing mentorship, funding access, and industry connections for startups.',
-    image:
-      'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=800&fit=crop'
-  }
-];
->>>>>>> 2da7a3178eee92516d6cefd6a8aa743b219378ad
   return (
     <>
       <style>{mediaQueryStyles}</style>
