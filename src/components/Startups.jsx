@@ -1,12 +1,11 @@
 import React from 'react';
 
-
 function Startups() {
   const styles = {
     section: {
-      padding: '100px 0',
+      padding: '80px 0',
       position: 'relative',
-      background: '#fafafa'
+      background: '#ffffff'
     },
     container: {
       maxWidth: '1400px',
@@ -16,369 +15,296 @@ function Startups() {
     },
     textCenter: {
       textAlign: 'center',
-      marginBottom: '4rem'
+      marginBottom: '2.5rem'
+    },
+    topLabel: {
+      fontSize: '36px',
+      fontWeight: '400',
+      color: '#c53030',
+      letterSpacing: '0.5px',
+      marginBottom: '20px',
+      textTransform: 'none',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1.3'
     },
     sectionTitle: {
-      fontSize: '52px',
+      fontSize: '120px',
       fontWeight: '900',
-      letterSpacing: '-1px',
+      letterSpacing: '8px',
       textTransform: 'uppercase',
-      lineHeight: '1.2',
-      marginBottom: '0.5rem',
+      lineHeight: '1',
+      marginBottom: '3rem',
       position: 'relative',
       display: 'inline-block',
-      textShadow: '2px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.08), 6px 6px 0px rgba(0, 0, 0, 0.06), 8px 8px 0px rgba(0, 0, 0, 0.04), 10px 10px 20px rgba(0, 0, 0, 0.15)'
+      color: 'rgba(0, 0, 0, 0.12)',
+      fontFamily: '"Inter", system-ui, sans-serif',
+      textShadow: 'none',
+      WebkitTextStroke: '2px rgba(0, 0, 0, 0.35)',
+      textStroke: '2px rgba(0, 0, 0, 0.35)',
+      WebkitTextFillColor: 'rgba(0, 0, 0, 0.12)'
     },
-    titleUnderline: {
-      position: 'relative',
-      display: 'inline-block',
-      paddingBottom: '0.5rem'
-    },
-    titleUnderlineAfter: {
-      position: 'absolute',
-      bottom: '0',
-      left: '0',
-      width: '100%',
-      height: '4px',
-      background: '#ff6b35',
-      boxShadow: '0 2px 10px rgba(255, 107, 53, 0.3)'
-    },
-    sectionIntro: {
-      fontSize: '16px',
-      color: '#666',
-      lineHeight: '1.8',
-      fontWeight: '300',
-      maxWidth: '800px',
-      margin: '0 auto 3rem'
-    },
-    bentoGrid: {
+    achievementsGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(4, 1fr)',
-      gridAutoRows: '300px',
-      gap: '20px',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '50px 60px',
       marginTop: '60px'
     },
-    scrollRow: {
-      display: 'none',
-      overflowX: 'auto',
-      overflowY: 'hidden',
-      scrollBehavior: 'smooth',
-      WebkitOverflowScrolling: 'touch',
-      scrollbarWidth: 'none',
-      msOverflowStyle: 'none',
-      padding: '0 1rem'
-    },
-    scrollWrapper: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(6, calc(50vw - 1.5rem - 7.5px))',
-      gridTemplateRows: 'repeat(2, 180px)',
-      gap: '12px',
-      width: 'max-content'
-    },
-    bentoItem: {
-      background: '#f5f5f5',
-      border: '1px solid rgba(0, 0, 0, 0.08)',
-      padding: '0',
-      transition: 'all 0.4s ease',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.04)',
-      position: 'relative',
-      overflow: 'hidden',
+    achievementItem: {
       display: 'flex',
-      flexDirection: 'column'
+      gap: '20px',
+      alignItems: 'flex-start',
+      transition: 'all 0.3s ease'
     },
-    bentoItemBefore: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      zIndex: 0,
-      transition: 'all 0.5s ease'
-    },
-    bentoItemAfter: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      background: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 1,
-      transition: 'all 0.4s ease'
-    },
-    bentoContent: {
-      position: 'relative',
-      zIndex: 2,
-      padding: '30px',
-      flex: 1,
+    iconWrapper: {
+      minWidth: '50px',
+      width: '50px',
+      height: '50px',
+      background: 'transparent',
       display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      minHeight: '0'
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: 'all 0.3s ease',
+      flexShrink: 0
     },
-    bentoTitle: {
-      fontSize: '22px',
-      color: 'white',
+    icon: {
+      width: '50px',
+      height: '50px',
+      stroke: '#2563eb',
+      strokeWidth: '2',
+      fill: 'none'
+    },
+    achievementContent: {
+      flex: 1
+    },
+    achievementNumber: {
+      fontSize: '36px',
+      fontWeight: '900',
+      color: '#2563eb',
+      marginBottom: '6px',
+      lineHeight: '1',
+      letterSpacing: '-1px',
+      fontFamily: '"Inter", system-ui, sans-serif'
+    },
+    achievementTitle: {
+      fontSize: '16px',
       fontWeight: '700',
+      color: '#000',
+      marginBottom: '6px',
       textTransform: 'uppercase',
-      letterSpacing: '-0.3px',
-      marginBottom: '12px',
+      letterSpacing: '0.5px',
       lineHeight: '1.3',
-      minHeight: '58px',
-      display: 'flex',
-      alignItems: 'flex-start'
+      fontFamily: '"Inter", system-ui, sans-serif'
     },
-    bentoDescription: {
-      fontSize: '14px',
-      color: 'rgba(255, 255, 255, 0.9)',
+    achievementDescription: {
+      fontSize: '13px',
+      color: '#666',
       lineHeight: '1.6',
-      fontWeight: '300',
-      marginBottom: '0',
-      minHeight: '85px'
+      fontWeight: '400',
+      fontFamily: '"Inter", system-ui, sans-serif'
     }
   };
 
 
   const mediaQueryStyles = `
-    .scroll-row::-webkit-scrollbar {
-      display: none;
+    @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
+    /* Darker outline with darker fill */
+    #startups .section-title {
+      color: rgba(0, 0, 0, 0.12) !important;
+      text-shadow: none !important;
+      -webkit-text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+      text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+      -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      background: none !important;
     }
 
 
-    /* Force black color for section title with maximum specificity */
-    #startups .section-title,
-    #startups h2.section-title,
-    section#startups .section-title,
-    .section .section-title,
-    h2[class*="section-title"] {
-      color: #000000 !important;
-      -webkit-text-fill-color: #000000 !important;
-    }
-
-
-    .bento-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
-    }
-
-
-    .bento-item:hover .bento-item-before {
+    .achievement-item:hover .icon-wrapper {
       transform: scale(1.1);
     }
 
 
-    .bento-item:hover .bento-item-after {
-      background: rgba(0, 0, 0, 0.75);
-    }
-
-
-    /* Mobile bento grid layout - 6 columns x 2 rows */
-    .mobile-item-1 {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-
-    .mobile-item-2 {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-
-
-    .mobile-item-3 {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-
-
-    .mobile-item-4 {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-
-
-    .mobile-item-5 {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-
-
-    .mobile-item-6 {
-      grid-column: span 2;
-      grid-row: span 1;
+    .achievement-item:hover .icon {
+      stroke: #60a5fa;
     }
 
 
     @media (max-width: 1200px) {
+      .top-label {
+        font-size: 32px !important;
+      }
       #startups .section-title {
-        font-size: 44px !important;
-        color: #000000 !important;
-        -webkit-text-fill-color: #000000 !important;
+        font-size: 100px !important;
+        letter-spacing: 6px !important;
+        -webkit-text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
       }
-      .bento-grid {
+      .achievements-grid {
         grid-template-columns: repeat(2, 1fr) !important;
-        grid-auto-rows: 280px !important;
-      }
-      .bento-item-1 {
-        grid-column: span 2 !important;
-        grid-row: span 1 !important;
-      }
-      .bento-item-2, .bento-item-3, .bento-item-4, .bento-item-5, .bento-item-6 {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
+        gap: 40px 50px !important;
       }
     }
 
 
     @media (max-width: 768px) {
-      .section {
+      #startups.section {
         padding: 60px 0 !important;
       }
+      #startups .container {
+        padding: 0 1rem !important;
+      }
+      .top-label {
+        font-size: 26px !important;
+        margin-bottom: 15px !important;
+      }
       #startups .section-title {
+        font-size: 70px !important;
+        letter-spacing: 4px !important;
+        margin-bottom: 2.5rem !important;
+        -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .achievements-grid {
+        grid-template-columns: 1fr !important;
+        gap: 35px !important;
+        margin-top: 50px !important;
+      }
+      .achievement-item {
+        gap: 18px !important;
+      }
+      .icon-wrapper {
+        min-width: 45px !important;
+        width: 45px !important;
+        height: 45px !important;
+      }
+      .icon {
+        width: 45px !important;
+        height: 45px !important;
+      }
+      .achievement-number {
         font-size: 32px !important;
-        color: #000000 !important;
-        -webkit-text-fill-color: #000000 !important;
-        margin-bottom: 0.4rem !important;
       }
-      .title-underline {
-        padding-bottom: 0.4rem !important;
+      .achievement-title {
+        font-size: 15px !important;
       }
-      .container {
-        padding: 0 0 !important;
-      }
-      .bento-grid {
-        display: none !important;
-      }
-      .scroll-row {
-        display: block !important;
-      }
-      .bento-content {
-        padding: 15px !important;
-        justify-content: flex-start !important;
-      }
-      .bento-title {
-        font-size: 13px !important;
-        margin-bottom: 8px !important;
-        min-height: auto !important;
-        line-height: 1.2 !important;
-        align-items: flex-start !important;
-      }
-      .bento-description {
-        font-size: 11px !important;
-        line-height: 1.4 !important;
-        margin-bottom: 0 !important;
-        min-height: auto !important;
-      }
-
-
-      /* Large item (2x2 span) - Incubation Center */
-      .mobile-item-1 .bento-content {
-        padding: 20px !important;
-      }
-      .mobile-item-1 .bento-title {
-        font-size: 16px !important;
-        margin-bottom: 12px !important;
-      }
-      .mobile-item-1 .bento-description {
-        font-size: 13px !important;
-        line-height: 1.5 !important;
-      }
-
-
-      /* Wide items (2x1 span) - Patent, Prototype, Innovation Labs */
-      .mobile-item-2 .bento-title,
-      .mobile-item-3 .bento-title,
-      .mobile-item-6 .bento-title {
-        font-size: 14px !important;
-      }
-      .mobile-item-2 .bento-description,
-      .mobile-item-3 .bento-description,
-      .mobile-item-6 .bento-description {
+      .achievement-description {
         font-size: 12px !important;
-      }
-
-
-      /* Small items (1x1 span) - Mentorship, Funding */
-      .mobile-item-4 .bento-content,
-      .mobile-item-5 .bento-content {
-        padding: 12px !important;
-      }
-      .mobile-item-4 .bento-title,
-      .mobile-item-5 .bento-title {
-        font-size: 12px !important;
-        margin-bottom: 6px !important;
-      }
-      .mobile-item-4 .bento-description,
-      .mobile-item-5 .bento-description {
-        font-size: 10px !important;
-        line-height: 1.3 !important;
       }
     }
 
 
     @media (max-width: 576px) {
-      #startups .section-title {
-        font-size: 24px !important;
-        color: #000000 !important;
-        -webkit-text-fill-color: #000000 !important;
-        margin-bottom: 0.3rem !important;
+      .top-label {
+        font-size: 22px !important;
+        margin-bottom: 12px !important;
       }
-      .title-underline {
-        padding-bottom: 0.3rem !important;
+      #startups .section-title {
+        font-size: 50px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 2rem !important;
+        -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .achievements-grid {
+        gap: 30px !important;
+      }
+      .achievement-item {
+        gap: 15px !important;
+      }
+      .icon-wrapper {
+        min-width: 40px !important;
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .icon {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .achievement-number {
+        font-size: 28px !important;
+      }
+      .achievement-title {
+        font-size: 14px !important;
+      }
+      .achievement-description {
+        font-size: 11px !important;
+      }
+    }
+
+
+    @media (max-width: 400px) {
+      .top-label {
+        font-size: 20px !important;
+      }
+      #startups .section-title {
+        font-size: 42px !important;
+        letter-spacing: 2px !important;
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .achievement-item {
+        gap: 12px !important;
+      }
+      .icon-wrapper {
+        min-width: 38px !important;
+        width: 38px !important;
+        height: 38px !important;
+      }
+      .icon {
+        width: 38px !important;
+        height: 38px !important;
+      }
+      .achievement-number {
+        font-size: 26px !important;
+      }
+      .achievement-title {
+        font-size: 13px !important;
+      }
+      .achievement-description {
+        font-size: 10px !important;
       }
     }
   `;
 
 
-  const bentoItems = [
+  const achievements = [
     {
-      title: 'Incubation Center',
-      description: 'State-of-the-art incubation facilities supporting 75+ startups with mentorship, funding, and resources.',
-      bgImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
-      gridClass: 'bento-item-1',
-      mobileClass: 'mobile-item-1',
-      gridStyle: { gridColumn: 'span 2', gridRow: 'span 2' }
+      iconPath: 'M13 10V3L4 14h7v7l9-11h-7z', // Lightning bolt - Startups
+      number: '75+',
+      title: 'Active Startups',
+      description: 'Student-led ventures actively operating and growing across diverse sectors including technology, healthcare, and sustainability.'
     },
     {
-      title: 'Patent Support',
-      description: '₹55 Lac funding for 27+ patents filed and published with complete IP support.',
-      bgImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop',
-      gridClass: 'bento-item-2',
-      mobileClass: 'mobile-item-2',
-      gridStyle: { gridColumn: 'span 2' }
+      iconPath: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z', // Lightbulb - Patents
+      number: '27+',
+      title: 'Patents Filed',
+      description: 'Innovative ideas converted into intellectual property, with students publishing and protecting their groundbreaking inventions.'
     },
     {
-      title: 'Prototype Development',
-      description: '₹1.4 Cr allocated for prototype development and product validation.',
-      bgImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
-      gridClass: 'bento-item-3',
-      mobileClass: 'mobile-item-3',
-      gridStyle: { gridColumn: 'span 2' }
+      iconPath: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', // Currency - Funding
+      number: '₹2.5Cr+',
+      title: 'Funding Secured',
+      description: 'Students successfully raised capital from angel investors, VCs, and government grants to scale their ventures.'
     },
     {
-      title: 'Mentorship Program',
-      description: 'Industry experts and successful entrepreneurs guiding startup journeys.',
-      bgImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
-      gridClass: 'bento-item-4',
-      mobileClass: 'mobile-item-4',
-      gridStyle: { gridColumn: 'span 1' }
+      iconPath: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4', // Package - Products
+      number: '150+',
+      title: 'Products Launched',
+      description: 'Market-ready products and services developed, tested, and successfully launched by student entrepreneurs.'
     },
     {
-      title: 'Funding Access',
-      description: 'Connect with investors, VCs, and funding opportunities for growth.',
-      bgImage: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=600&fit=crop',
-      gridClass: 'bento-item-5',
-      mobileClass: 'mobile-item-5',
-      gridStyle: { gridColumn: 'span 1' }
+      iconPath: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 4 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', // Briefcase - Jobs
+      number: '500+',
+      title: 'Jobs Created',
+      description: 'Direct employment opportunities generated by student startups, contributing to economic growth and innovation ecosystem.'
     },
     {
-      title: 'Innovation Labs',
-      description: 'Cutting-edge labs with latest technology for research and development.',
-      bgImage: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop',
-      gridClass: 'bento-item-6',
-      mobileClass: 'mobile-item-6',
-      gridStyle: { gridColumn: 'span 2' }
+      iconPath: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z', // Users - Training
+      number: '1000+',
+      title: 'Students Trained',
+      description: 'Aspiring entrepreneurs equipped with essential skills through workshops, bootcamps, and hands-on mentorship programs.'
     }
   ];
 
@@ -389,75 +315,41 @@ function Startups() {
       <section id="startups" style={styles.section} className="section">
         <div style={styles.container} className="container">
           <div style={styles.textCenter}>
-            <div style={styles.titleUnderline} className="title-underline">
-              <h2 style={styles.sectionTitle} className="section-title">
-                STARTUPS & INNOVATION
-              </h2>
-              <div style={styles.titleUnderlineAfter}></div>
+            <div style={styles.topLabel} className="top-label">
+              Where Startups Become Success Stories
             </div>
-            <p style={styles.sectionIntro}>
-              Empowering the next generation of entrepreneurs with comprehensive startup support
-            </p>
+            <h2 style={styles.sectionTitle} className="section-title">
+              STARTUPS & INNOVATION
+            </h2>
           </div>
 
 
-          {/* Desktop Bento Grid */}
-          <div style={styles.bentoGrid} className="bento-grid">
-            {bentoItems.map((item, index) => (
-              <div
-                key={index}
-                style={{...styles.bentoItem, ...item.gridStyle}}
-                className={`bento-item ${item.gridClass}`}
-              >
-                <div
-                  style={{
-                    ...styles.bentoItemBefore,
-                    backgroundImage: `url(${item.bgImage})`
-                  }}
-                  className="bento-item-before"
-                ></div>
-                <div style={styles.bentoItemAfter} className="bento-item-after"></div>
-                
-                <div style={styles.bentoContent} className="bento-content">
-                  <h3 style={styles.bentoTitle} className="bento-title">{item.title}</h3>
-                  <p style={styles.bentoDescription} className="bento-description">{item.description}</p>
+          {/* Achievements Grid */}
+          <div style={styles.achievementsGrid} className="achievements-grid">
+            {achievements.map((item, index) => (
+              <div key={index} style={styles.achievementItem} className="achievement-item">
+                <div style={styles.iconWrapper} className="icon-wrapper">
+                  <svg style={styles.icon} className="icon" viewBox="0 0 24 24">
+                    <path d={item.iconPath} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div style={styles.achievementContent} className="achievement-content">
+                  <div style={styles.achievementNumber} className="achievement-number">
+                    {item.number}
+                  </div>
+                  <h3 style={styles.achievementTitle} className="achievement-title">
+                    {item.title}
+                  </h3>
+                  <p style={styles.achievementDescription} className="achievement-description">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
-          </div>
-
-
-          {/* Mobile Horizontal Scroll - Bento Grid Layout (6 columns x 2 rows) */}
-          <div style={styles.scrollRow} className="scroll-row">
-            <div style={styles.scrollWrapper} className="scroll-wrapper">
-              {bentoItems.map((item, index) => (
-                <div
-                  key={`mobile-${index}`}
-                  style={styles.bentoItem}
-                  className={`bento-item ${item.mobileClass}`}
-                >
-                  <div
-                    style={{
-                      ...styles.bentoItemBefore,
-                      backgroundImage: `url(${item.bgImage})`
-                    }}
-                    className="bento-item-before"
-                  ></div>
-                  <div style={styles.bentoItemAfter} className="bento-item-after"></div>
-                  
-                  <div style={styles.bentoContent} className="bento-content">
-                    <h3 style={styles.bentoTitle} className="bento-title">{item.title}</h3>
-                    <p style={styles.bentoDescription} className="bento-description">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
     </>
   );
 }
-
-
 export default Startups;

@@ -3,10 +3,12 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 
+
 // 3D Quantum Particle System Component
 function QuantumParticles() {
   const particlesRef = useRef();
   const count = 3000;
+
 
 
   // Generate particle positions, colors, and sizes
@@ -14,6 +16,7 @@ function QuantumParticles() {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const sizes = new Float32Array(count);
+
 
 
     for (let i = 0; i < count; i++) {
@@ -24,9 +27,11 @@ function QuantumParticles() {
       const phi = Math.acos(Math.random() * 2 - 1);
 
 
+
       positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
       positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       positions[i3 + 2] = radius * Math.cos(phi);
+
 
 
       // Quantum-inspired colors (blue, cyan, purple)
@@ -40,12 +45,15 @@ function QuantumParticles() {
       }
 
 
+
       sizes[i] = Math.random() * 3 + 1;
     }
 
 
+
     return [positions, colors, sizes];
   }, [count]);
+
 
 
   // Animate particles
@@ -54,6 +62,7 @@ function QuantumParticles() {
       const time = state.clock.getElapsedTime();
       particlesRef.current.rotation.y = time * 0.05;
       particlesRef.current.rotation.x = Math.sin(time * 0.1) * 0.1;
+
 
 
       // Pulse effect
@@ -74,6 +83,7 @@ function QuantumParticles() {
       particlesRef.current.geometry.attributes.position.needsUpdate = true;
     }
   });
+
 
 
   return (
@@ -112,13 +122,15 @@ function QuantumParticles() {
 }
 
 
+
 function QuantumComputing() {
   const styles = {
     section: {
-      padding: '100px 0',
+      padding: '80px 0',
       position: 'relative',
       background: '#000000',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      width: '100%'
     },
     canvasContainer: {
       position: 'absolute',
@@ -126,7 +138,8 @@ function QuantumComputing() {
       left: 0,
       width: '100%',
       height: '100%',
-      zIndex: 0
+      zIndex: 0,
+      overflow: 'hidden'
     },
     particlesContainer: {
       position: 'absolute',
@@ -135,13 +148,15 @@ function QuantumComputing() {
       width: '100%',
       height: '100%',
       zIndex: 0,
-      pointerEvents: 'none'
+      pointerEvents: 'none',
+      overflow: 'hidden'
     },
     particle: {
       position: 'absolute',
-      background: '#4169E1',
+      background: '#2563eb',
       opacity: 0.6,
-      animation: 'float 8s ease-in-out infinite'
+      animation: 'float 8s ease-in-out infinite',
+      borderRadius: '50%'
     },
     overlay: {
       position: 'absolute',
@@ -149,7 +164,7 @@ function QuantumComputing() {
       left: 0,
       width: '100%',
       height: '100%',
-      background: 'linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.78) 45%, rgba(0, 0, 0, 0.35) 70%, rgba(0, 0, 0, 0.15) 100%)',
+      background: 'rgba(0, 0, 0, 0.85)',
       zIndex: 1
     },
     container: {
@@ -158,61 +173,56 @@ function QuantumComputing() {
       padding: '0 2rem',
       width: '100%',
       position: 'relative',
-      zIndex: 2
+      zIndex: 2,
+      boxSizing: 'border-box'
     },
     textCenter: {
       textAlign: 'center',
-      marginBottom: '4rem'
+      marginBottom: '2.5rem'
+    },
+    topLabel: {
+      fontSize: '36px',
+      fontWeight: '400',
+      color: '#60a5fa',
+      letterSpacing: '0.5px',
+      marginBottom: '20px',
+      textTransform: 'none',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1.3'
     },
     sectionTitle: {
-      fontSize: '52px',
+      fontSize: '120px',
       fontWeight: '900',
-      color: '#ffffff',
-      letterSpacing: '-1px',
+      letterSpacing: '8px',
       textTransform: 'uppercase',
-      lineHeight: '1.2',
-      marginBottom: '0.5rem',
+      lineHeight: '1',
+      marginBottom: '3rem',
       position: 'relative',
       display: 'inline-block',
-      textShadow: '2px 2px 0px rgba(0, 0, 0, 0.3), 4px 4px 0px rgba(0, 0, 0, 0.25), 6px 6px 0px rgba(0, 0, 0, 0.2), 8px 8px 0px rgba(0, 0, 0, 0.15), 10px 10px 20px rgba(0, 0, 0, 0.4)'
-    },
-    titleUnderline: {
-      position: 'relative',
-      display: 'inline-block',
-      paddingBottom: '0.5rem'
-    },
-    titleUnderlineAfter: {
-      position: 'absolute',
-      bottom: '0',
-      left: '0',
-      width: '100%',
-      height: '4px',
-      background: '#ff6b35'
-    },
-    sectionIntro: {
-      fontSize: '16px',
-      color: 'rgba(255, 255, 255, 0.9)',
-      lineHeight: '1.8',
-      fontWeight: '300',
-      maxWidth: '800px',
-      margin: '0 auto 3rem',
-      textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+      color: 'rgba(255, 255, 255, 0.12)',
+      fontFamily: '"Inter", system-ui, sans-serif',
+      textShadow: 'none',
+      WebkitTextStroke: '2px rgba(255, 255, 255, 0.35)',
+      textStroke: '2px rgba(255, 255, 255, 0.35)',
+      WebkitTextFillColor: 'rgba(255, 255, 255, 0.12)',
+      wordBreak: 'break-word'
     },
     quantumContent: {
-      display: 'grid',
-      gridTemplateColumns: '60% 40%',
-      gap: '60px',
-      alignItems: 'center',
-      marginTop: '60px'
+      display: 'block',
+      marginTop: '60px',
+      maxWidth: '1400px',
+      margin: '60px auto 0'
     },
     quantumText: {
-      padding: '40px',
+      padding: '0',
+      paddingLeft: '0',
+      maxWidth: '900px',
       background: 'transparent'
     },
     badge: {
       display: 'inline-block',
       padding: '14px 32px',
-      background: '#ff6b35',
+      background: '#2563eb',
       color: '#ffffff',
       fontSize: '15px',
       fontWeight: '700',
@@ -223,90 +233,138 @@ function QuantumComputing() {
       marginBottom: '30px',
       borderRadius: '0'
     },
-    badgeAccent: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '4px',
-      height: '100%',
-      background: '#ffffff',
-      opacity: 0.3
-    },
     heading: {
       fontSize: '42px',
       fontWeight: '900',
       color: '#ffffff',
-      marginBottom: '30px',
+      marginBottom: '25px',
       lineHeight: '1.2',
       textTransform: 'uppercase',
       letterSpacing: '-0.5px',
-      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)'
+      textAlign: 'left'
     },
-    paragraph: {
+    intro: {
+      fontSize: '18px',
+      lineHeight: '1.6',
+      color: '#60a5fa',
+      marginBottom: '50px',
+      fontWeight: '600',
+      letterSpacing: '0.3px',
+      textAlign: 'left'
+    },
+    featuresGrid: {
+      display: 'grid',
+      gridTemplateColumns: '1fr',
+      gap: '30px',
+      marginBottom: '40px'
+    },
+    featureItem: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: '20px',
+      padding: '0',
+      background: 'transparent',
+      border: 'none',
+      transition: 'all 0.3s ease'
+    },
+    iconWrapper: {
+      flex: '0 0 28px',
+      width: '28px',
+      height: '28px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'transparent'
+    },
+    icon: {
+      width: '100%',
+      height: '100%'
+    },
+    featureContent: {
+      flex: 1
+    },
+    featureText: {
       fontSize: '16px',
-      lineHeight: '1.8',
-      color: 'rgba(255, 255, 255, 0.95)',
-      marginBottom: '20px',
-      fontWeight: '300',
-      textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+      color: '#ffffff',
+      lineHeight: '1.7',
+      fontWeight: '500',
+      margin: 0,
+      fontFamily: '"Inter", system-ui, sans-serif',
+      textAlign: 'left'
     },
     highlightBox: {
-      padding: '24px',
-      background: 'rgba(255, 107, 53, 0.08)',
-      border: '2px solid #ff6b35',
-      borderLeft: '6px solid #ff6b35',
-      marginTop: '30px',
+      padding: '28px',
+      background: 'rgba(37, 99, 235, 0.12)',
+      border: '2px solid #2563eb',
+      borderLeft: '6px solid #2563eb',
+      marginTop: '40px',
       position: 'relative',
       borderRadius: '0'
     },
     highlightLabel: {
       fontSize: '12px',
-      color: '#ff6b35',
+      color: '#60a5fa',
       fontWeight: '700',
       textTransform: 'uppercase',
       letterSpacing: '2px',
-      marginBottom: '8px',
-      display: 'block'
+      marginBottom: '10px',
+      display: 'block',
+      textAlign: 'left'
     },
     highlightText: {
-      fontSize: '17px',
+      fontSize: '18px',
       color: '#ffffff',
-      fontWeight: '500',
+      fontWeight: '600',
       lineHeight: '1.7',
-      textShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
-      margin: 0
-    },
-    featureList: {
-      listStyle: 'none',
-      padding: 0,
-      margin: '24px 0 0 0'
-    },
-    featureItem: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      gap: '12px',
-      marginBottom: '12px',
-      color: 'rgba(255, 255, 255, 0.9)',
-      fontSize: '15px',
-      lineHeight: '1.6'
-    },
-    featureIcon: {
-      width: '6px',
-      height: '6px',
-      background: '#ff6b35',
-      marginTop: '8px',
-      flexShrink: 0
+      margin: 0,
+      textAlign: 'left'
     }
   };
 
 
+
   const mediaQueryStyles = `
-    /* Force white color for section title */
-    #quantum .section-title,
-    section#quantum .section-title {
-      color: #ffffff !important;
-      -webkit-text-fill-color: #ffffff !important;
+    @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
+
+    * {
+      box-sizing: border-box;
     }
+
+
+
+    body {
+      overflow-x: hidden !important;
+    }
+
+
+
+    #quantum {
+      overflow-x: hidden !important;
+      width: 100% !important;
+    }
+
+
+
+    /* Darker outline with darker fill - white version */
+    #quantum .section-title {
+      color: rgba(255, 255, 255, 0.12) !important;
+      text-shadow: none !important;
+      -webkit-text-stroke: 2px rgba(255, 255, 255, 0.35) !important;
+      text-stroke: 2px rgba(255, 255, 255, 0.35) !important;
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.12) !important;
+      background: none !important;
+      max-width: 100% !important;
+    }
+
+
+
+    .feature-item:hover {
+      transform: translateX(5px);
+    }
+
 
 
     @keyframes float {
@@ -329,67 +387,104 @@ function QuantumComputing() {
     }
 
 
-    @media (max-width: 1024px) {
-      .quantum-content {
-        grid-template-columns: 1fr !important;
-        gap: 40px !important;
+
+    @media (max-width: 1200px) {
+      .top-label {
+        font-size: 32px !important;
       }
-      .overlay {
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.68) 60%, rgba(0, 0, 0, 0.25) 100%) !important;
+      #quantum .section-title {
+        font-size: 100px !important;
+        letter-spacing: 6px !important;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.35) !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.12) !important;
+      }
+      .quantum-content {
+        max-width: 100% !important;
+      }
+      .quantum-text {
+        max-width: 800px !important;
       }
       .heading {
         font-size: 36px !important;
       }
+      .icon-wrapper {
+        width: 26px !important;
+        height: 26px !important;
+        flex: 0 0 26px !important;
+      }
     }
 
 
+
     @media (max-width: 768px) {
-      .section {
+      #quantum.section {
         padding: 60px 0 !important;
       }
-      .overlay {
-        background: rgba(0, 0, 0, 0.82) !important;
+      #quantum .container {
+        padding: 0 1rem !important;
+      }
+      .top-label {
+        font-size: 26px !important;
+        margin-bottom: 15px !important;
       }
       #quantum .section-title {
-        font-size: 32px !important;
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
-        margin-bottom: 0.4rem !important;
+        font-size: 70px !important;
+        letter-spacing: 4px !important;
+        margin-bottom: 2.5rem !important;
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35) !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.12) !important;
       }
-      .title-underline {
-        padding-bottom: 0.4rem !important;
+      .quantum-content {
+        margin-top: 40px !important;
+        max-width: 100% !important;
       }
       .quantum-text {
-        padding: 30px !important;
+        padding: 0 !important;
+        max-width: 100% !important;
       }
       .heading {
         font-size: 28px !important;
         margin-bottom: 20px !important;
       }
-      .paragraph {
-        font-size: 14px !important;
+      .intro {
+        font-size: 16px !important;
+        margin-bottom: 40px !important;
       }
-      .highlight-text {
-        font-size: 15px !important;
+      .features-grid {
+        gap: 25px !important;
       }
       .feature-item {
-        font-size: 14px !important;
+        gap: 15px !important;
+      }
+      .icon-wrapper {
+        width: 26px !important;
+        height: 26px !important;
+        flex: 0 0 26px !important;
+      }
+      .feature-text {
+        font-size: 15px !important;
+      }
+      .highlight-text {
+        font-size: 16px !important;
       }
     }
 
 
+
     @media (max-width: 576px) {
-      #quantum .section-title {
-        font-size: 24px !important;
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
-        margin-bottom: 0.3rem !important;
+      .top-label {
+        font-size: 22px !important;
+        margin-bottom: 12px !important;
       }
-      .title-underline {
-        padding-bottom: 0.3rem !important;
+      #quantum .section-title {
+        font-size: 50px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 2rem !important;
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35) !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.12) !important;
       }
       .quantum-text {
-        padding: 20px !important;
+        padding: 0 !important;
       }
       .heading {
         font-size: 24px !important;
@@ -398,17 +493,63 @@ function QuantumComputing() {
         font-size: 13px !important;
         padding: 12px 24px !important;
       }
-      .highlight-text {
+      .intro {
+        font-size: 15px !important;
+      }
+      .features-grid {
+        gap: 20px !important;
+      }
+      .feature-item {
+        gap: 12px !important;
+      }
+      .icon-wrapper {
+        width: 24px !important;
+        height: 24px !important;
+        flex: 0 0 24px !important;
+      }
+      .feature-text {
         font-size: 14px !important;
       }
       .highlight-box {
-        padding: 18px !important;
+        padding: 20px !important;
+        margin-top: 30px !important;
+      }
+      .highlight-text {
+        font-size: 15px !important;
+      }
+    }
+
+
+
+    @media (max-width: 400px) {
+      .top-label {
+        font-size: 20px !important;
+      }
+      #quantum .section-title {
+        font-size: 42px !important;
+        letter-spacing: 2px !important;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35) !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.12) !important;
+      }
+      .heading {
+        font-size: 22px !important;
+      }
+      .badge {
+        font-size: 12px !important;
+        padding: 10px 20px !important;
+        letter-spacing: 2px !important;
+      }
+      .icon-wrapper {
+        width: 22px !important;
+        height: 22px !important;
+        flex: 0 0 22px !important;
       }
     }
   `;
 
 
-  // Generate 2D particles for additional effect
+
+  // Generate 2D particles
   const particles = Array.from({ length: 30 }, (_, i) => ({
     id: i,
     width: `${Math.random() * 6 + 3}px`,
@@ -418,6 +559,44 @@ function QuantumComputing() {
     animationDelay: `${Math.random() * 8}s`,
     animationDuration: `${6 + Math.random() * 6}s`
   }));
+
+
+
+  const features = [
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "India's First University to launch dedicated Quantum Computing degree programs"
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Pioneer in quantum education with industry-leading curriculum and world-class faculty"
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Training the nation's first generation of quantum experts with cutting-edge infrastructure"
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.8 19.2L16 11L21 7H14L12 3L10 7H3L8 11L6.2 19.2L12 15L17.8 19.2Z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Setting new national standards in quantum technology education and research"
+    }
+  ];
+
 
 
   return (
@@ -430,6 +609,7 @@ function QuantumComputing() {
             <QuantumParticles />
           </Canvas>
         </div>
+
 
 
         {/* Additional 2D animated particles */}
@@ -451,77 +631,73 @@ function QuantumComputing() {
         </div>
 
 
-        {/* Overlay with black gradient - NO BOX SHADOW */}
+
         <div style={styles.overlay} className="overlay"></div>
+
 
 
         <div style={styles.container} className="container">
           <div style={styles.textCenter}>
-            <div style={styles.titleUnderline} className="title-underline">
-              <h2 style={styles.sectionTitle} className="section-title">
-                Quantum Computing
-              </h2>
-              <div style={styles.titleUnderlineAfter}></div>
+            <div style={styles.topLabel} className="top-label">
+              Breaking barriers in technology education
             </div>
-            <p style={styles.sectionIntro}>
-              Breaking barriers in technology education - A historic first for Gujarat
-            </p>
+            <h2 style={styles.sectionTitle} className="section-title">
+              QUANTUM COMPUTING
+            </h2>
           </div>
+
 
 
           <div style={styles.quantumContent} className="quantum-content">
             <div style={styles.quantumText} className="quantum-text">
               <span style={styles.badge} className="badge">
-                <span style={styles.badgeAccent}></span>
-                FIRST IN GUJARAT
+                INDIA'S FIRST & FINEST
               </span>
               
               <h3 style={styles.heading} className="heading">
-                Making History with Quantum Computing
+                FIRST TO LAUNCH. BEST IN CLASS.
               </h3>
               
-              <p style={styles.paragraph} className="paragraph">
-                Swarrnim University proudly stands as the first and only university in Gujarat to launch a specialized CSE program in Quantum Computing, establishing a new milestone in the state's technological education landscape.
-              </p>
-              
-              <p style={styles.paragraph} className="paragraph">
-                Our groundbreaking curriculum merges advanced theoretical foundations with hands-on quantum applications, positioning students at the cutting edge of quantum mechanics, cryptography, and next-generation AI technologies.
+              <p style={styles.intro} className="intro">
+                Swarnnim Startup and Innovation University - pioneering quantum education in India.
               </p>
 
 
-              <ul style={styles.featureList} className="feature-list">
-                <li style={styles.featureItem} className="feature-item">
-                  <span style={styles.featureIcon}></span>
-                  <span>Advanced quantum algorithm development and implementation</span>
-                </li>
-                <li style={styles.featureItem} className="feature-item">
-                  <span style={styles.featureIcon}></span>
-                  <span>Industry-grade quantum computing laboratories and infrastructure</span>
-                </li>
-                <li style={styles.featureItem} className="feature-item">
-                  <span style={styles.featureIcon}></span>
-                  <span>Collaboration with leading quantum research institutions globally</span>
-                </li>
-              </ul>
+
+              {/* Features with Professional Blue Icons */}
+              <div style={styles.featuresGrid} className="features-grid">
+                {features.map((feature, index) => (
+                  <div key={index} style={styles.featureItem} className="feature-item">
+                    <div style={styles.iconWrapper} className="icon-wrapper">
+                      <div style={styles.icon} className="icon">
+                        {feature.icon}
+                      </div>
+                    </div>
+                    <div style={styles.featureContent} className="feature-content">
+                      <p style={styles.featureText} className="feature-text">
+                        {feature.text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
 
 
               <div style={styles.highlightBox} className="highlight-box">
-                <span style={styles.highlightLabel}>PIONEERING OPPORTUNITY</span>
+                <span style={styles.highlightLabel}>THE QUANTUM ADVANTAGE</span>
                 <p style={styles.highlightText} className="highlight-text">
-                  Be part of Gujarat's quantum revolution. Join the state's inaugural batch of quantum computing specialists and pioneer the future of computational technology.
+                  Join SWARRNIM university that launched India's quantum revolution. Experience unparalleled excellence in quantum education that no one else can match.
                 </p>
               </div>
             </div>
-
-
-            {/* Empty div to maintain grid structure - right side shows 3D particles */}
-            <div></div>
           </div>
         </div>
       </section>
     </>
   );
 }
+
 
 
 export default QuantumComputing;

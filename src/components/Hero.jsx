@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, User, GraduationCap, TrendingUp, Award, Building2 } from 'lucide-react';
 
+
 function Hero() {
   const [formData, setFormData] = useState({
     name: '',
@@ -9,6 +10,7 @@ function Hero() {
     course: ''
   });
 
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -16,12 +18,14 @@ function Hero() {
     });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     alert('Thank you for your interest! We will contact you soon.');
     setFormData({ name: '', email: '', number: '', course: '' });
   };
+
 
   const styles = {
     hero: {
@@ -75,7 +79,7 @@ function Hero() {
       display: 'inline-flex',
       alignItems: 'center',
       gap: '0.5rem',
-      background: '#ff6b35',
+      background: '#2563eb',
       color: 'white',
       padding: '0.5rem 1.2rem',
       fontSize: '0.8rem',
@@ -95,7 +99,7 @@ function Hero() {
     },
     subtitle: {
       fontSize: '1.2rem',
-      color: '#ff6b35',
+      color: '#3b82f6',
       marginBottom: '1rem',
       fontWeight: '700',
       letterSpacing: '0.5px'
@@ -119,7 +123,6 @@ function Hero() {
       gap: '0',
       maxWidth: '650px',
       border: '1px solid rgba(255, 255, 255, 0.18)',
-      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
       overflow: 'hidden'
     },
     statsGlassShine: {
@@ -165,50 +168,35 @@ function Hero() {
       fontWeight: '600',
       letterSpacing: '0.5px',
       whiteSpace: 'nowrap',
-      color: '#ff6b35'
+      color: '#3b82f6'
     },
     rightSection: {
       animation: 'fadeInRight 0.8s ease-out'
     },
     contactBox: {
       position: 'relative',
-      background: 'rgba(255, 255, 255, 0.12)',
-      backdropFilter: 'blur(30px) saturate(180%)',
-      WebkitBackdropFilter: 'blur(30px) saturate(180%)',
+      background: '#ffffff',
       padding: '1.5rem',
-      border: '1px solid rgba(255, 255, 255, 0.25)',
-      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+      border: '1px solid rgba(0, 0, 0, 0.1)',
       overflow: 'hidden'
-    },
-    contactBoxGlassShine: {
-      position: 'absolute',
-      top: 0,
-      left: '-100%',
-      width: '50%',
-      height: '100%',
-      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
-      animation: 'glassShine 4s infinite',
-      pointerEvents: 'none',
-      zIndex: 0
     },
     contactBoxHeader: {
       textAlign: 'center',
       marginBottom: '1rem',
       paddingBottom: '1rem',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.3)',
+      borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
       position: 'relative',
       zIndex: 1
     },
     contactBoxTitle: {
       fontSize: '1.3rem',
       fontWeight: '800',
-      color: '#ffffff',
+      color: '#1a1a1a',
       marginBottom: '0.3rem',
-      letterSpacing: '-0.5px',
-      textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+      letterSpacing: '-0.5px'
     },
     contactBoxSubtitle: {
-      color: 'rgba(255, 255, 255, 0.85)',
+      color: '#666666',
       fontSize: '0.8rem',
       fontWeight: '600'
     },
@@ -230,24 +218,21 @@ function Hero() {
     inputIcon: {
       position: 'absolute',
       left: '0.9rem',
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: '#666666',
       pointerEvents: 'none',
       zIndex: 2
     },
     input: {
       width: '100%',
       padding: '0.8rem 0.9rem 0.8rem 2.6rem',
-      border: '1px solid rgba(255, 255, 255, 0.25)',
+      border: '1px solid #d1d5db',
       borderRadius: '0',
       fontSize: '0.9rem',
-      color: '#ffffff',
-
-      background: 'transparent',
-      backgroundColor: 'transparent',
-
+      color: '#1a1a1a',
+      background: '#ffffff',
+      backgroundColor: '#ffffff',
       WebkitAppearance: 'none',
       appearance: 'none',
-
       transition: 'all 0.3s ease',
       fontWeight: '500',
       fontFamily: 'inherit',
@@ -256,17 +241,14 @@ function Hero() {
     select: {
       width: '100%',
       padding: '0.8rem 2.6rem 0.8rem 2.6rem',
-      border: '1px solid rgba(255, 255, 255, 0.25)',
+      border: '1px solid #d1d5db',
       borderRadius: '0',
       fontSize: '0.9rem',
-      color: '#ffffff',
-
-      background: 'transparent',
-      backgroundColor: 'transparent',
-
+      color: '#1a1a1a',
+      background: '#ffffff',
+      backgroundColor: '#ffffff',
       WebkitAppearance: 'none',
       appearance: 'none',
-
       transition: 'all 0.3s ease',
       fontWeight: '500',
       cursor: 'pointer',
@@ -276,7 +258,7 @@ function Hero() {
     submitBtn: {
       width: '100%',
       padding: '0.85rem',
-      background: '#ff6b35',
+      background: '#2563eb',
       color: 'white',
       border: 'none',
       fontSize: '0.85rem',
@@ -285,13 +267,12 @@ function Hero() {
       transition: 'all 0.3s ease',
       marginTop: '0.3rem',
       letterSpacing: '1px',
-      textTransform: 'uppercase',
-      boxShadow: '0 4px 15px rgba(255, 107, 53, 0.4)'
+      textTransform: 'uppercase'
     },
     contactBoxFooter: {
       marginTop: '1rem',
       paddingTop: '1rem',
-      borderTop: '1px solid rgba(255, 255, 255, 0.3)',
+      borderTop: '1px solid rgba(0, 0, 0, 0.1)',
       display: 'flex',
       flexDirection: 'column',
       gap: '0.6rem',
@@ -302,15 +283,16 @@ function Hero() {
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',
-      color: 'rgba(255, 255, 255, 0.85)',
+      color: '#666666',
       fontSize: '0.8rem',
       fontWeight: '600'
     },
     contactItemIcon: {
-      color: '#ff6b35',
+      color: '#3b82f6',
       flexShrink: 0
     }
   };
+
 
   const mediaQueryStyles = `
     @keyframes fadeInLeft {
@@ -324,6 +306,7 @@ function Hero() {
       }
     }
 
+
     @keyframes fadeInRight {
       from {
         opacity: 0;
@@ -335,6 +318,7 @@ function Hero() {
       }
     }
 
+
     @keyframes glassShine {
       0% {
         left: -100%;
@@ -344,40 +328,47 @@ function Hero() {
       }
     }
 
+
     input::placeholder,
     select::placeholder {
-      color: rgba(255, 255, 255, 0.6);
+      color: #9ca3af;
     }
+
 
     input:focus,
     select:focus {
       outline: none;
-      border-color: #ff6b35 !important;
-      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: #3b82f6 !important;
+      background: #ffffff !important;
     }
+
 
     select option {
-      background: #1a1a1a;
-      color: #ffffff;
+      background: #ffffff;
+      color: #1a1a1a;
     }
+
 
     select:invalid {
-      color: rgba(255, 255, 255, 0.6);
+      color: #9ca3af;
     }
+
 
     select option:first-child {
-      color: rgba(255, 255, 255, 0.6);
+      color: #9ca3af;
     }
 
-    /* Force transparent background on all inputs */
+
+    /* Force white background on all inputs */
     input,
     select {
-      background: transparent !important;
-      background-color: transparent !important;
+      background: #ffffff !important;
+      background-color: #ffffff !important;
       -webkit-appearance: none !important;
       appearance: none !important;
       border-radius: 0 !important;
     }
+
 
     /* Auto-fill styles for Chrome/Safari */
     input:-webkit-autofill,
@@ -385,16 +376,18 @@ function Hero() {
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active {
       -webkit-background-clip: text;
-      -webkit-text-fill-color: #ffffff;
+      -webkit-text-fill-color: #1a1a1a;
       transition: background-color 5000s ease-in-out 0s;
-      box-shadow: inset 0 0 20px 20px transparent;
+      box-shadow: inset 0 0 20px 20px #ffffff;
     }
+
 
     @media (max-width: 1200px) {
       .hero-title {
         font-size: 3.2rem !important;
       }
     }
+
 
     @media (max-width: 1024px) {
       .hero-content-wrapper {
@@ -406,6 +399,7 @@ function Hero() {
       }
     }
 
+
     @media (max-width: 768px) {
       .hero {
         min-height: auto !important;
@@ -414,10 +408,12 @@ function Hero() {
         background: #fafafa !important;
       }
 
+
       .hero-background-wrapper {
         position: relative !important;
         height: 75% !important;
       }
+
 
       .hero-mobile-content {
         position: relative !important;
@@ -427,18 +423,22 @@ function Hero() {
         z-index: 10 !important;
       }
 
+
       .hero-container {
         padding: 2rem 1rem !important;
         margin-top: 0 !important;
       }
 
+
       .hero-content-wrapper {
         display: block !important;
       }
 
+
       .hero-left-section {
         padding: 0 !important;
       }
+
 
       .hero-title {
         font-size: 2rem !important;
@@ -446,25 +446,30 @@ function Hero() {
         margin-bottom: 0.8rem !important;
       }
 
+
       .hero-badge {
         font-size: 0.7rem !important;
         padding: 0.4rem 0.9rem !important;
         margin-bottom: 1rem !important;
       }
 
+
       .hero-subtitle {
         font-size: 1rem !important;
         margin-bottom: 0.8rem !important;
       }
+
 
       .hero-description {
         font-size: 0.9rem !important;
         margin-bottom: 1.5rem !important;
       }
 
+
       .hero-stats-container {
         display: none !important;
       }
+
 
       .hero-right-section {
         width: 100% !important;
@@ -473,48 +478,58 @@ function Hero() {
         padding: 0 !important;
       }
 
+
       .hero-contact-box {
         padding: 1.3rem !important;
       }
 
+
       .contact-box-title {
         font-size: 1.2rem !important;
       }
+
 
       .contact-box-subtitle {
         font-size: 0.75rem !important;
       }
     }
 
+
     @media (max-width: 480px) {
       .hero {
         padding-top: 60px !important;
       }
+
 
       .hero-mobile-content {
         margin-top: -6rem !important;
         padding: 1.5rem 0.75rem 2rem !important;
       }
 
+
       .hero-title {
         font-size: 1.7rem !important;
         letter-spacing: -1px !important;
       }
 
+
       .hero-subtitle {
         font-size: 0.9rem !important;
       }
+
 
       .hero-description {
         font-size: 0.85rem !important;
         line-height: 1.5 !important;
       }
 
+
       .hero-contact-box {
         padding: 1.2rem !important;
       }
     }
   `;
+
 
   return (
     <>
@@ -524,25 +539,30 @@ function Hero() {
         <div style={styles.backgroundImage} className="hero-desktop-bg"></div>
         <div style={styles.overlay} className="hero-desktop-overlay"></div>
 
+
         <div style={styles.container} className="hero-container">
           <div style={styles.contentWrapper} className="hero-content-wrapper">
             {/* Left Side - Content */}
             <div style={styles.leftSection} className="hero-left-section">
               <div style={styles.badge} className="hero-badge">
                 <Building2 size={16} />
-                <span>India's First University for Startup</span>
+                <span>India's 1st Startup & Quantum University</span>
               </div>
 
+
               <h1 style={styles.title} className="hero-title">
-                WHERE IDEAS<br />COME ALIVE
+                BUILD STARTUPS<br />POWER QUANTUM
               </h1>
+
 
               <h2 style={styles.subtitle} className="hero-subtitle">Swaranim Startup & Innovation University</h2>
 
+
               <p style={styles.description} className="hero-description">
-                Pioneering innovation with cutting-edge technology and entrepreneurial excellence. 
-                Ranked among Top 4 Private Universities in Gujarat with 100% placement assistance across 400+ companies.
+                India's first university dedicated to startup incubation and quantum computing education. 
+                Launch your venture while mastering next-gen technology.
               </p>
+
 
               {/* Statistics Container - Desktop Only */}
               <div style={styles.statsContainer} className="hero-stats-container">
@@ -550,10 +570,12 @@ function Hero() {
                 <div style={styles.statItem} className="hero-stat-item">
                   <TrendingUp size={28} style={styles.statIcon} />
                   <div style={styles.statNumber} className="stat-number">75+</div>
-                  <div style={styles.statLabel} className="stat-label">Startups Incubated</div>
+                  <div style={styles.statLabel} className="stat-label">Startups Launched</div>
                 </div>
 
+
                 <div style={styles.statDivider} className="stat-divider"></div>
+
 
                 <div style={styles.statItem} className="hero-stat-item">
                   <GraduationCap size={28} style={styles.statIcon} />
@@ -561,24 +583,27 @@ function Hero() {
                   <div style={styles.statLabel} className="stat-label">Highest Package</div>
                 </div>
 
+
                 <div style={styles.statDivider} className="stat-divider"></div>
+
 
                 <div style={styles.statItem} className="hero-stat-item">
                   <Award size={28} style={styles.statIcon} />
-                  <div style={styles.statNumber} className="stat-number">TOP 4</div>
-                  <div style={styles.statLabel} className="stat-label">in Gujarat</div>
+                  <div style={styles.statNumber} className="stat-number">1ST</div>
+                  <div style={styles.statLabel} className="stat-label">Quantum Programs</div>
                 </div>
               </div>
             </div>
 
+
             {/* Right Side - Contact Form (Desktop) */}
             <div style={styles.rightSection} className="hero-right-section">
               <div style={styles.contactBox} className="hero-contact-box">
-                <div style={styles.contactBoxGlassShine}></div>
                 <div style={styles.contactBoxHeader}>
                   <h3 style={styles.contactBoxTitle} className="contact-box-title">Admissions Are Open</h3>
                   <p style={styles.contactBoxSubtitle} className="contact-box-subtitle">Start Your Journey with Us</p>
                 </div>
+
 
                 <form style={styles.form} onSubmit={handleSubmit}>
                   <div style={styles.formGroup}>
@@ -596,6 +621,7 @@ function Hero() {
                     </div>
                   </div>
 
+
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
                       <Mail size={18} style={styles.inputIcon} />
@@ -611,6 +637,7 @@ function Hero() {
                     </div>
                   </div>
 
+
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
                       <Phone size={18} style={styles.inputIcon} />
@@ -625,6 +652,7 @@ function Hero() {
                       />
                     </div>
                   </div>
+
 
                   <div style={styles.formGroup}>
                     <div style={styles.inputWrapper}>
@@ -678,15 +706,17 @@ function Hero() {
                     </div>
                   </div>
 
+
                   <button 
                     type="submit" 
                     style={styles.submitBtn}
-                    onMouseEnter={(e) => e.target.style.background = '#e55a28'}
-                    onMouseLeave={(e) => e.target.style.background = '#ff6b35'}
+                    onMouseEnter={(e) => e.target.style.background = '#1d4ed8'}
+                    onMouseLeave={(e) => e.target.style.background = '#2563eb'}
                   >
                     Submit Inquiry
                   </button>
                 </form>
+
 
                 <div style={styles.contactBoxFooter}>
                   <div style={styles.contactItem}>
@@ -703,11 +733,13 @@ function Hero() {
           </div>
         </div>
 
+
         {/* Mobile View - Background wrapper (75% height) */}
         <div className="hero-background-wrapper" style={{display: 'none'}}>
           <div style={styles.backgroundImage}></div>
           <div style={styles.overlay}></div>
         </div>
+
 
         {/* Mobile View - Content section */}
         <div className="hero-mobile-content" style={{display: 'none'}}>
@@ -717,5 +749,6 @@ function Hero() {
     </>
   );
 }
+
 
 export default Hero;

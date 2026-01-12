@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 function Placements() {
   const styles = {
     section: {
@@ -7,161 +9,261 @@ function Placements() {
       position: 'relative',
       background: '#ffffff',
       zIndex: 10,
-      isolation: 'isolate'
+      isolation: 'isolate',
+      overflow: 'hidden',
+      width: '100%'
     },
     container: {
-      maxWidth: '1100px',
+      maxWidth: '1400px',
       margin: '0 auto',
-      padding: '0 1.5rem',
-      width: '100%'
+      padding: '0 2rem',
+      width: '100%',
+      boxSizing: 'border-box',
+      overflow: 'hidden'
     },
     textCenter: {
       textAlign: 'center',
-      marginBottom: '2.5rem'
+      marginBottom: '2.5rem',
+      overflow: 'hidden',
+      width: '100%'
     },
-    titleUnderline: {
-      position: 'relative',
-      display: 'inline-block',
-      paddingBottom: '0.5rem'
-    },
-    sectionTitle: {
-      fontSize: '42px',
-      fontWeight: '900',
-      letterSpacing: '-1px',
-      textTransform: 'uppercase',
-      lineHeight: '1.2',
-      marginBottom: '0.5rem',
-      position: 'relative',
-      display: 'inline-block',
-      color: '#000000',
-      textShadow: '2px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.08), 6px 6px 0px rgba(0, 0, 0, 0.06), 8px 8px 0px rgba(0, 0, 0, 0.04), 10px 10px 20px rgba(0, 0, 0, 0.15)'
-    },
-    titleUnderlineAfter: {
-      position: 'absolute',
-      bottom: '0',
-      left: '0',
-      width: '100%',
-      height: '3px',
-      background: '#ff6b35'
-    },
-    sectionIntro: {
-      fontSize: '14px',
-      color: '#666',
-      lineHeight: '1.6',
-      fontWeight: '300',
-      maxWidth: '650px',
-      margin: '0 auto 1.5rem'
-    },
-    placementHighlights: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '20px',
-      marginBottom: '50px',
-      marginTop: '30px',
-      maxWidth: '900px',
-      margin: '30px auto 50px'
-    },
-    packageCard: {
-      position: 'relative',
-      background: 'linear-gradient(135deg, #1e3a5f 0%, #2d5a8a 100%)',
-      padding: '50px 30px 40px',
-      textAlign: 'center',
-      clipPath: 'polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%)',
-      WebkitClipPath: 'polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%)',
-      transition: 'all 0.3s ease',
-      overflow: 'visible'
-    },
-    packageCardGreen: {
-      background: 'linear-gradient(135deg, #5a7d3a 0%, #6d9147 100%)'
-    },
-    packageHeaderBox: {
-      position: 'absolute',
-      top: '-5px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      background: '#ffffff',
-      padding: '12px 40px',
-      border: '4px solid currentColor',
-      zIndex: 2,
-      clipPath: 'polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%)',
-      WebkitClipPath: 'polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%)'
-    },
-    packageHeaderBoxBlue: {
-      borderColor: '#1e3a5f'
-    },
-    packageHeaderBoxGreen: {
-      borderColor: '#5a7d3a'
-    },
-    packageHeaderText: {
+    topLabel: {
       fontSize: '36px',
-      fontWeight: '900',
-      lineHeight: '1',
-      letterSpacing: '-2px',
-      margin: 0
-    },
-    packageHeaderTextBlue: {
-      color: '#1e3a5f'
-    },
-    packageHeaderTextGreen: {
-      color: '#5a7d3a'
-    },
-    packageLabel: {
-      fontSize: '18px',
-      fontWeight: '700',
-      color: '#ffffff',
-      textTransform: 'uppercase',
-      letterSpacing: '1px',
-      marginTop: '15px',
+      fontWeight: '400',
+      color: '#c53030',
+      letterSpacing: '0.5px',
+      marginBottom: '20px',
+      textTransform: 'none',
+      fontFamily: '"Young Serif", Georgia, serif',
       lineHeight: '1.3'
     },
-    statsGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '18px',
-      marginBottom: '50px',
-      maxWidth: '600px',
-      margin: '0 auto 50px'
+    sectionTitle: {
+      fontSize: '120px',
+      fontWeight: '900',
+      letterSpacing: '8px',
+      textTransform: 'uppercase',
+      lineHeight: '1',
+      marginBottom: '3rem',
+      position: 'relative',
+      display: 'inline-block',
+      color: 'rgba(0, 0, 0, 0.12)',
+      fontFamily: '"Inter", system-ui, sans-serif',
+      textShadow: 'none',
+      WebkitTextStroke: '2px rgba(0, 0, 0, 0.35)',
+      textStroke: '2px rgba(0, 0, 0, 0.35)',
+      WebkitTextFillColor: 'rgba(0, 0, 0, 0.12)',
+      maxWidth: '100%',
+      wordWrap: 'break-word'
     },
-    placementStat: {
-      background: '#fafafa',
-      padding: '30px 25px',
+    achieversHeader: {
+      fontSize: '32px',
+      fontWeight: '400',
+      color: '#c53030',
       textAlign: 'center',
-      border: '2px solid rgba(0, 0, 0, 0.08)',
+      marginBottom: '40px',
+      marginTop: '0px',
+      textTransform: 'none',
+      letterSpacing: '0.5px',
+      fontFamily: '"Young Serif", Georgia, serif',
+      display: 'none'
+    },
+    contentWrapper: {
+      marginTop: '60px',
+      marginBottom: '60px'
+    },
+    contentGrid: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1.5fr',
+      gap: '30px',
+      position: 'relative',
+      overflow: 'hidden'
+    },
+    verticalDivider: {
+      position: 'absolute',
+      left: 'calc(40% - 15px)',
+      top: 0,
+      bottom: 0,
+      width: '2px',
+      background: 'rgba(0, 0, 0, 0.1)'
+    },
+    leftSection: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingRight: '15px',
+      gap: '30px'
+    },
+    packageContainer: {
+      background: 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 50%, #000000 100%)',
+      padding: '30px 35px',
+      borderRadius: '16px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '25px',
+      boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)',
+      width: '100%',
+      maxWidth: '350px'
+    },
+    packageItem: {
+      textAlign: 'center',
+      width: '100%'
+    },
+    packageNumberWrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '4px',
+      marginBottom: '8px'
+    },
+    packageNumber: {
+      fontSize: '85px',
+      fontWeight: '400',
+      color: '#ffffff',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1',
+      textShadow: '0 4px 20px rgba(255, 255, 255, 0.3)'
+    },
+    packageLPA: {
+      fontSize: '24px',
+      fontWeight: '400',
+      color: '#ffffff',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1',
+      textShadow: '0 4px 20px rgba(255, 255, 255, 0.3)',
+      letterSpacing: '1px'
+    },
+    packageLabel: {
+      fontSize: '15px',
+      fontWeight: '600',
+      color: 'rgba(255, 255, 255, 0.9)',
+      textTransform: 'uppercase',
+      letterSpacing: '2px',
+      fontFamily: '"Inter", system-ui, sans-serif',
+      lineHeight: '1.4'
+    },
+    packageDivider: {
+      width: '70%',
+      height: '2px',
+      background: 'rgba(255, 255, 255, 0.2)'
+    },
+    desktopAchieversHeader: {
+      fontSize: '32px',
+      fontWeight: '400',
+      color: '#c53030',
+      textAlign: 'right',
+      marginTop: '0px',
+      marginBottom: '30px',
+      textTransform: 'none',
+      letterSpacing: '0.5px',
+      fontFamily: '"Young Serif", Georgia, serif',
+      width: '100%'
+    },
+    desktopStudentSection: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      gap: '20px'
+    },
+    rightSection: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '20px',
+      paddingLeft: '15px'
+    },
+    studentCardsGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '0',
+      position: 'relative'
+    },
+    studentCard: {
+      background: 'transparent',
+      border: 'none',
+      padding: '20px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '16px',
+      transition: 'all 0.3s ease',
+      position: 'relative',
+      borderRight: '1px solid rgba(0, 0, 0, 0.08)',
+      borderBottom: '1px solid rgba(0, 0, 0, 0.08)'
+    },
+    studentCardTop: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: '12px'
+    },
+    studentCardBottom: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '6px'
+    },
+    studentPackageWrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      gap: '3px',
+      flex: 1
+    },
+    studentImageWrapper: {
+      flex: '0 0 90px',
+      width: '90px',
+      height: '90px'
+    },
+    studentImage: {
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      objectFit: 'cover',
+      border: '3px dotted #2563eb',
       transition: 'all 0.3s ease'
     },
-    statNumber: {
-      fontSize: '38px',
-      fontWeight: '900',
-      color: '#ff6b35',
-      marginBottom: '10px',
-      lineHeight: '1',
-      letterSpacing: '-1px'
-    },
-    statLabel: {
-      fontSize: '14px',
-      fontWeight: '600',
+    studentName: {
+      fontSize: '15px',
+      fontWeight: '700',
       color: '#000',
-      marginBottom: '5px',
       textTransform: 'uppercase',
+      letterSpacing: '0.3px',
+      fontFamily: '"Inter", system-ui, sans-serif',
+      lineHeight: '1.3'
+    },
+    studentPackageNumber: {
+      fontSize: '42px',
+      fontWeight: '400',
+      color: '#2563eb',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1'
+    },
+    studentPackageLPA: {
+      fontSize: '15px',
+      fontWeight: '400',
+      color: '#2563eb',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1',
       letterSpacing: '0.5px'
     },
-    statSubtext: {
-      fontSize: '12px',
+    studentCompany: {
+      fontSize: '13px',
+      fontWeight: '600',
       color: '#666',
-      fontWeight: '400'
+      fontFamily: '"Inter", system-ui, sans-serif',
+      lineHeight: '1.3'
     },
     companiesSection: {
       marginTop: '50px',
       padding: '0'
     },
     companiesHeader: {
-      fontSize: '24px',
-      fontWeight: '800',
+      fontSize: '32px',
+      fontWeight: '400',
       color: '#000',
       textAlign: 'center',
       marginBottom: '30px',
-      textTransform: 'uppercase',
-      letterSpacing: '-0.5px'
+      textTransform: 'none',
+      letterSpacing: '0.5px',
+      fontFamily: '"Young Serif", Georgia, serif'
     },
     carouselContainer: {
       position: 'relative',
@@ -173,7 +275,7 @@ function Placements() {
       overflowX: 'auto',
       scrollSnapType: 'x mandatory',
       scrollBehavior: 'smooth',
-      gap: '18px',
+      gap: '15px',
       WebkitOverflowScrolling: 'touch',
       scrollbarWidth: 'none',
       msOverflowStyle: 'none',
@@ -183,8 +285,8 @@ function Placements() {
       minWidth: '100%',
       scrollSnapAlign: 'start',
       display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '18px',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: '15px',
       flexShrink: 0
     },
     companyCard: {
@@ -193,19 +295,33 @@ function Placements() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      border: '2px solid rgba(0, 0, 0, 0.08)',
+      border: '2px solid rgba(37, 99, 235, 0.1)',
       transition: 'all 0.3s ease',
-      minHeight: '120px',
-      maxHeight: '120px',
+      height: '140px',
+      width: '100%',
+      minWidth: '0',
+      maxWidth: '100%',
+      overflow: 'hidden',
+      position: 'relative',
+      boxSizing: 'border-box'
+    },
+    companyLogoContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      height: '100%',
       position: 'relative'
     },
     companyLogo: {
-      maxWidth: '100%',
-      maxHeight: '80px',
+      maxWidth: '90%',
+      maxHeight: '90px',
       width: 'auto',
       height: 'auto',
       objectFit: 'contain',
-      transition: 'all 0.3s ease'
+      transition: 'all 0.3s ease',
+      display: 'block',
+      margin: '0 auto'
     },
     companyName: {
       fontSize: '18px',
@@ -213,7 +329,8 @@ function Placements() {
       color: '#000',
       textAlign: 'center',
       letterSpacing: '-0.3px',
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
+      fontFamily: '"Inter", system-ui, sans-serif'
     },
     scrollIndicator: {
       display: 'flex',
@@ -232,137 +349,475 @@ function Placements() {
     dotActive: {
       width: '30px',
       borderRadius: '5px',
-      background: '#ff6b35'
+      background: '#2563eb'
     }
   };
 
+
+
   const mediaQueryStyles = `
-    /* Force black color for section title */
-    #placements .section-title,
-    section#placements .section-title {
-      color: #000000 !important;
-      background: none !important;
-      -webkit-background-clip: unset !important;
-      -webkit-text-fill-color: #000000 !important;
-      background-clip: unset !important;
+    @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
+
+    * {
+      box-sizing: border-box;
     }
 
-    /* Prevent GSAP interference */
-    #placements,
-    #placements * {
-      transform: none !important;
-      will-change: auto !important;
+
+
+    body {
+      overflow-x: hidden !important;
     }
+
+
+
+    #placements {
+      overflow-x: hidden !important;
+      width: 100% !important;
+    }
+
+
+
+    /* Default desktop style */
+    .student-cards-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+
+
+    /* Remove right border from last column (every 3rd item) */
+    .student-cards-grid .student-card:nth-child(3n) {
+      border-right: none !important;
+    }
+
+
+
+    /* Remove bottom border from last row (last 3 items) */
+    .student-cards-grid .student-card:nth-last-child(-n+3) {
+      border-bottom: none !important;
+    }
+
+
+
+    /* Hide mobile achievers header on desktop */
+    .achievers-header {
+      display: none !important;
+    }
+
+
+
+    /* Hide desktop student section on desktop - shown on right */
+    .desktop-student-section {
+      display: none !important;
+    }
+
+
+
+    /* Same title style as other sections */
+    #placements .section-title {
+      color: rgba(0, 0, 0, 0.12) !important;
+      text-shadow: none !important;
+      -webkit-text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+      text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+      -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      background: none !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+
+
 
     .carousel-track::-webkit-scrollbar {
       display: none;
     }
 
-    .placement-stat:hover {
-      transform: translateY(-6px) !important;
-      border-color: #ff6b35;
-      background: #ffffff;
+
+
+    .student-card:hover {
+      background: rgba(37, 99, 235, 0.02);
+      transform: scale(1.02);
     }
 
-    .package-card:hover {
-      transform: translateY(-8px) scale(1.02) !important;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+
+
+    .student-card:hover .student-image {
+      border-color: #c53030;
+      transform: scale(1.05);
     }
+
+
+
+    /* Remove package container hover effect */
+    .package-container {
+      transition: none !important;
+    }
+
+
 
     .company-card:hover {
-      border-color: #ff6b35;
+      border-color: #2563eb;
       background: #fff;
     }
+
+
 
     .company-card:hover .company-logo {
       transform: scale(1.08);
     }
 
+
+
     .dot:hover {
-      background: #ff8c66;
+      background: #60a5fa;
     }
 
-    @media (max-width: 1024px) {
-      .placement-highlights {
-        max-width: 700px !important;
-      }
-      #placements .section-title {
-        font-size: 36px !important;
-      }
-      .package-header-text {
+
+
+    @media (max-width: 1200px) {
+      .top-label {
         font-size: 32px !important;
       }
+      #placements .section-title {
+        font-size: 80px !important;
+        letter-spacing: 4px !important;
+        -webkit-text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .content-grid {
+        gap: 25px !important;
+      }
+      .left-section {
+        padding-right: 12px !important;
+      }
+      .right-section {
+        padding-left: 12px !important;
+      }
+      .vertical-divider {
+        left: calc(40% - 12px) !important;
+      }
+      .package-container {
+        padding: 28px 30px !important;
+        gap: 22px !important;
+        max-width: 320px !important;
+      }
+      .package-number {
+        font-size: 75px !important;
+      }
+      .package-lpa {
+        font-size: 22px !important;
+      }
       .package-label {
-        font-size: 16px !important;
+        font-size: 14px !important;
+      }
+      .desktop-achievers-header {
+        font-size: 28px !important;
+        margin-bottom: 25px !important;
+      }
+      .student-card {
+        padding: 18px !important;
+        gap: 14px !important;
+      }
+      .student-card-top {
+        gap: 10px !important;
+      }
+      .student-card-bottom {
+        gap: 5px !important;
+      }
+      .student-name {
+        font-size: 14px !important;
+      }
+      .student-package-number {
+        font-size: 38px !important;
+      }
+      .student-package-lpa {
+        font-size: 14px !important;
+      }
+      .student-company {
+        font-size: 12px !important;
+      }
+      .student-image-wrapper {
+        flex: 0 0 85px !important;
+        width: 85px !important;
+        height: 85px !important;
+      }
+      .companies-header {
+        font-size: 28px !important;
+      }
+      .carousel-slide {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 12px !important;
+      }
+      .company-card {
+        height: 130px !important;
+        padding: 15px !important;
+        min-height: 130px !important;
+        max-height: 130px !important;
+      }
+      .company-logo {
+        max-height: 80px !important;
+      }
+    }
+
+
+
+    @media (max-width: 1024px) {
+      .content-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0px !important;
+      }
+      .vertical-divider {
+        display: none !important;
+      }
+      .left-section {
+        padding-right: 0 !important;
+        margin-bottom: 0px !important;
+        align-items: stretch !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .package-container {
+        flex-direction: row !important;
+        padding: 35px 50px !important;
+        gap: 50px !important;
+        max-width: 100% !important;
+        margin-bottom: 30px !important;
+        order: 1 !important;
+      }
+      .package-item {
+        flex: 1 !important;
+      }
+      .package-divider {
+        width: 2px !important;
+        height: 100px !important;
+      }
+      .achievers-header {
+        display: block !important;
+        margin-top: 0px !important;
+        margin-bottom: 25px !important;
+        order: 2 !important;
+        text-align: center !important;
+      }
+      .desktop-achievers-header {
+        display: none !important;
+      }
+      .desktop-student-section {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0px !important;
+        order: 3 !important;
+      }
+      /* Remove right border from even columns (every 2nd item) on tablet/mobile */
+      .desktop-student-section .student-card:nth-child(2n) {
+        border-right: none !important;
+      }
+      /* Remove 3n rule for mobile */
+      .desktop-student-section .student-card:nth-child(3n) {
+        border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+      }
+      /* Remove bottom border from last row (last 2 items) on tablet/mobile */
+      .desktop-student-section .student-card:nth-last-child(-n+2) {
+        border-bottom: none !important;
+      }
+      /* Override the 3-item rule */
+      .desktop-student-section .student-card:nth-last-child(-n+3) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+      }
+      /* But still remove for actual last 2 */
+      .desktop-student-section .student-card:nth-last-child(-n+2) {
+        border-bottom: none !important;
+      }
+      .right-section {
+        display: none !important;
+      }
+      .carousel-slide {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 10px !important;
+      }
+      .company-card {
+        height: 120px !important;
+        padding: 12px !important;
+        min-height: 120px !important;
+        max-height: 120px !important;
       }
       .company-logo {
         max-height: 70px !important;
       }
     }
 
+
+
     @media (max-width: 768px) {
       #placements.section {
-        padding: 50px 0 !important;
+        padding: 60px 0 !important;
       }
       #placements .container {
         padding: 0 1rem !important;
       }
+      .top-label {
+        font-size: 26px !important;
+        margin-bottom: 15px !important;
+      }
       #placements .section-title {
-        font-size: 28px !important;
-        margin-bottom: 0.4rem !important;
+        font-size: 60px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 2.5rem !important;
+        -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
       }
-      .title-underline {
-        padding-bottom: 0.4rem !important;
+      .content-wrapper {
+        margin-top: 40px !important;
+        margin-bottom: 25px !important;
       }
-      .section-intro {
-        font-size: 12px !important;
+      .package-container {
+        padding: 30px 35px !important;
+        gap: 35px !important;
+        border-radius: 14px !important;
+        margin-bottom: 25px !important;
       }
-      .placement-highlights {
-        grid-template-columns: 1fr !important;
-        gap: 30px !important;
-        margin: 25px auto 40px !important;
+      .package-number {
+        font-size: 70px !important;
       }
-      .package-card {
-        padding: 45px 25px 35px !important;
-      }
-      .package-header-box {
-        padding: 10px 35px !important;
-        border-width: 3px !important;
-      }
-      .package-header-text {
-        font-size: 30px !important;
+      .package-lpa {
+        font-size: 20px !important;
       }
       .package-label {
-        font-size: 15px !important;
+        font-size: 13px !important;
+        letter-spacing: 1.5px !important;
       }
-      .stats-grid {
-        gap: 14px !important;
-        margin-bottom: 40px !important;
+      .package-divider {
+        height: 90px !important;
       }
-      .placement-stat {
-        padding: 25px 20px !important;
+      .achievers-header {
+        font-size: 24px !important;
+        margin-bottom: 20px !important;
       }
-      .stat-number {
-        font-size: 32px !important;
+      .student-card {
+        padding: 16px !important;
+        gap: 12px !important;
       }
-      .stat-label {
+      .student-card-top {
+        gap: 8px !important;
+      }
+      .student-card-bottom {
+        gap: 5px !important;
+      }
+      .student-image-wrapper {
+        flex: 0 0 80px !important;
+        width: 80px !important;
+        height: 80px !important;
+      }
+      .student-name {
         font-size: 13px !important;
       }
-      .stat-subtext {
-        font-size: 11px !important;
+      .student-package-number {
+        font-size: 36px !important;
+      }
+      .student-package-lpa {
+        font-size: 14px !important;
+      }
+      .student-company {
+        font-size: 12px !important;
       }
       .companies-section {
         margin-top: 35px !important;
       }
       .companies-header {
-        font-size: 20px !important;
+        font-size: 24px !important;
         margin-bottom: 25px !important;
       }
       .carousel-slide {
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
       }
       .company-card {
-        padding: 18px 15px !important;
+        height: 110px !important;
+        padding: 10px !important;
+        min-height: 110px !important;
+        max-height: 110px !important;
+      }
+      .company-logo {
+        max-height: 70px !important;
+      }
+    }
+
+
+
+    @media (max-width: 576px) {
+      .top-label {
+        font-size: 22px !important;
+        margin-bottom: 12px !important;
+      }
+      #placements .section-title {
+        font-size: 48px !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 2rem !important;
+        -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .package-container {
+        flex-direction: column !important;
+        padding: 28px 25px !important;
+        gap: 22px !important;
+        margin-bottom: 20px !important;
+      }
+      .package-number {
+        font-size: 60px !important;
+      }
+      .package-lpa {
+        font-size: 18px !important;
+      }
+      .package-label {
+        font-size: 12px !important;
+      }
+      .package-divider {
+        width: 70% !important;
+        height: 2px !important;
+      }
+      .achievers-header {
+        font-size: 20px !important;
+        margin-bottom: 18px !important;
+      }
+      .content-wrapper {
+        margin-bottom: 20px !important;
+      }
+      .student-card {
+        padding: 14px !important;
+        gap: 10px !important;
+      }
+      .student-card-top {
+        gap: 6px !important;
+      }
+      .student-card-bottom {
+        gap: 4px !important;
+      }
+      .student-image-wrapper {
+        flex: 0 0 75px !important;
+        width: 75px !important;
+        height: 75px !important;
+      }
+      .student-name {
+        font-size: 12px !important;
+      }
+      .student-package-number {
+        font-size: 32px !important;
+      }
+      .student-package-lpa {
+        font-size: 13px !important;
+      }
+      .student-company {
+        font-size: 11px !important;
+      }
+      .companies-header {
+        font-size: 20px !important;
+      }
+      .carousel-slide {
+        gap: 10px !important;
+      }
+      .company-card {
+        height: 100px !important;
+        padding: 8px !important;
         min-height: 100px !important;
         max-height: 100px !important;
       }
@@ -371,145 +826,146 @@ function Placements() {
       }
     }
 
-    @media (max-width: 576px) {
-      #placements .container {
-        padding: 0 0.75rem !important;
-      }
-      #placements .section-title {
-        font-size: 24px !important;
-        margin-bottom: 0.3rem !important;
-      }
-      .title-underline {
-        padding-bottom: 0.3rem !important;
-      }
-      .section-intro {
-        font-size: 11px !important;
-        margin-bottom: 1rem !important;
-      }
-      .placement-highlights {
-        gap: 25px !important;
-        margin: 20px auto 35px !important;
-      }
-      .package-card {
-        padding: 40px 20px 30px !important;
-      }
-      .package-header-box {
-        padding: 8px 30px !important;
-        border-width: 3px !important;
-      }
-      .package-header-text {
-        font-size: 26px !important;
-      }
-      .package-label {
-        font-size: 13px !important;
-      }
-      .stats-grid {
-        gap: 12px !important;
-      }
-      .placement-stat {
-        padding: 22px 18px !important;
-        border-width: 1.5px !important;
-      }
-      .stat-number {
-        font-size: 28px !important;
-      }
-      .stat-label {
-        font-size: 12px !important;
-      }
-      .stat-subtext {
-        font-size: 10px !important;
-      }
-      .companies-header {
-        font-size: 18px !important;
-      }
-      .carousel-slide {
-        gap: 10px !important;
-      }
-      .company-card {
-        padding: 15px 12px !important;
-        min-height: 85px !important;
-        max-height: 85px !important;
-        border-width: 1.5px !important;
-      }
-      .company-logo {
-        max-height: 50px !important;
-      }
-    }
+
 
     @media (max-width: 400px) {
-      #placements .container {
-        padding: 0 0.5rem !important;
+      .top-label {
+        font-size: 20px !important;
       }
-      .placement-highlights {
-        gap: 20px !important;
+      #placements .section-title {
+        font-size: 38px !important;
+        letter-spacing: 1px !important;
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
       }
-      .package-card {
-        padding: 35px 16px 28px !important;
+      .package-number {
+        font-size: 52px !important;
       }
-      .package-header-box {
-        padding: 8px 25px !important;
+      .package-lpa {
+        font-size: 16px !important;
       }
-      .package-header-text {
-        font-size: 24px !important;
+      .package-label {
+        font-size: 11px !important;
       }
-      .stats-grid {
-        gap: 10px !important;
+      .achievers-header {
+        font-size: 18px !important;
       }
-      .placement-stat {
-        padding: 18px 14px !important;
+      .student-card {
+        padding: 12px !important;
+      }
+      .student-card-top {
+        gap: 5px !important;
+      }
+      .student-image-wrapper {
+        flex: 0 0 70px !important;
+        width: 70px !important;
+        height: 70px !important;
+      }
+      .student-name {
+        font-size: 11px !important;
+      }
+      .student-package-number {
+        font-size: 28px !important;
+      }
+      .student-package-lpa {
+        font-size: 12px !important;
+      }
+      .student-company {
+        font-size: 10px !important;
       }
       .carousel-slide {
-        gap: 8px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
       }
       .company-card {
-        padding: 12px 10px !important;
-        min-height: 75px !important;
-        max-height: 75px !important;
+        height: 90px !important;
+        padding: 6px !important;
+        min-height: 90px !important;
+        max-height: 90px !important;
       }
       .company-logo {
-        max-height: 45px !important;
+        max-height: 55px !important;
       }
     }
   `;
 
-  // Company data with logo paths - UPDATE THESE PATHS WITH YOUR ACTUAL LOGO FILES
+
+
+  // Student data
+  const students = [
+    {
+      name: 'Rahul Sharma',
+      packageNumber: '84',
+      company: 'Google',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop'
+    },
+    {
+      name: 'Priya Patel',
+      packageNumber: '48',
+      company: 'Microsoft',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'
+    },
+    {
+      name: 'Arjun Mehta',
+      packageNumber: '36',
+      company: 'Amazon',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop'
+    },
+    {
+      name: 'Sneha Reddy',
+      packageNumber: '32',
+      company: 'Goldman Sachs',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop'
+    },
+    {
+      name: 'Vikram Singh',
+      packageNumber: '28',
+      company: 'Flipkart',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop'
+    },
+    {
+      name: 'Ananya Gupta',
+      packageNumber: '25',
+      company: 'Accenture',
+      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop'
+    }
+  ];
+
+
+
+  // Company data
   const companies = [
     [
       { name: 'Google', logo: '/logos/google.png' },
-      { name: 'Unilever', logo: '/logos/unilever.png' }
-    ],
-    [
+      { name: 'Unilever', logo: '/logos/unilever.png' },
       { name: 'IBM', logo: '/logos/ibm.png' },
       { name: 'Microsoft', logo: '/logos/microsoft.png' }
     ],
     [
       { name: 'Reliance', logo: '/logos/reliance.png' },
-      { name: 'TCS', logo: '/logos/tcs.png' }
-    ],
-    [
+      { name: 'TCS', logo: '/logos/tcs.png' },
       { name: 'Infosys', logo: '/logos/infosys.png' },
       { name: 'L&T Infotech', logo: '/logos/lnt.png' }
     ],
     [
       { name: 'Tech Mahindra', logo: '/logos/techmahindra.png' },
-      { name: 'Accenture', logo: '/logos/accenture.png' }
-    ],
-    [
+      { name: 'Accenture', logo: '/logos/accenture.png' },
       { name: 'Indian Navy', logo: '/logos/indiannavy.png' },
       { name: 'HDFC Life', logo: '/logos/hdfclife.png' }
     ],
     [
       { name: 'Coca-Cola', logo: '/logos/cocacola.png' },
-      { name: 'Dell', logo: '/logos/dell.png' }
-    ],
-    [
+      { name: 'Dell', logo: '/logos/dell.png' },
       { name: 'Symphony', logo: '/logos/symphony.png' },
       { name: '400+ Companies', logo: '/logos/more.png' }
     ]
   ];
 
+
+
   const [activeSlide, setActiveSlide] = React.useState(0);
   const carouselRef = React.useRef(null);
+
+
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -521,12 +977,16 @@ function Placements() {
       }
     };
 
+
+
     const carousel = carouselRef.current;
     if (carousel) {
       carousel.addEventListener('scroll', handleScroll);
       return () => carousel.removeEventListener('scroll', handleScroll);
     }
   }, []);
+
+
 
   const scrollToSlide = (index) => {
     if (carouselRef.current) {
@@ -538,94 +998,171 @@ function Placements() {
     }
   };
 
+
+
   return (
     <>
       <style>{mediaQueryStyles}</style>
       <section id="placements" style={styles.section} className="section">
         <div style={styles.container} className="container">
           <div style={styles.textCenter}>
-            <div style={styles.titleUnderline} className="title-underline">
-              <h2 style={styles.sectionTitle} className="section-title">
-                Placements
-              </h2>
-              <div style={styles.titleUnderlineAfter}></div>
+            <div style={styles.topLabel} className="top-label">
+              From Classroom to Boardroom
             </div>
-            <p style={styles.sectionIntro}>
-              Empowering students with industry-leading placement opportunities and career success
-            </p>
+            <h2 style={styles.sectionTitle} className="section-title">
+              PLACEMENTS
+            </h2>
           </div>
 
-          <div style={styles.placementHighlights} className="placement-highlights">
-            <div style={styles.packageCard} className="package-card">
-              <div 
-                style={{
-                  ...styles.packageHeaderBox, 
-                  ...styles.packageHeaderBoxBlue
-                }} 
-                className="package-header-box"
-              >
-                <h3 
-                  style={{
-                    ...styles.packageHeaderText,
-                    ...styles.packageHeaderTextBlue
-                  }}
-                  className="package-header-text"
-                >
-                  84 LPA
+
+
+          <div style={styles.contentWrapper} className="content-wrapper">
+            {/* Two Column Layout with Vertical Divider */}
+            <div style={styles.contentGrid} className="content-grid">
+              {/* Vertical Divider Line */}
+              <div style={styles.verticalDivider} className="vertical-divider"></div>
+
+
+
+              {/* Left Section - Package Box Only */}
+              <div style={styles.leftSection} className="left-section">
+                {/* Package Container (Smaller) */}
+                <div style={styles.packageContainer} className="package-container">
+                  {/* 84 LPA */}
+                  <div style={styles.packageItem} className="package-item">
+                    <div style={styles.packageNumberWrapper} className="package-number-wrapper">
+                      <span style={styles.packageNumber} className="package-number">84</span>
+                      <span style={styles.packageLPA} className="package-lpa">LPA</span>
+                    </div>
+                    <div style={styles.packageLabel} className="package-label">
+                      Highest National<br />Package
+                    </div>
+                  </div>
+
+
+
+                  {/* Divider */}
+                  <div style={styles.packageDivider} className="package-divider"></div>
+
+
+
+                  {/* 48 LPA */}
+                  <div style={styles.packageItem} className="package-item">
+                    <div style={styles.packageNumberWrapper} className="package-number-wrapper">
+                      <span style={styles.packageNumber} className="package-number">48</span>
+                      <span style={styles.packageLPA} className="package-lpa">LPA</span>
+                    </div>
+                    <div style={styles.packageLabel} className="package-label">
+                      Highest International<br />Package
+                    </div>
+                  </div>
+                </div>
+
+
+
+                {/* Mobile "Our Top Achievers" Heading - Shows only on mobile/tablet */}
+                <h3 style={styles.achieversHeader} className="achievers-header">
+                  Our Top Achievers
                 </h3>
-              </div>
-              <div style={styles.packageLabel} className="package-label">
-                Highest National<br />Package
-              </div>
-            </div>
 
-            <div 
-              style={{
-                ...styles.packageCard, 
-                ...styles.packageCardGreen
-              }} 
-              className="package-card package-card-green"
-            >
-              <div 
-                style={{
-                  ...styles.packageHeaderBox,
-                  ...styles.packageHeaderBoxGreen
-                }} 
-                className="package-header-box"
-              >
-                <h3 
-                  style={{
-                    ...styles.packageHeaderText,
-                    ...styles.packageHeaderTextGreen
-                  }}
-                  className="package-header-text"
-                >
-                  48 LPA
+
+
+                {/* Student Cards for Mobile - Shows only on mobile/tablet */}
+                <div style={styles.desktopStudentSection} className="desktop-student-section">
+                  {students.map((student, index) => (
+                    <div key={`mobile-${index}`} style={styles.studentCard} className="student-card">
+                      {/* Top Section: Package Left, Image Right */}
+                      <div style={styles.studentCardTop} className="student-card-top">
+                        <div style={styles.studentPackageWrapper} className="student-package-wrapper">
+                          <div style={styles.studentPackageNumber} className="student-package-number">
+                            {student.packageNumber}
+                          </div>
+                          <div style={styles.studentPackageLPA} className="student-package-lpa">
+                            LPA
+                          </div>
+                        </div>
+                        <div style={styles.studentImageWrapper} className="student-image-wrapper">
+                          <img 
+                            src={student.image} 
+                            alt={student.name}
+                            style={styles.studentImage}
+                            className="student-image"
+                          />
+                        </div>
+                      </div>
+                      {/* Bottom Section: Name and Company */}
+                      <div style={styles.studentCardBottom} className="student-card-bottom">
+                        <div style={styles.studentName} className="student-name">
+                          {student.name}
+                        </div>
+                        <div style={styles.studentCompany} className="student-company">
+                          {student.company}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+
+
+              {/* Right Section - For Desktop: Heading + Student Cards Grid */}
+              <div style={styles.rightSection} className="right-section">
+                {/* Desktop "Our Top Achievers" Heading - Right side top */}
+                <h3 style={styles.desktopAchieversHeader} className="desktop-achievers-header">
+                  Our Top Achievers
                 </h3>
-              </div>
-              <div style={styles.packageLabel} className="package-label">
-                Highest International<br />Package
+
+
+
+                {/* Student Cards Grid for Desktop */}
+                <div style={styles.studentCardsGrid} className="student-cards-grid">
+                  {students.map((student, index) => (
+                    <div key={`desktop-${index}`} style={styles.studentCard} className="student-card">
+                      {/* Top Section: Package Left, Image Right */}
+                      <div style={styles.studentCardTop} className="student-card-top">
+                        <div style={styles.studentPackageWrapper} className="student-package-wrapper">
+                          <div style={styles.studentPackageNumber} className="student-package-number">
+                            {student.packageNumber}
+                          </div>
+                          <div style={styles.studentPackageLPA} className="student-package-lpa">
+                            LPA
+                          </div>
+                        </div>
+                        <div style={styles.studentImageWrapper} className="student-image-wrapper">
+                          <img 
+                            src={student.image} 
+                            alt={student.name}
+                            style={styles.studentImage}
+                            className="student-image"
+                          />
+                        </div>
+                      </div>
+                      {/* Bottom Section: Name and Company */}
+                      <div style={styles.studentCardBottom} className="student-card-bottom">
+                        <div style={styles.studentName} className="student-name">
+                          {student.name}
+                        </div>
+                        <div style={styles.studentCompany} className="student-company">
+                          {student.company}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          <div style={styles.statsGrid} className="stats-grid">
-            <div style={styles.placementStat} className="placement-stat">
-              <div style={styles.statNumber} className="stat-number">100%</div>
-              <div style={styles.statLabel} className="stat-label">Placement Assistance</div>
-              <div style={styles.statSubtext} className="stat-subtext">In Last 6 Years</div>
-            </div>
 
-            <div style={styles.placementStat} className="placement-stat">
-              <div style={styles.statNumber} className="stat-number">400+</div>
-              <div style={styles.statLabel} className="stat-label">Companies</div>
-            </div>
-          </div>
 
+          {/* Recruiting Partners Section */}
           <div style={styles.companiesSection} className="companies-section">
             <h3 style={styles.companiesHeader} className="companies-header">
               Our Recruiting Partners
             </h3>
+
+
 
             <div style={styles.carouselContainer} className="carousel-container">
               <div 
@@ -633,34 +1170,35 @@ function Placements() {
                 style={styles.carouselTrack} 
                 className="carousel-track"
               >
-                {companies.map((pair, index) => (
+                {companies.map((group, index) => (
                   <div 
                     key={index} 
                     style={styles.carouselSlide} 
                     className="carousel-slide"
                   >
-                    {pair.map((company, companyIndex) => (
+                    {group.map((company, companyIndex) => (
                       <div 
                         key={companyIndex}
                         style={styles.companyCard} 
                         className="company-card"
                       >
-                        <img
-                          src={company.logo}
-                          alt={`${company.name} logo`}
-                          style={styles.companyLogo}
-                          className="company-logo"
-                          onError={(e) => {
-                            // Fallback to text if image fails to load
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'block';
-                          }}
-                        />
-                        <div 
-                          style={{...styles.companyName, display: 'none'}} 
-                          className="company-name"
-                        >
-                          {company.name}
+                        <div style={styles.companyLogoContainer} className="company-logo-container">
+                          <img
+                            src={company.logo}
+                            alt={`${company.name} logo`}
+                            style={styles.companyLogo}
+                            className="company-logo"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.nextSibling.style.display = 'block';
+                            }}
+                          />
+                          <div 
+                            style={{...styles.companyName, display: 'none'}} 
+                            className="company-name"
+                          >
+                            {company.name}
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -668,6 +1206,8 @@ function Placements() {
                 ))}
               </div>
             </div>
+
+
 
             <div style={styles.scrollIndicator} className="scroll-indicator">
               {companies.map((_, index) => (
@@ -696,5 +1236,7 @@ function Placements() {
     </>
   );
 }
+
+
 
 export default Placements;

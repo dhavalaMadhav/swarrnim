@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, Download } from 'lucide-react';
 
+
 function BottomBar() {
   const styles = {
     bottomBar: {
@@ -31,8 +32,14 @@ function BottomBar() {
       fontSize: '0.95rem',
       fontWeight: '600'
     },
-    icon: {
-      color: '#ff6b35',
+    phoneIcon: {
+      color: '#2563eb',
+      display: 'flex',
+      alignItems: 'center',
+      flexShrink: 0
+    },
+    downloadIcon: {
+      color: '#ffffff',
       display: 'flex',
       alignItems: 'center',
       flexShrink: 0
@@ -49,7 +56,7 @@ function BottomBar() {
       alignItems: 'center',
       gap: '0.6rem',
       padding: '0.75rem 1.5rem',
-      background: '#ff6b35',
+      background: '#2563eb',
       color: 'white',
       border: 'none',
       fontSize: '0.9rem',
@@ -58,7 +65,7 @@ function BottomBar() {
       transition: 'all 0.3s ease',
       letterSpacing: '0.5px',
       textTransform: 'uppercase',
-      boxShadow: '0 2px 8px rgba(255, 107, 53, 0.3)'
+      boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)'
     },
     divider: {
       display: 'none',
@@ -69,27 +76,32 @@ function BottomBar() {
     }
   };
 
+
   const mediaQueryStyles = `
     .download-btn:hover {
-      background: #e55a28;
+      background: #1d4ed8;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
     }
+
 
     .download-btn:active {
       transform: translateY(0);
     }
+
 
     @media (max-width: 768px) {
       .bottom-bar {
         display: block !important;
       }
 
+
       .bottom-bar-content {
         padding: 0.6rem 1rem !important;
         gap: 0 !important;
         justify-content: center !important;
       }
+
 
       .contact-info {
         flex: 1 !important;
@@ -98,14 +110,17 @@ function BottomBar() {
         gap: 0.5rem !important;
       }
 
+
       .divider {
         display: block !important;
       }
+
 
       .download-brochure {
         flex: 1 !important;
         justify-content: center !important;
       }
+
 
       .download-btn {
         padding: 0.6rem 1rem !important;
@@ -114,20 +129,24 @@ function BottomBar() {
         letter-spacing: 0.3px !important;
       }
 
+
       .phone-text {
         display: none !important;
       }
     }
+
 
     @media (max-width: 480px) {
       .bottom-bar-content {
         padding: 0.5rem 0.5rem !important;
       }
 
+
       .contact-info {
         font-size: 0.75rem !important;
         gap: 0.4rem !important;
       }
+
 
       .download-btn {
         padding: 0.5rem 0.8rem !important;
@@ -136,33 +155,36 @@ function BottomBar() {
     }
   `;
 
+
   return (
     <>
       <style>{mediaQueryStyles}</style>
       <div style={styles.bottomBar} className="bottom-bar">
         <div style={styles.bottomBarContent} className="bottom-bar-content">
           <div style={styles.contactInfo} className="contact-info">
-            <Phone size={18} style={styles.icon} className="icon" />
+            <Phone size={20} style={styles.phoneIcon} className="phone-icon" />
             <span style={styles.phoneText} className="phone-text">+91 XXXX-XXXXXX</span>
             <span className="phone-text-mobile">Call Now</span>
           </div>
 
+
           <div style={styles.divider} className="divider"></div>
+
 
           <div style={styles.downloadBrochure} className="download-brochure">
             <button 
               style={styles.downloadBtn} 
               className="download-btn"
               onMouseEnter={(e) => {
-                e.target.style.background = '#e55a28';
+                e.target.style.background = '#1d4ed8';
                 e.target.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = '#ff6b35';
+                e.target.style.background = '#2563eb';
                 e.target.style.transform = 'translateY(0)';
               }}
             >
-              <Download size={16} style={styles.icon} />
+              <Download size={18} style={styles.downloadIcon} />
               <span>Download Brochure</span>
             </button>
           </div>
@@ -171,5 +193,6 @@ function BottomBar() {
     </>
   );
 }
+
 
 export default BottomBar;

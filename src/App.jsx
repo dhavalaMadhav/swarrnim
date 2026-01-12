@@ -18,7 +18,7 @@ function App() {
       <Startups />
       <QuantumComputing />
       <Placements />
-      <Recognitions />
+      {/* <Recognitions /> */}
       <Facilities />
       <CampusLife />
       <BottomBar />

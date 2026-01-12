@@ -1,24 +1,46 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+
+
 gsap.registerPlugin(ScrollTrigger);
+
+
 
 function Facilities() {
   const sectionRef = useRef(null);
   const cardsContainerRef = useRef(null);
   const cardsRef = useRef([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+
+
+  // Detect screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+
 
   useEffect(() => {
+    if (!isMobile) return; // Only run scroll animation on mobile
+
+
+
     const setupAnimations = () => {
       const cards = cardsRef.current.filter(card => card !== null);
       
-      if (cards.length === 0) {
-        console.log('No cards found');
-        return;
-      }
+      if (cards.length === 0) return;
 
-      console.log(`✅ Found ${cards.length} cards`);
+
 
       // Clean up existing triggers
       ScrollTrigger.getAll().forEach(trigger => {
@@ -27,35 +49,34 @@ function Facilities() {
         }
       });
 
-      // Store viewport height
-      const vh = window.innerHeight;
-      
-      // Pin duration for 2 cards
-      const totalScrollDistance = (cards.length + 2) * vh;
-      
-      console.log(`📏 Pin duration: ${totalScrollDistance}px (${cards.length + 2} × ${vh}px)`);
-      console.log(`📏 Last card animation ends at: ${(cards.length - 1) * vh}px`);
-      console.log(`📏 Buffer space: ${totalScrollDistance - (cards.length - 1) * vh}px`);
 
-      // Step 1: Pin the entire cards container
-      ScrollTrigger.create({
-        trigger: cardsContainerRef.current,
-        start: 'top top',
-        end: `+=${totalScrollDistance}`,
-        pin: true,
-        pinSpacing: true,
-        id: 'facility-pin',
-        markers: false,
-        onLeave: () => console.log('🎉 ALL CARDS SHOWN - Leaving facilities section'),
-        onEnterBack: () => console.log('⬆️ Re-entering facilities section')
+
+      const vh = window.innerHeight;
+      const scrubValue = 0.2;
+      const offScreenY = window.innerHeight;
+      const totalScrollDistance = (cards.length - 1 + 0.5) * vh;
+
+
+
+      // Master Timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardsContainerRef.current,
+          start: 'top top',
+          end: `+=${totalScrollDistance}`,
+          pin: true,
+          scrub: scrubValue,
+          id: 'facilities-master-timeline'
+        }
       });
 
-      // Step 2: Set initial card positions
+
+
+      // Set initial positions
       cards.forEach((card, index) => {
         const zIndex = 100 + index;
         
         if (index === 0) {
-          // First card visible
           gsap.set(card, {
             y: 0,
             opacity: 1,
@@ -64,9 +85,8 @@ function Facilities() {
             visibility: 'visible'
           });
         } else {
-          // Other cards below viewport
           gsap.set(card, {
-            y: vh,
+            y: offScreenY,
             opacity: 1,
             scale: 1,
             zIndex: zIndex,
@@ -75,69 +95,60 @@ function Facilities() {
         }
       });
 
-      // Step 3: Create animation for each card
+
+
+      // Add animations
       cards.forEach((card, index) => {
-        if (index === 0) return; // Skip first card
+        if (index === 0) return;
+
+
 
         const prevCard = cards[index - 1];
-        const startScroll = (index - 1) * vh;
-        const endScroll = index * vh;
-
-        console.log(`🎬 Card ${index} (z:${100 + index}): ${startScroll}px → ${endScroll}px`);
-
-        // Single timeline for both animations
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: cardsContainerRef.current,
-            start: `top+=${startScroll} top`,
-            end: `top+=${endScroll} top`,
-            scrub: 1,
-            id: `facility-card-${index}`,
-            markers: false,
-            onEnter: () => console.log(`▶️ Card ${index} appearing`),
-            onLeave: () => {
-              if (index === cards.length - 1) {
-                console.log(`✅ LAST CARD (${index}) COMPLETE!`);
-              }
-            }
-          }
-        });
-
-        // Animate current card UP from below
+        
         tl.to(card, {
           y: 0,
           opacity: 1,
           scale: 1,
           ease: 'none'
-        }, 0);
+        }, index - 1);
 
-        // Animate previous card SCALE DOWN
+
+
         tl.to(prevCard, {
           scale: 0.95,
           opacity: 0.7,
           ease: 'none'
-        }, 0);
+        }, index - 1);
       });
 
-      // Force refresh
+
+
+      tl.to({}, { duration: 0.5 });
+
+
+
       setTimeout(() => {
         ScrollTrigger.refresh();
-        console.log(`🔄 Total ScrollTriggers: ${ScrollTrigger.getAll().length}`);
       }, 100);
     };
 
-    // Wait for images to load
+
+
     const timer = setTimeout(setupAnimations, 300);
+
+
 
     return () => {
       clearTimeout(timer);
       ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.id && trigger.vars.id.startsWith('facility-')) {
+        if (trigger.vars.id === 'facilities-master-timeline') {
           trigger.kill();
         }
       });
     };
-  }, []);
+  }, [isMobile]);
+
+
 
   const styles = {
     section: {
@@ -146,54 +157,52 @@ function Facilities() {
       width: '100%',
       overflow: 'hidden',
       isolation: 'isolate',
-      paddingTop: '80px'
+      padding: '80px 0'
     },
-    headerWrapper: {
-      position: 'relative',
-      width: '100%',
-      padding: '40px 2rem',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column',
+    container: {
+      maxWidth: '1400px',
+      margin: '0 auto',
+      padding: '0 2rem',
+      width: '100%'
+    },
+    textCenter: {
       textAlign: 'center',
-      background: '#ffffff',
-      zIndex: 1
+      marginBottom: '2.5rem'
     },
-    titleUnderline: {
-      position: 'relative',
-      display: 'inline-block',
-      paddingBottom: '0.8rem',
-      marginBottom: '1rem'
+    topLabel: {
+      fontSize: '36px',
+      fontWeight: '400',
+      color: '#c53030',
+      letterSpacing: '0.5px',
+      marginBottom: '20px',
+      textTransform: 'none',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1.3'
     },
     sectionTitle: {
-      fontSize: '48px',
+      fontSize: '120px',
       fontWeight: '900',
-      letterSpacing: '-1px',
+      letterSpacing: '8px',
       textTransform: 'uppercase',
-      lineHeight: '1.2',
-      marginBottom: '0.8rem',
+      lineHeight: '1',
+      marginBottom: '3rem',
       position: 'relative',
       display: 'inline-block',
-      color: '#000000',
-      textShadow: '2px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.08), 6px 6px 0px rgba(0, 0, 0, 0.06), 8px 8px 0px rgba(0, 0, 0, 0.04), 10px 10px 20px rgba(0, 0, 0, 0.15)'
+      color: 'rgba(0, 0, 0, 0.12)',
+      fontFamily: '"Inter", system-ui, sans-serif',
+      textShadow: 'none',
+      WebkitTextStroke: '2px rgba(0, 0, 0, 0.35)',
+      textStroke: '2px rgba(0, 0, 0, 0.35)',
+      WebkitTextFillColor: 'rgba(0, 0, 0, 0.12)'
     },
-    titleUnderlineAfter: {
-      position: 'absolute',
-      bottom: '0',
-      left: '0',
-      width: '100%',
-      height: '3px',
-      background: '#ff6b35'
+    // Desktop grid layout - 3 columns
+    gridContainer: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '25px',
+      marginTop: '30px'
     },
-    sectionIntro: {
-      fontSize: '16px',
-      color: '#666',
-      lineHeight: '1.6',
-      fontWeight: '300',
-      maxWidth: '700px',
-      margin: '0 auto'
-    },
+    // Mobile scroll container
     cardsContainer: {
       position: 'relative',
       width: '100%',
@@ -209,29 +218,29 @@ function Facilities() {
       left: '50%',
       transform: 'translate(-50%, -50%)',
       width: '90%',
-      maxWidth: '1200px',
-      height: '85vh',
+      maxWidth: '900px',
+      height: '65vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
     },
     card: {
-      position: 'relative',
+      position: isMobile ? 'relative' : 'static',
       width: '100%',
-      height: '100%',
+      height: isMobile ? '100%' : 'auto',
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: isMobile ? 'row' : 'column',
       overflow: 'hidden',
       background: '#fafafa',
-      border: '2px solid rgba(0, 0, 0, 0.08)',
+      border: '2px solid rgba(37, 99, 235, 0.1)',
       borderRadius: '0',
-      boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15)',
-      visibility: 'hidden'
+      boxShadow: '0 8px 30px rgba(37, 99, 235, 0.12)',
+      visibility: isMobile ? 'hidden' : 'visible'
     },
     imageContainer: {
-      flex: '1 1 auto',
-      width: '100%',
-      height: '55%',
+      flex: isMobile ? '0 0 40%' : '0 0 auto',
+      width: isMobile ? '40%' : '100%',
+      height: isMobile ? '100%' : '200px',
       overflow: 'hidden',
       position: 'relative',
       background: '#ffffff'
@@ -248,16 +257,17 @@ function Facilities() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fontSize: '120px',
-      color: '#ff6b35',
+      fontSize: '60px',
+      color: '#2563eb',
       background: '#ffffff',
       filter: 'grayscale(0.3)',
       transition: 'all 0.3s ease'
     },
     contentContainer: {
-      flex: '0 0 auto',
-      height: '45%',
-      padding: '50px 60px',
+      flex: isMobile ? '0 0 60%' : '1',
+      width: isMobile ? '60%' : '100%',
+      height: isMobile ? '100%' : 'auto',
+      padding: '25px 20px',
       background: '#fafafa',
       display: 'flex',
       flexDirection: 'column',
@@ -265,181 +275,240 @@ function Facilities() {
       overflow: 'hidden'
     },
     cardNumber: {
-      fontSize: '14px',
+      fontSize: '10px',
       fontWeight: '900',
-      color: '#ff6b35',
+      color: '#2563eb',
       letterSpacing: '2px',
-      marginBottom: '15px',
-      textTransform: 'uppercase'
+      marginBottom: '10px',
+      textTransform: 'uppercase',
+      fontFamily: '"Inter", system-ui, sans-serif'
     },
     cardTitle: {
-      fontSize: '42px',
+      fontSize: '18px',
       fontWeight: '900',
       color: '#000000',
-      marginBottom: '20px',
+      marginBottom: '10px',
       textTransform: 'uppercase',
-      letterSpacing: '-1px',
+      letterSpacing: '-0.5px',
       lineHeight: '1.2',
-      textShadow: '2px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.08), 6px 6px 0px rgba(0, 0, 0, 0.06), 8px 8px 0px rgba(0, 0, 0, 0.04), 10px 10px 20px rgba(0, 0, 0, 0.15)'
+      textShadow: 'none',
+      fontFamily: '"Inter", system-ui, sans-serif'
     },
     cardDescription: {
-      fontSize: '16px',
+      fontSize: '12px',
       color: '#666',
-      lineHeight: '1.7',
+      lineHeight: '1.5',
       fontWeight: '400',
-      maxWidth: '900px'
+      fontFamily: '"Inter", system-ui, sans-serif'
     }
   };
 
+
+
   const mediaQueryStyles = `
-    * {
-      box-sizing: border-box;
+    @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+
+
+    /* Same title style as other sections */
+    #facilities .section-title {
+      color: rgba(0, 0, 0, 0.12) !important;
+      text-shadow: none !important;
+      -webkit-text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+      text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+      -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      background: none !important;
     }
 
-    body {
-      overflow-x: hidden !important;
-      width: 100% !important;
-    }
 
-    #facilities {
-      overflow: hidden !important;
-      width: 100% !important;
-    }
-
-    section:not(#facilities) {
-      transform: none !important;
-      will-change: auto !important;
-    }
-
-    section:not(#facilities) * {
-      transform: inherit !important;
-    }
 
     .card:hover .icon-placeholder {
       filter: grayscale(0) !important;
       transform: scale(1.05);
     }
 
+
+
+    @media (max-width: 1200px) {
+      .top-label {
+        font-size: 32px !important;
+      }
+      #facilities .section-title {
+        font-size: 100px !important;
+        letter-spacing: 6px !important;
+        -webkit-text-stroke: 2px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .grid-container {
+        gap: 20px !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        margin-top: 25px !important;
+      }
+      .image-container {
+        height: 180px !important;
+      }
+      .content-container {
+        padding: 20px 18px !important;
+      }
+      .card-title {
+        font-size: 16px !important;
+      }
+      .card-description {
+        font-size: 11px !important;
+      }
+    }
+
+
+
     @media (max-width: 1024px) {
-      #facilities {
-        padding-top: 60px !important;
+      .text-center {
+        margin-bottom: 0 !important;
       }
-      .header-wrapper {
-        padding: 30px 1.5rem !important;
-      }
-      .section-title {
-        font-size: 40px !important;
-      }
-      .section-intro {
-        font-size: 15px !important;
+      #facilities .section-title {
+        margin-bottom: 1rem !important;
       }
       .card-wrapper {
         width: 92% !important;
-      }
-      .card {
-        height: 80vh !important;
-      }
-      .content-container {
-        padding: 40px 50px !important;
-      }
-      .card-title {
-        font-size: 36px !important;
-      }
-      .card-description {
-        font-size: 15px !important;
-      }
-      .icon-placeholder {
-        font-size: 100px !important;
-      }
-    }
-
-    @media (max-width: 768px) {
-      #facilities {
-        padding-top: 40px !important;
-      }
-      .header-wrapper {
-        padding: 25px 1rem !important;
-      }
-      .section-title {
-        font-size: 32px !important;
-      }
-      .section-intro {
-        font-size: 14px !important;
-      }
-      .card-wrapper {
-        width: 94% !important;
-      }
-      .card {
-        height: 75vh !important;
-      }
-      .content-container {
-        padding: 35px 35px !important;
-        height: 48% !important;
-      }
-      .image-container {
-        height: 52% !important;
-      }
-      .card-number {
-        font-size: 13px !important;
-        margin-bottom: 12px !important;
-      }
-      .card-title {
-        font-size: 28px !important;
-        margin-bottom: 15px !important;
-      }
-      .card-description {
-        font-size: 14px !important;
-      }
-      .icon-placeholder {
-        font-size: 80px !important;
-      }
-    }
-
-    @media (max-width: 576px) {
-      #facilities {
-        padding-top: 30px !important;
-      }
-      .header-wrapper {
-        padding: 20px 1rem !important;
-      }
-      .section-title {
-        font-size: 26px !important;
-      }
-      .section-intro {
-        font-size: 13px !important;
-      }
-      .card-wrapper {
-        width: 95% !important;
-      }
-      .card {
         height: 70vh !important;
       }
       .content-container {
-        padding: 25px 25px !important;
-        height: 50% !important;
+        padding: 30px 35px !important;
+      }
+      .card-title {
+        font-size: 28px !important;
+      }
+      .card-description {
+        font-size: 14px !important;
+      }
+      .icon-placeholder {
+        font-size: 90px !important;
+      }
+    }
+
+
+
+    @media (max-width: 768px) {
+      #facilities.section {
+        padding: 60px 0 !important;
+      }
+      #facilities .container {
+        padding: 0 1rem !important;
+      }
+      .text-center {
+        margin-bottom: 0 !important;
+      }
+      .top-label {
+        font-size: 26px !important;
+        margin-bottom: 15px !important;
+      }
+      #facilities .section-title {
+        font-size: 70px !important;
+        letter-spacing: 4px !important;
+        margin-bottom: 1rem !important;
+        -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .card-wrapper {
+        width: 94% !important;
+        height: 70vh !important;
+      }
+      .card {
+        flex-direction: column !important;
       }
       .image-container {
+        flex: 1 1 auto !important;
+        width: 100% !important;
         height: 50% !important;
       }
+      .content-container {
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        height: 50% !important;
+        padding: 25px 25px !important;
+      }
       .card-number {
-        font-size: 12px !important;
+        font-size: 11px !important;
         margin-bottom: 10px !important;
       }
       .card-title {
-        font-size: 22px !important;
+        font-size: 24px !important;
         margin-bottom: 12px !important;
       }
       .card-description {
         font-size: 13px !important;
-        line-height: 1.6 !important;
       }
       .icon-placeholder {
-        font-size: 60px !important;
+        font-size: 70px !important;
+      }
+    }
+
+
+
+    @media (max-width: 576px) {
+      .text-center {
+        margin-bottom: 0 !important;
+      }
+      .top-label {
+        font-size: 22px !important;
+        margin-bottom: 12px !important;
+      }
+      #facilities .section-title {
+        font-size: 50px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 0.75rem !important;
+        -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .card-wrapper {
+        width: 95% !important;
+        height: 65vh !important;
+      }
+      .content-container {
+        padding: 20px 20px !important;
+      }
+      .card-number {
+        font-size: 10px !important;
+        margin-bottom: 8px !important;
+      }
+      .card-title {
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+      }
+      .card-description {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+      }
+      .icon-placeholder {
+        font-size: 55px !important;
+      }
+    }
+
+
+
+    @media (max-width: 400px) {
+      .text-center {
+        margin-bottom: 0 !important;
+      }
+      .top-label {
+        font-size: 20px !important;
+      }
+      #facilities .section-title {
+        font-size: 42px !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 0.75rem !important;
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.35) !important;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0.12) !important;
+      }
+      .card-title {
+        font-size: 18px !important;
+      }
+      .card-description {
+        font-size: 11px !important;
       }
     }
   `;
-
-  // ONLY 2 CARDS NOW
+  
   const facilities = [
     {
       icon: '🚀',
@@ -452,8 +521,34 @@ function Facilities() {
       title: 'Tech Infrastructure',
       description: 'Advanced computing facilities featuring high-performance servers, quantum computing access, and cloud infrastructure.',
       image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=800&fit=crop'
+    },
+    {
+      icon: '📚',
+      title: 'Digital Library',
+      description: 'Extensive digital and physical libraries providing access to global research papers, journals, and learning resources.',
+      image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&h=800&fit=crop'
+    },
+    {
+      icon: '🤝',
+      title: 'Collaboration Spaces',
+      description: 'Modern collaborative workspaces designed for teamwork, brainstorming, and interdisciplinary innovation.',
+      image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&h=800&fit=crop'
+    },
+    {
+      icon: '🏆',
+      title: 'Startup Incubation',
+      description: 'Dedicated incubation centers providing mentorship, funding access, and industry connections for startups.',
+      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=800&fit=crop'
+    },
+    {
+      icon: '🎓',
+      title: 'Learning Commons',
+      description: 'Flexible learning environments with collaborative zones, quiet study areas, and multimedia production facilities.',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=800&fit=crop'
     }
   ];
+
+
 
   return (
     <>
@@ -464,85 +559,115 @@ function Facilities() {
         style={styles.section}
         className="section"
       >
-        <div 
-          style={styles.headerWrapper}
-          className="header-wrapper"
-        >
-          <div style={styles.titleUnderline} className="title-underline">
-            <h2 style={styles.sectionTitle} className="section-title">
-              World-Class Facilities
-            </h2>
-            <div style={styles.titleUnderlineAfter}></div>
-          </div>
-          <p style={styles.sectionIntro} className="section-intro">
-            Discover our state-of-the-art infrastructure designed to foster innovation, creativity, and excellence
-          </p>
-        </div>
-
-        <div 
-          ref={cardsContainerRef}
-          style={styles.cardsContainer} 
-          className="cards-container"
-        >
-          {facilities.map((facility, index) => (
-            <div 
-              key={`facility-${index}`}
-              style={styles.cardWrapper}
-              className="card-wrapper"
-            >
-              <div
-                ref={(el) => {
-                  if (el) {
-                    cardsRef.current[index] = el;
-                  }
-                }}
-                style={styles.card}
-                className="card"
-                data-card-index={index}
-              >
-                <div 
-                  style={styles.imageContainer} 
-                  className="image-container"
-                >
-                  {facility.image ? (
-                    <img 
-                      src={facility.image} 
-                      alt={facility.title}
-                      style={styles.cardImage}
-                      className="card-image"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div 
-                      style={styles.iconPlaceholder}
-                      className="icon-placeholder"
-                    >
-                      {facility.icon}
-                    </div>
-                  )}
-                </div>
-
-                <div 
-                  style={styles.contentContainer} 
-                  className="content-container"
-                >
-                  <div style={styles.cardNumber} className="card-number">
-                    Facility {String(index + 1).padStart(2, '0')}
-                  </div>
-                  <h3 style={styles.cardTitle} className="card-title">
-                    {facility.title}
-                  </h3>
-                  <p style={styles.cardDescription} className="card-description">
-                    {facility.description}
-                  </p>
-                </div>
-              </div>
+        <div style={styles.container} className="container">
+          {/* Centered Heading */}
+          <div style={styles.textCenter} className="text-center">
+            <div style={styles.topLabel} className="top-label">
+              Excellence Without Boundaries
             </div>
-          ))}
+            <h2 style={styles.sectionTitle} className="section-title">
+              WORLD-CLASS FACILITIES
+            </h2>
+          </div>
+
+
+
+          {/* Desktop: Grid Layout - 3 columns */}
+          {!isMobile && (
+            <div style={styles.gridContainer} className="grid-container">
+              {facilities.map((facility, index) => (
+                <div key={`facility-${index}`} style={styles.card} className="card">
+                  <div style={styles.imageContainer} className="image-container">
+                    {facility.image ? (
+                      <img 
+                        src={facility.image} 
+                        alt={facility.title}
+                        style={styles.cardImage}
+                        className="card-image"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div style={styles.iconPlaceholder} className="icon-placeholder">
+                        {facility.icon}
+                      </div>
+                    )}
+                  </div>
+
+
+
+                  <div style={styles.contentContainer} className="content-container">
+                    <div style={styles.cardNumber} className="card-number">
+                      Facility {String(index + 1).padStart(2, '0')}
+                    </div>
+                    <h3 style={styles.cardTitle} className="card-title">
+                      {facility.title}
+                    </h3>
+                    <p style={styles.cardDescription} className="card-description">
+                      {facility.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+
+
+          {/* Mobile: Scroll Animation */}
+          {isMobile && (
+            <div ref={cardsContainerRef} style={styles.cardsContainer} className="cards-container">
+              {facilities.map((facility, index) => (
+                <div key={`facility-${index}`} style={styles.cardWrapper} className="card-wrapper">
+                  <div
+                    ref={(el) => {
+                      if (el) {
+                        cardsRef.current[index] = el;
+                      }
+                    }}
+                    style={styles.card}
+                    className="card"
+                    data-card-index={index}
+                  >
+                    <div style={styles.imageContainer} className="image-container">
+                      {facility.image ? (
+                        <img 
+                          src={facility.image} 
+                          alt={facility.title}
+                          style={styles.cardImage}
+                          className="card-image"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div style={styles.iconPlaceholder} className="icon-placeholder">
+                          {facility.icon}
+                        </div>
+                      )}
+                    </div>
+
+
+
+                    <div style={styles.contentContainer} className="content-container">
+                      <div style={styles.cardNumber} className="card-number">
+                        Facility {String(index + 1).padStart(2, '0')}
+                      </div>
+                      <h3 style={styles.cardTitle} className="card-title">
+                        {facility.title}
+                      </h3>
+                      <p style={styles.cardDescription} className="card-description">
+                        {facility.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
   );
 }
+
+
 
 export default Facilities;
