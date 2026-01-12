@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 function Startups() {
+  const carouselRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
   const styles = {
     section: {
       padding: '80px 0',
@@ -101,14 +107,92 @@ function Startups() {
       lineHeight: '1.6',
       fontWeight: '400',
       fontFamily: '"Inter", system-ui, sans-serif'
+    },
+    // Carousel Section
+    carouselSection: {
+      marginTop: '100px',
+      paddingTop: '80px',
+      borderTop: '2px solid #f0f0f0'
+    },
+    carouselHeading: {
+      fontSize: '48px',
+      fontWeight: '400',
+      color: '#c53030',
+      textAlign: 'center',
+      marginBottom: '20px',
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1.3'
+    },
+    carouselDescription: {
+      fontSize: '16px',
+      color: '#666',
+      textAlign: 'center',
+      maxWidth: '700px',
+      margin: '0 auto 50px',
+      lineHeight: '1.7',
+      fontFamily: '"Inter", system-ui, sans-serif'
+    },
+    carouselContainer: {
+      position: 'relative',
+      maxWidth: '1100px',
+      margin: '0 auto'
+    },
+    carouselWrapper: {
+      display: 'flex',
+      gap: '30px',
+      overflowX: 'auto',
+      scrollBehavior: 'smooth',
+      scrollSnapType: 'x mandatory',
+      WebkitOverflowScrolling: 'touch',
+      cursor: 'grab',
+      padding: '10px',
+      scrollbarWidth: 'none',
+      msOverflowStyle: 'none'
+    },
+    carouselSlide: {
+      minWidth: '100%',
+      scrollSnapAlign: 'start',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gap: '25px',
+      alignItems: 'center'
+    },
+    startupImage: {
+      width: '100%',
+      height: '200px',
+      objectFit: 'cover',
+      background: '#f5f5f5',
+      userSelect: 'none',
+      pointerEvents: 'none',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease'
+    },
+    carouselDots: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '8px',
+      marginTop: '25px'
+    },
+    dot: {
+      width: '10px',
+      height: '10px',
+      borderRadius: '50%',
+      background: '#ddd',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+      border: 'none',
+      padding: 0
+    },
+    dotActive: {
+      background: '#2563eb',
+      width: '30px',
+      borderRadius: '5px'
     }
   };
-
 
   const mediaQueryStyles = `
     @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
 
     /* Darker outline with darker fill */
     #startups .section-title {
@@ -120,16 +204,31 @@ function Startups() {
       background: none !important;
     }
 
-
     .achievement-item:hover .icon-wrapper {
       transform: scale(1.1);
     }
-
 
     .achievement-item:hover .icon {
       stroke: #60a5fa;
     }
 
+    .startup-image:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-wrapper.dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+    }
+
+    .dot:hover {
+      background: #60a5fa;
+    }
 
     @media (max-width: 1200px) {
       .top-label {
@@ -145,8 +244,19 @@ function Startups() {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 40px 50px !important;
       }
+      .carousel-heading {
+        font-size: 40px !important;
+      }
+      .startup-image {
+        height: 180px !important;
+      }
+      .carousel-container {
+        max-width: 900px !important;
+      }
+      .carousel-slide {
+        gap: 20px !important;
+      }
     }
-
 
     @media (max-width: 768px) {
       #startups.section {
@@ -192,8 +302,29 @@ function Startups() {
       .achievement-description {
         font-size: 12px !important;
       }
+      .carousel-section {
+        margin-top: 70px !important;
+        padding-top: 60px !important;
+      }
+      .carousel-heading {
+        font-size: 32px !important;
+        margin-bottom: 15px !important;
+      }
+      .carousel-description {
+        font-size: 14px !important;
+        margin-bottom: 40px !important;
+      }
+      .carousel-slide {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      .startup-image {
+        height: 220px !important;
+      }
+      .carousel-container {
+        max-width: 100% !important;
+      }
     }
-
 
     @media (max-width: 576px) {
       .top-label {
@@ -231,8 +362,16 @@ function Startups() {
       .achievement-description {
         font-size: 11px !important;
       }
+      .carousel-heading {
+        font-size: 26px !important;
+      }
+      .carousel-description {
+        font-size: 13px !important;
+      }
+      .startup-image {
+        height: 200px !important;
+      }
     }
-
 
     @media (max-width: 400px) {
       .top-label {
@@ -265,49 +404,137 @@ function Startups() {
       .achievement-description {
         font-size: 10px !important;
       }
+      .carousel-heading {
+        font-size: 24px !important;
+      }
+      .startup-image {
+        height: 180px !important;
+      }
     }
   `;
 
-
   const achievements = [
     {
-      iconPath: 'M13 10V3L4 14h7v7l9-11h-7z', // Lightning bolt - Startups
+      iconPath: 'M13 10V3L4 14h7v7l9-11h-7z',
       number: '75+',
       title: 'Active Startups',
       description: 'Student-led ventures actively operating and growing across diverse sectors including technology, healthcare, and sustainability.'
     },
     {
-      iconPath: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z', // Lightbulb - Patents
+      iconPath: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
       number: '27+',
       title: 'Patents Filed',
       description: 'Innovative ideas converted into intellectual property, with students publishing and protecting their groundbreaking inventions.'
     },
     {
-      iconPath: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', // Currency - Funding
+      iconPath: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
       number: '₹2.5Cr+',
       title: 'Funding Secured',
       description: 'Students successfully raised capital from angel investors, VCs, and government grants to scale their ventures.'
     },
     {
-      iconPath: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4', // Package - Products
+      iconPath: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4',
       number: '150+',
       title: 'Products Launched',
       description: 'Market-ready products and services developed, tested, and successfully launched by student entrepreneurs.'
     },
     {
-      iconPath: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 4 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', // Briefcase - Jobs
+      iconPath: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 4 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
       number: '500+',
       title: 'Jobs Created',
       description: 'Direct employment opportunities generated by student startups, contributing to economic growth and innovation ecosystem.'
     },
     {
-      iconPath: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z', // Users - Training
+      iconPath: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z',
       number: '1000+',
       title: 'Students Trained',
       description: 'Aspiring entrepreneurs equipped with essential skills through workshops, bootcamps, and hands-on mentorship programs.'
     }
   ];
 
+  // Carousel data - 4 pages, 2 startups per page (side by side landscape images)
+  const carouselSlides = [
+    [
+      {
+        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=550&h=200&fit=crop'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=550&h=200&fit=crop'
+      }
+    ],
+    [
+      {
+        image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=550&h=200&fit=crop'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=550&h=200&fit=crop'
+      }
+    ],
+    [
+      {
+        image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=550&h=200&fit=crop'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=550&h=200&fit=crop'
+      }
+    ],
+    [
+      {
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=550&h=200&fit=crop'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=550&h=200&fit=crop'
+      }
+    ]
+  ];
+
+  // Mouse drag handlers
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+    carouselRef.current.classList.add('dragging');
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    if (carouselRef.current) {
+      carouselRef.current.classList.remove('dragging');
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (carouselRef.current) {
+      carouselRef.current.classList.remove('dragging');
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  // Update current slide based on scroll position
+  const handleScroll = () => {
+    if (!carouselRef.current) return;
+    const slideWidth = carouselRef.current.offsetWidth;
+    const scrollPosition = carouselRef.current.scrollLeft;
+    const newSlide = Math.round(scrollPosition / slideWidth);
+    setCurrentSlide(newSlide);
+  };
+
+  const goToSlide = (index) => {
+    if (!carouselRef.current) return;
+    const slideWidth = carouselRef.current.offsetWidth;
+    carouselRef.current.scrollTo({
+      left: slideWidth * index,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <>
@@ -322,7 +549,6 @@ function Startups() {
               STARTUPS & INNOVATION
             </h2>
           </div>
-
 
           {/* Achievements Grid */}
           <div style={styles.achievementsGrid} className="achievements-grid">
@@ -347,9 +573,66 @@ function Startups() {
               </div>
             ))}
           </div>
+
+          {/* Carousel Section */}
+          <div style={styles.carouselSection} className="carousel-section">
+            <h3 style={styles.carouselHeading} className="carousel-heading">
+              Swarrnim's Startup Network
+            </h3>
+            <p style={styles.carouselDescription} className="carousel-description">
+              Meet the innovative startups born at Swarrnim University - from groundbreaking tech solutions 
+              to sustainable ventures, our students are building the future of entrepreneurship.
+            </p>
+
+            <div style={styles.carouselContainer} className="carousel-container">
+              {/* Carousel with Swipe/Scroll */}
+              <div
+                ref={carouselRef}
+                style={styles.carouselWrapper}
+                className="carousel-wrapper"
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                onScroll={handleScroll}
+              >
+                {carouselSlides.map((slide, slideIndex) => (
+                  <div key={slideIndex} style={styles.carouselSlide} className="carousel-slide">
+                    {slide.map((startup, startupIndex) => (
+                      <img
+                        key={startupIndex}
+                        src={startup.image}
+                        alt={`Startup ${slideIndex * 2 + startupIndex + 1}`}
+                        style={styles.startupImage}
+                        className="startup-image"
+                        draggable="false"
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Dots Navigation */}
+            <div style={styles.carouselDots} className="carousel-dots">
+              {carouselSlides.map((_, index) => (
+                <button
+                  key={index}
+                  style={{
+                    ...styles.dot,
+                    ...(currentSlide === index ? styles.dotActive : {})
+                  }}
+                  className={`dot ${currentSlide === index ? 'dot-active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
   );
 }
+
 export default Startups;

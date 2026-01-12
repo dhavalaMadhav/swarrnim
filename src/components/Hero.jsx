@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, User, GraduationCap, TrendingUp, Award, Building2 } from 'lucide-react';
+import { Phone, Mail, User, GraduationCap, TrendingUp, Award, Building2, ArrowRight } from 'lucide-react';
 
 
 function Hero() {
@@ -24,6 +24,17 @@ function Hero() {
     console.log('Form submitted:', formData);
     alert('Thank you for your interest! We will contact you soon.');
     setFormData({ name: '', email: '', number: '', course: '' });
+  };
+
+  // Function to scroll to quantum computing section
+  const scrollToQuantum = () => {
+    const quantumSection = document.getElementById('quantum-section');
+    if (quantumSection) {
+      quantumSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
 
@@ -54,8 +65,22 @@ function Hero() {
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.65)',
+      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.75) 15%, rgba(37, 99, 235, 0.6) 30%, rgba(29, 78, 216, 0.75) 50%, rgba(0, 0, 0, 0.85) 75%, rgba(0, 0, 0, 0.95) 100%)',
       zIndex: 1
+    },
+    logo: {
+      position: 'absolute',
+      top: '2rem',
+      left: '2rem',
+      zIndex: 20,
+      display: 'flex',
+      alignItems: 'center',
+      cursor: 'pointer'
+    },
+    logoImage: {
+      height: '80px',
+      width: 'auto',
+      objectFit: 'contain'
     },
     container: {
       position: 'relative',
@@ -75,42 +100,47 @@ function Hero() {
     leftSection: {
       animation: 'fadeInLeft 0.8s ease-out'
     },
-    badge: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '0.5rem',
-      background: '#2563eb',
-      color: 'white',
-      padding: '0.5rem 1.2rem',
-      fontSize: '0.8rem',
-      fontWeight: '700',
-      marginBottom: '1.5rem',
-      letterSpacing: '0.5px'
-    },
     title: {
       fontSize: '4rem',
       fontWeight: '900',
-      lineHeight: '1',
+      lineHeight: '1.1',
       marginBottom: '1rem',
       color: '#ffffff',
       letterSpacing: '-3px',
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-      textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3)'
-    },
-    subtitle: {
-      fontSize: '1.2rem',
-      color: '#3b82f6',
-      marginBottom: '1rem',
-      fontWeight: '700',
-      letterSpacing: '0.5px'
+      textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6), 1px 1px 3px rgba(0, 0, 0, 0.4)'
     },
     description: {
       fontSize: '1rem',
-      color: '#e0e0e0',
+      color: '#ffffff',
       lineHeight: '1.7',
       marginBottom: '2rem',
       maxWidth: '650px',
-      fontWeight: '400'
+      fontWeight: '500',
+      textShadow: '1px 1px 4px rgba(0, 0, 0, 0.7), 2px 2px 6px rgba(0, 0, 0, 0.5)'
+    },
+    // New button style for Explore Quantum Computing
+    quantumButton: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '0.6rem',
+      background: '#FFC107',
+      color: '#1a1a1a',
+      padding: '0.9rem 2rem',
+      fontSize: '0.9rem',
+      fontWeight: '700',
+      border: 'none',
+      borderRadius: '30px',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+      letterSpacing: '0.5px',
+      marginBottom: '2rem',
+      boxShadow: '0 4px 12px rgba(255, 193, 7, 0.3)',
+      textTransform: 'uppercase'
+    },
+    arrowIcon: {
+      transition: 'transform 0.3s ease'
     },
     statsContainer: {
       position: 'relative',
@@ -178,7 +208,8 @@ function Hero() {
       background: '#ffffff',
       padding: '1.5rem',
       border: '1px solid rgba(0, 0, 0, 0.1)',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      borderRadius: '12px'
     },
     contactBoxHeader: {
       textAlign: 'center',
@@ -189,11 +220,12 @@ function Hero() {
       zIndex: 1
     },
     contactBoxTitle: {
-      fontSize: '1.3rem',
-      fontWeight: '800',
+      fontSize: '1.5rem',
+      fontWeight: '400',
       color: '#1a1a1a',
       marginBottom: '0.3rem',
-      letterSpacing: '-0.5px'
+      letterSpacing: '0.5px',
+      fontFamily: "'Young Serif', Georgia, serif"
     },
     contactBoxSubtitle: {
       color: '#666666',
@@ -226,7 +258,7 @@ function Hero() {
       width: '100%',
       padding: '0.8rem 0.9rem 0.8rem 2.6rem',
       border: '1px solid #d1d5db',
-      borderRadius: '0',
+      borderRadius: '6px',
       fontSize: '0.9rem',
       color: '#1a1a1a',
       background: '#ffffff',
@@ -242,7 +274,7 @@ function Hero() {
       width: '100%',
       padding: '0.8rem 2.6rem 0.8rem 2.6rem',
       border: '1px solid #d1d5db',
-      borderRadius: '0',
+      borderRadius: '6px',
       fontSize: '0.9rem',
       color: '#1a1a1a',
       background: '#ffffff',
@@ -267,7 +299,8 @@ function Hero() {
       transition: 'all 0.3s ease',
       marginTop: '0.3rem',
       letterSpacing: '1px',
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
+      borderRadius: '6px'
     },
     contactBoxFooter: {
       marginTop: '1rem',
@@ -295,6 +328,8 @@ function Hero() {
 
 
   const mediaQueryStyles = `
+    @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
     @keyframes fadeInLeft {
       from {
         opacity: 0;
@@ -326,6 +361,22 @@ function Hero() {
       50%, 100% {
         left: 100%;
       }
+    }
+
+    @keyframes arrowBounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(0);
+      }
+      40% {
+        transform: translateX(5px);
+      }
+      60% {
+        transform: translateX(3px);
+      }
+    }
+
+    .arrow-animate {
+      animation: arrowBounce 2s infinite;
     }
 
 
@@ -366,7 +417,6 @@ function Hero() {
       background-color: #ffffff !important;
       -webkit-appearance: none !important;
       appearance: none !important;
-      border-radius: 0 !important;
     }
 
 
@@ -381,10 +431,22 @@ function Hero() {
       box-shadow: inset 0 0 20px 20px #ffffff;
     }
 
+    .quantum-button:hover {
+      background: #FFB300 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4) !important;
+    }
+
+    .quantum-button:hover .arrow-icon {
+      transform: translateX(5px);
+    }
 
     @media (max-width: 1200px) {
       .hero-title {
         font-size: 3.2rem !important;
+      }
+      .hero-logo-image {
+        height: 70px !important;
       }
     }
 
@@ -396,6 +458,12 @@ function Hero() {
       }
       .hero-container {
         padding: 2rem 1.5rem !important;
+      }
+      .hero-logo-image {
+        height: 65px !important;
+      }
+      .hero-overlay {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.7) 12%, rgba(37, 99, 235, 0.55) 25%, rgba(29, 78, 216, 0.7) 45%, rgba(0, 0, 0, 0.85) 70%, rgba(0, 0, 0, 0.95) 100%) !important;
       }
     }
 
@@ -447,22 +515,14 @@ function Hero() {
       }
 
 
-      .hero-badge {
-        font-size: 0.7rem !important;
-        padding: 0.4rem 0.9rem !important;
-        margin-bottom: 1rem !important;
-      }
-
-
-      .hero-subtitle {
-        font-size: 1rem !important;
-        margin-bottom: 0.8rem !important;
-      }
-
-
       .hero-description {
         font-size: 0.9rem !important;
         margin-bottom: 1.5rem !important;
+      }
+
+      .quantum-button {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.8rem !important;
       }
 
 
@@ -485,12 +545,30 @@ function Hero() {
 
 
       .contact-box-title {
-        font-size: 1.2rem !important;
+        font-size: 1.3rem !important;
       }
 
 
       .contact-box-subtitle {
         font-size: 0.75rem !important;
+      }
+
+
+      /* Mobile - Center logo */
+      .hero-logo {
+        top: 1.5rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+
+
+      .hero-logo-image {
+        height: 60px !important;
+      }
+
+
+      .hero-overlay {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.65) 10%, rgba(37, 99, 235, 0.5) 22%, rgba(29, 78, 216, 0.65) 40%, rgba(0, 0, 0, 0.8) 65%, rgba(0, 0, 0, 0.92) 100%) !important;
       }
     }
 
@@ -513,19 +591,41 @@ function Hero() {
       }
 
 
-      .hero-subtitle {
-        font-size: 0.9rem !important;
-      }
-
-
       .hero-description {
         font-size: 0.85rem !important;
         line-height: 1.5 !important;
       }
 
+      .quantum-button {
+        padding: 0.7rem 1.3rem !important;
+        font-size: 0.75rem !important;
+      }
+
 
       .hero-contact-box {
         padding: 1.2rem !important;
+      }
+
+      .contact-box-title {
+        font-size: 1.2rem !important;
+      }
+
+
+      /* Mobile - Center logo */
+      .hero-logo {
+        top: 1rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+
+
+      .hero-logo-image {
+        height: 55px !important;
+      }
+
+
+      .hero-overlay {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.6) 8%, rgba(37, 99, 235, 0.45) 20%, rgba(29, 78, 216, 0.6) 35%, rgba(0, 0, 0, 0.78) 60%, rgba(0, 0, 0, 0.9) 100%) !important;
       }
     }
   `;
@@ -537,31 +637,43 @@ function Hero() {
       <section style={styles.hero} className="hero">
         {/* Desktop View */}
         <div style={styles.backgroundImage} className="hero-desktop-bg"></div>
-        <div style={styles.overlay} className="hero-desktop-overlay"></div>
+        <div style={styles.overlay} className="hero-overlay"></div>
+
+
+        {/* University Logo - Top Left (Same as Header) */}
+        <div style={styles.logo} className="hero-logo">
+          <img 
+            src="/swarrnim-logo.png" 
+            alt="Swarrnim University Logo" 
+            style={styles.logoImage}
+            className="hero-logo-image"
+          />
+        </div>
 
 
         <div style={styles.container} className="hero-container">
           <div style={styles.contentWrapper} className="hero-content-wrapper">
             {/* Left Side - Content */}
             <div style={styles.leftSection} className="hero-left-section">
-              <div style={styles.badge} className="hero-badge">
-                <Building2 size={16} />
-                <span>India's 1st Startup & Quantum University</span>
-              </div>
-
-
               <h1 style={styles.title} className="hero-title">
-                BUILD STARTUPS<br />POWER QUANTUM
+                QUANTUM MINDS,<br />STARTUP FOUNDERS
               </h1>
-
-
-              <h2 style={styles.subtitle} className="hero-subtitle">Swaranim Startup & Innovation University</h2>
 
 
               <p style={styles.description} className="hero-description">
                 India's first university dedicated to startup incubation and quantum computing education. 
                 Launch your venture while mastering next-gen technology.
               </p>
+
+              {/* Explore Quantum Computing Button */}
+              <button 
+                style={styles.quantumButton}
+                className="quantum-button"
+                onClick={scrollToQuantum}
+              >
+                <span>Explore Quantum Computing</span>
+                <ArrowRight size={20} className="arrow-animate arrow-icon" style={styles.arrowIcon} />
+              </button>
 
 
               {/* Statistics Container - Desktop Only */}
@@ -725,7 +837,7 @@ function Hero() {
                   </div>
                   <div style={styles.contactItem}>
                     <Mail size={16} style={styles.contactItemIcon} />
-                    <span>admissions@swaranim.edu</span>
+                    <span>admissions@swarrnim.edu</span>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 function Placements() {
   const styles = {
     section: {
@@ -56,7 +54,7 @@ function Placements() {
       wordWrap: 'break-word'
     },
     achieversHeader: {
-      fontSize: '32px',
+      fontSize: '48px',
       fontWeight: '400',
       color: '#c53030',
       textAlign: 'center',
@@ -65,6 +63,7 @@ function Placements() {
       textTransform: 'none',
       letterSpacing: '0.5px',
       fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1.3',
       display: 'none'
     },
     contentWrapper: {
@@ -256,14 +255,15 @@ function Placements() {
       padding: '0'
     },
     companiesHeader: {
-      fontSize: '32px',
+      fontSize: '48px',
       fontWeight: '400',
-      color: '#000',
+      color: '#c53030',
       textAlign: 'center',
       marginBottom: '30px',
       textTransform: 'none',
       letterSpacing: '0.5px',
-      fontFamily: '"Young Serif", Georgia, serif'
+      fontFamily: '"Young Serif", Georgia, serif',
+      lineHeight: '1.3'
     },
     carouselContainer: {
       position: 'relative',
@@ -353,67 +353,47 @@ function Placements() {
     }
   };
 
-
-
   const mediaQueryStyles = `
     @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-
 
     * {
       box-sizing: border-box;
     }
 
-
-
     body {
       overflow-x: hidden !important;
     }
-
-
 
     #placements {
       overflow-x: hidden !important;
       width: 100% !important;
     }
 
-
-
     /* Default desktop style */
     .student-cards-grid {
       grid-template-columns: repeat(3, 1fr) !important;
     }
-
-
 
     /* Remove right border from last column (every 3rd item) */
     .student-cards-grid .student-card:nth-child(3n) {
       border-right: none !important;
     }
 
-
-
     /* Remove bottom border from last row (last 3 items) */
     .student-cards-grid .student-card:nth-last-child(-n+3) {
       border-bottom: none !important;
     }
-
-
 
     /* Hide mobile achievers header on desktop */
     .achievers-header {
       display: none !important;
     }
 
-
-
     /* Hide desktop student section on desktop - shown on right */
     .desktop-student-section {
       display: none !important;
     }
-
-
 
     /* Same title style as other sections */
     #placements .section-title {
@@ -427,53 +407,37 @@ function Placements() {
       overflow: hidden !important;
     }
 
-
-
     .carousel-track::-webkit-scrollbar {
       display: none;
     }
-
-
 
     .student-card:hover {
       background: rgba(37, 99, 235, 0.02);
       transform: scale(1.02);
     }
 
-
-
     .student-card:hover .student-image {
       border-color: #c53030;
       transform: scale(1.05);
     }
-
-
 
     /* Remove package container hover effect */
     .package-container {
       transition: none !important;
     }
 
-
-
     .company-card:hover {
       border-color: #2563eb;
       background: #fff;
     }
 
-
-
     .company-card:hover .company-logo {
       transform: scale(1.08);
     }
 
-
-
     .dot:hover {
       background: #60a5fa;
     }
-
-
 
     @media (max-width: 1200px) {
       .top-label {
@@ -542,8 +506,11 @@ function Placements() {
         width: 85px !important;
         height: 85px !important;
       }
+      .achievers-header {
+        font-size: 40px !important;
+      }
       .companies-header {
-        font-size: 28px !important;
+        font-size: 40px !important;
       }
       .carousel-slide {
         grid-template-columns: repeat(4, 1fr) !important;
@@ -559,8 +526,6 @@ function Placements() {
         max-height: 80px !important;
       }
     }
-
-
 
     @media (max-width: 1024px) {
       .content-grid {
@@ -646,8 +611,6 @@ function Placements() {
       }
     }
 
-
-
     @media (max-width: 768px) {
       #placements.section {
         padding: 60px 0 !important;
@@ -690,7 +653,7 @@ function Placements() {
         height: 90px !important;
       }
       .achievers-header {
-        font-size: 24px !important;
+        font-size: 32px !important;
         margin-bottom: 20px !important;
       }
       .student-card {
@@ -724,7 +687,7 @@ function Placements() {
         margin-top: 35px !important;
       }
       .companies-header {
-        font-size: 24px !important;
+        font-size: 32px !important;
         margin-bottom: 25px !important;
       }
       .carousel-slide {
@@ -741,8 +704,6 @@ function Placements() {
         max-height: 70px !important;
       }
     }
-
-
 
     @media (max-width: 576px) {
       .top-label {
@@ -776,7 +737,7 @@ function Placements() {
         height: 2px !important;
       }
       .achievers-header {
-        font-size: 20px !important;
+        font-size: 26px !important;
         margin-bottom: 18px !important;
       }
       .content-wrapper {
@@ -810,7 +771,7 @@ function Placements() {
         font-size: 11px !important;
       }
       .companies-header {
-        font-size: 20px !important;
+        font-size: 26px !important;
       }
       .carousel-slide {
         gap: 10px !important;
@@ -825,8 +786,6 @@ function Placements() {
         max-height: 60px !important;
       }
     }
-
-
 
     @media (max-width: 400px) {
       .top-label {
@@ -848,7 +807,7 @@ function Placements() {
         font-size: 11px !important;
       }
       .achievers-header {
-        font-size: 18px !important;
+        font-size: 24px !important;
       }
       .student-card {
         padding: 12px !important;
@@ -885,10 +844,11 @@ function Placements() {
       .company-logo {
         max-height: 55px !important;
       }
+      .companies-header {
+        font-size: 24px !important;
+      }
     }
   `;
-
-
 
   // Student data
   const students = [
@@ -930,8 +890,6 @@ function Placements() {
     }
   ];
 
-
-
   // Company data
   const companies = [
     [
@@ -960,12 +918,8 @@ function Placements() {
     ]
   ];
 
-
-
   const [activeSlide, setActiveSlide] = React.useState(0);
   const carouselRef = React.useRef(null);
-
-
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -977,16 +931,12 @@ function Placements() {
       }
     };
 
-
-
     const carousel = carouselRef.current;
     if (carousel) {
       carousel.addEventListener('scroll', handleScroll);
       return () => carousel.removeEventListener('scroll', handleScroll);
     }
   }, []);
-
-
 
   const scrollToSlide = (index) => {
     if (carouselRef.current) {
@@ -997,8 +947,6 @@ function Placements() {
       });
     }
   };
-
-
 
   return (
     <>
@@ -1014,15 +962,11 @@ function Placements() {
             </h2>
           </div>
 
-
-
           <div style={styles.contentWrapper} className="content-wrapper">
             {/* Two Column Layout with Vertical Divider */}
             <div style={styles.contentGrid} className="content-grid">
               {/* Vertical Divider Line */}
               <div style={styles.verticalDivider} className="vertical-divider"></div>
-
-
 
               {/* Left Section - Package Box Only */}
               <div style={styles.leftSection} className="left-section">
@@ -1039,12 +983,8 @@ function Placements() {
                     </div>
                   </div>
 
-
-
                   {/* Divider */}
                   <div style={styles.packageDivider} className="package-divider"></div>
-
-
 
                   {/* 48 LPA */}
                   <div style={styles.packageItem} className="package-item">
@@ -1058,14 +998,10 @@ function Placements() {
                   </div>
                 </div>
 
-
-
                 {/* Mobile "Our Top Achievers" Heading - Shows only on mobile/tablet */}
                 <h3 style={styles.achieversHeader} className="achievers-header">
                   Our Top Achievers
                 </h3>
-
-
 
                 {/* Student Cards for Mobile - Shows only on mobile/tablet */}
                 <div style={styles.desktopStudentSection} className="desktop-student-section">
@@ -1104,16 +1040,12 @@ function Placements() {
                 </div>
               </div>
 
-
-
               {/* Right Section - For Desktop: Heading + Student Cards Grid */}
               <div style={styles.rightSection} className="right-section">
                 {/* Desktop "Our Top Achievers" Heading - Right side top */}
                 <h3 style={styles.desktopAchieversHeader} className="desktop-achievers-header">
                   Our Top Achievers
                 </h3>
-
-
 
                 {/* Student Cards Grid for Desktop */}
                 <div style={styles.studentCardsGrid} className="student-cards-grid">
@@ -1154,15 +1086,11 @@ function Placements() {
             </div>
           </div>
 
-
-
           {/* Recruiting Partners Section */}
           <div style={styles.companiesSection} className="companies-section">
             <h3 style={styles.companiesHeader} className="companies-header">
               Our Recruiting Partners
             </h3>
-
-
 
             <div style={styles.carouselContainer} className="carousel-container">
               <div 
@@ -1207,8 +1135,6 @@ function Placements() {
               </div>
             </div>
 
-
-
             <div style={styles.scrollIndicator} className="scroll-indicator">
               {companies.map((_, index) => (
                 <div
@@ -1236,7 +1162,5 @@ function Placements() {
     </>
   );
 }
-
-
 
 export default Placements;
